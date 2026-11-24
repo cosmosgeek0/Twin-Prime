@@ -1,15 +1,20 @@
-# Twin Prime Research
+# Twin Prime research
 
-Three mathematical manuscripts developed while studying the twin prime conjecture. They establish partial results. Infinitude of ordinary twin primes remains open in these manuscripts.
+## Featured manuscript — Large prime divisors of Fermat congruences and semiprime pseudoprimes
 
-| Manuscript | PDF | Editable LaTeX |
-| --- | --- | --- |
-| A long-divisor sign classification on three-prime products and an upper sieve for their shift by two | [Read](papers/shift-two-sieve.pdf) | [Source](papers/shift-two-sieve.tex) |
-| Large prime divisors of Fermat congruences and semiprime pseudoprimes | [Read](papers/fermat-divisors.pdf) | [Source](papers/fermat-divisors.tex) |
-| The signed contribution of two- and three-prime products to a truncated von Mangoldt convolution | [Read](papers/truncated-divisor-weights.pdf) | [Source](papers/truncated-divisor-weights.tex) |
+How many composite numbers built from exactly two primes can pass the base-2 Fermat test? Write $Q_2(X)$ for their count up to $X$, including squares. The manuscript proves
 
-The original November research chat supplied the shift-two sieve manuscript. It bounds a weighted contribution where the neighboring integer must meet specified factorization conditions. The Fermat manuscript bounds how often numbers with two prime factors pass a base-2 Fermat test. The signed-contribution companion computes the complete two- and three-factor mean before restrictions on the neighboring integer are applied.
+$$Q_2(X)\ll \frac{X^{3/4}}{(\log X)^{5/4}}.$$
 
-Project coordinator and contact: **DEEPAK KUMAR** · [admin@cosmosgeek.org](mailto:admin@cosmosgeek.org).
+For the same count with unrestricted factor sizes, Theorem 3.1 of Luca, Ralaivaosaona and Jiménez Urroz gives $O(X^{4/5}/(\log X)^{2/5})$. The improvement comes from counting possible prime factors separately at each small value of $\gcd(r-1,s-1)$ and retaining both primality conditions for large values. [Published comparison (2025)](https://doi.org/10.1007/s13370-025-01338-1) · [Read the paper](papers/fermat-divisors.pdf) · [Editable proof](papers/fermat-divisors.tex)
 
-These are research drafts developed and checked with ChatGPT and Codex. The coordinator is identified for correspondence. The drafts have not received independent specialist peer review.
+This bound controls false positives. Proving that sufficiently many candidates pass the test remains open. The Twin Prime Conjecture is unresolved in this work. The comparison above concerns the cited theorem. Literature priority and independent specialist review remain open.
+
+## Supporting sieve notes
+
+- **A long-divisor sign classification on three-prime products and an upper sieve for their shift by two.** Bounds a contribution where the neighboring integer satisfies specified factorization conditions. [PDF](papers/shift-two-sieve.pdf) · [LaTeX](papers/shift-two-sieve.tex)
+- **The signed contribution of two- and three-prime products to a truncated von Mangoldt convolution.** Computes the signed mean before restrictions on the neighboring integer are applied. [PDF](papers/truncated-divisor-weights.pdf) · [LaTeX](papers/truncated-divisor-weights.tex)
+
+**Project coordinator and contact:** DEEPAK KUMAR · [admin@cosmosgeek.org](mailto:admin@cosmosgeek.org).
+
+The research and drafting involved ChatGPT and Codex. The coordinator is identified for correspondence. These manuscripts are public research drafts.
