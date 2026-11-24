@@ -1,0 +1,302 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[margin=1.02in]{geometry}
+\usepackage[hidelinks]{hyperref}
+
+% Fill in these fields before publication.
+\newcommand*{\AuthorName}{}
+\newcommand*{\AuthorEmail}{}
+\newcommand{\LiTwo}{\operatorname{Li}_2}
+\newcommand{\pos}[1]{(#1)_{+}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\title{The signed contribution of two- and three-prime products\\
+to a truncated von Mangoldt convolution}
+\author{\AuthorName\ifx\AuthorEmail\empty\else
+  \ifx\AuthorName\empty\else\\\fi
+  {\small\href{mailto:\AuthorEmail}{\expandafter\nolinkurl\expandafter{\AuthorEmail}}}\fi}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Consider the part of the divisor sum
+\(\Lambda(n)=\sum_{d\mid n}\mu(d)\log(n/d)\) with \(d>X^t\), on
+\(X<n\le 2X\). For \(0<t\le 1/3\) it is negative on every squarefree
+product of two primes. On a product of three distinct primes \(r<s<q\)
+it is positive exactly when \(s\le X^t<rs\), in which case its value
+is \(\log q\). We evaluate the mass of this positive contribution,
+also with a lower cutoff \(r>X^\delta\). Without the lower cutoff the
+mass is \((\pi^2/12+o(1))X\), independently of \(t\). Even after
+discarding all the negative three-prime contributions, the two-prime
+terms outweigh the positive three-prime terms by an absolute multiple
+of \(X\) for every fixed \(0\le\delta\le t\). The estimates concern
+averages over the integers and over fixed reduced residue classes.
+\end{abstract}
+
+\section{The divisor weight and its signs}
+
+Let \(\mu\) denote the M\"obius function, \(\Lambda\) the von Mangoldt
+function and \(P^-(n)\) the least prime factor of \(n>1\). Fix \(X>1\)
+and \(D=X^t\), where \(0<t\le 1/3\). For \(X<n\le 2X\) put
+\begin{equation}\label{eq:weight}
+ F_D(n)=\sum_{\substack{d\mid n\\ d>D}}\mu(d)\log(n/d)
+       =\sum_{\substack{k\mid n\\1<k<n/D}}\mu(n/k)\log k.
+\end{equation}
+The omitted \(k=1\) term has weight zero. All logarithms are natural.
+On composite squarefree \(n\) the identity
+\(\sum_{d\mid n}\mu(d)\log(n/d)=\Lambda(n)=0\) gives
+\begin{equation}\label{eq:complement}
+ F_D(n)=-\sum_{\substack{d\mid n\\d\le D}}\mu(d)\log(n/d).
+\end{equation}
+For comparison, the usual truncated divisor sum in
+Goldston--Y{\i}ld{\i}r{\i}m \cite{GY} uses \(\log(D/d)\).
+On the right of \eqref{eq:complement}, replacing \(\log(n/d)\) by
+\(\log(D/d)\) removes the term
+\(-\log(n/D)\sum_{d\mid n,\,d\le D}\mu(d)\).
+
+\begin{proposition}\label{prop:signs}
+For primes \(r<s\) with \(X<rs\le 2X\),
+\[
+ F_D(rs)=
+ \begin{cases}
+ -\log(rs),&D<r,\\
+ -\log r,&r\le D.
+ \end{cases}
+\]
+For primes \(r<s<q\) with \(X<rsq\le 2X\),
+\[
+ F_D(rsq)=
+ \begin{cases}
+ -\log(rsq),&D<r,\\
+ -\log r,&r\le D<s,\\
+ 0,&s\le D,\ rs\le D,\\
+ \log q,&s\le D<rs.
+ \end{cases}
+\]
+\end{proposition}
+\begin{proof}
+Since \(D^3\le X<n\), the largest prime exceeds \(D\) in each case.
+For \(n=rs\), the possible divisors in \eqref{eq:complement} are
+\(1\) and \(r\). For \(n=rsq\), they are \(1,r,s,rs\), subject to
+the cutoff. If both \(r,s\) are included, the first three terms
+give \(-\log(rsq)+\log(sq)+\log(rq)=\log q\). Including \(rs\)
+subtracts \(\log q\). In the other cases the term \(d=1\) alone gives
+\(-\log n\), and including only \(r\) in addition gives \(-\log r\).
+\end{proof}
+
+\section{The positive three-prime contribution}
+
+Fix \(0\le\delta\le t\). Write \(\mathcal S_j(X,\delta)\) for the
+squarefree integers in \((X,2X]\) having exactly \(j\) prime factors
+and satisfying \(P^-(n)>X^\delta\). Thus \(\delta=0\) imposes no
+additional restriction. Write \(v_+=\max(v,0)\).
+
+\begin{theorem}\label{thm:positive}
+As \(X\to\infty\) with \(t,\delta\) fixed,
+\[
+ \sum_{n\in\mathcal S_3(X,\delta)}\pos{F_D(n)}
+   =\bigl(I(\delta/t)+o(1)\bigr)X .
+\]
+With \(\LiTwo(z)=-\int_0^z\log(1-y)\,dy/y\), the constant is
+\begin{equation}\label{eq:constant}
+ I(a)=
+ \begin{cases}
+ \pi^2/12, & a=0,\\[2pt]
+ \dfrac12\left(\LiTwo(1-a)-\LiTwo(a)
+ +\log(1/a)\log(1/(1-a))\right), &0<a<1/2,\\[3pt]
+ \dfrac12\log^2(1/a),&1/2\le a\le 1 .
+ \end{cases}
+\end{equation}
+\end{theorem}
+\begin{proof}
+By Proposition~\ref{prop:signs}, fix primes \(X^\delta<r<s\le D\)
+with \(rs>D\). Then the possible primes \(q\) form the interval
+\[
+                  X/(rs)<q\le 2X/(rs).
+\]
+Every such \(q\) exceeds \(X^{1-2t}\) and hence \(D\). With
+\(\vartheta(y)=\sum_{q\le y}\log q\), the prime number theorem gives
+\(\vartheta(2y)-\vartheta(y)=(1+o(1))y\), uniformly for
+\(y\ge X^{1-2t}\). It follows that the sum under consideration equals
+\begin{equation}\label{eq:harm}
+  (1+o(1))X
+  \sum_{\substack{X^\delta<r<s\le D\\rs>D}}\frac{1}{rs}.
+\end{equation}
+Here and below variables denoting prime factors in harmonic sums run
+over primes.
+
+For fixed \(0<A<B\), partial summation of the prime number theorem
+gives \(\sum_{X^A<r\le X^B}1/r\to\log(B/A)\). Thus the measure
+putting mass \(1/r\) at \(u=\log r/\log X\) converges on compact
+subintervals of \((0,\infty)\) to \(du/u\). For \(\delta>0\) this
+applies to the product measure in \((u,v)\). The lines \(u=v\) and
+\(u+v=t\), and the endpoints of the box, have measure zero in the
+limit. Symmetry therefore gives the limit of the sum in \eqref{eq:harm}
+as
+\begin{equation}\label{eq:double}
+ \frac12\int_{\delta}^{t}\int_{\max(\delta,t-u)}^{t}
+                                     \frac{dv\,du}{uv}.
+\end{equation}
+The factor \(1/2\) counts each unordered pair of distinct small primes
+once.
+
+The limit at \(\delta=0\) requires control near \(u=0\).
+For \(0<\epsilon<t/2\) and \(r\le X^\epsilon\),
+the interval \(D/r<s\le D\) is covered by \(O(\log(2r))\) dyadic
+intervals with endpoints \(\gg X^{t/2}\). The prime counting upper
+bound \(\pi(y)\ll y/\log y\) on each interval gives
+\[
+ \sum_{r\le X^\epsilon}\frac1r
+   \sum_{D/r<s\le D}\frac1s
+ \ll_t \frac1{\log X}\sum_{r\le X^\epsilon}\frac{\log(2r)}r
+ \ll_t \epsilon+\frac1{\log X}.
+\]
+The last bound follows by partial summation. We may first fix
+\(\epsilon\), take \(X\to\infty\), and then let \(\epsilon\downarrow0\).
+
+Scale \(u,v\) in \eqref{eq:double} by \(t\). For \(0<a<1/2\),
+twice the integral is
+\[
+ \int_a^{1-a}\frac{-\log(1-y)}{y}\,dy
+  +\log(1/a)\int_{1-a}^1\frac{dy}{y}.
+\]
+This gives the middle line of \eqref{eq:constant}. At \(a=0\)
+it gives \(\LiTwo(1)=\sum_{j\ge1}j^{-2}=\pi^2/6\) before division
+by two. At \(a\ge1/2\), the entire open square \((a,1)^2\)
+satisfies \(u/t+v/t>1\), which gives the last line.
+\end{proof}
+
+\section{The signed mean}
+
+\begin{theorem}\label{thm:signed}
+For \(0<t\le 1/3\) and \(0\le\delta\le t\), put
+\begin{align}
+ B&=\log((1-\delta)/t),\nonumber\\
+ J_0&=\int_t^{1/3}\int_u^{(1-u)/2}
+                    \frac{dv\,du}{uv(1-u-v)},\label{eq:Js}\\
+ J_1&=\int_\delta^t\int_t^{(1-u)/2}
+                    \frac{dv\,du}{v(1-u-v)}.\nonumber
+\end{align}
+For fixed \(t,\delta\), as \(X\to\infty\),
+\begin{align*}
+ X^{-1}\!\sum_{n\in\mathcal S_2(X,\delta)}F_D(n)&=-B+o(1),\\
+ X^{-1}\!\sum_{n\in\mathcal S_3(X,\delta)}F_D(n)
+         &=I(\delta/t)-J_0-J_1+o(1).
+\end{align*}
+Even if all negative three-prime terms are discarded, one has
+\[
+ \lim_{X\to\infty}\frac1X\left(
+   \sum_{n\in\mathcal S_2(X,\delta)}F_D(n)+
+   \sum_{n\in\mathcal S_3(X,\delta)}\pos{F_D(n)}\right)
+ \le -\left(\log(5/2)-\frac{\pi^2}{12}\right)<0.
+\]
+\end{theorem}
+\begin{proof}
+Write \(L=\log X\). If \(X^\delta<r\le D\), the contribution of \(rs\)
+to the negative mass is \(\log r\) for each prime
+\(X/r<s\le 2X/r\). If \(D<r\le\sqrt X\), the negative mass is
+\(\log(rs)=L+O(1)\) for each such prime. The range
+\(\sqrt X<r\le\sqrt{2X}\) contributes \(O(X/L)\), using
+\(\pi(2X/r)\ll X/(rL)\) and
+\(\sum_{\sqrt X<r\le\sqrt{2X}}1/r\ll 1/L\).
+The prime number theorem gives
+\(\pi(2y)-\pi(y)=(1+o(1))y/\log y\) uniformly at \(y=X/r\) in
+the first two ranges. For the first range we use the measure with
+mass \(\log r/(rL)\) at \(u=\log r/L\); it converges to \(du\) on
+\([0,t]\) by partial summation, also at the endpoint \(0\).
+For the second range we use the prime harmonic measure \(du/u\)
+from the proof of Theorem~\ref{thm:positive}. The two limiting negative
+masses divided by \(X\) consequently add to
+\[
+  \int_\delta^t\frac{du}{1-u}+
+  \int_t^{1/2}\frac{du}{u(1-u)}=\log((1-\delta)/t)=B .
+\]
+
+For three primes \(r<s<q\), the negative mass in
+Proposition~\ref{prop:signs} is \(\log(rsq)\) when \(r>D\), and
+\(\log r\) when \(X^\delta<r\le D<s\). Set \(u=\log r/L\),
+\(v=\log s/L\). If \(rs^2\le X\), the order \(q>s\) holds for
+every \(X/(rs)<q\le 2X/(rs)\). If \(rs^2>2X\), there is no
+contribution. In the intermediate strip
+\(1<u+2v\le 1+\log(2)/L\), the number of choices is at most
+\(\pi(2X/(rs))\ll X/(rsL)\), since \(s>X^t\) and
+\(X/(rs)\ge s/2\).
+After division by \(X\) the strip has vanishing mass: the relevant
+measures on the box have limits \(du\,dv/(uv)\) when \(u\ge t\)
+and \(du\,dv/v\) when \(0\le u\le t\). Each assigns measure zero
+to \(u+2v=1\). This also justifies neglecting the ordering boundary
+\(u=v\).
+
+On \(u+2v\le1\) we have \(\log(X/(rs))=(1-u-v)L\ge tL\).
+Using the prime number theorem for \(q\) now gives the integral
+\(J_0\) for the first negative case, since \(\log(rsq)=L+O(1)\).
+In the second case \(\log r=uL\) cancels the \(u\) in the harmonic
+density, giving \(J_1\). Theorem~\ref{thm:positive} supplies the
+positive term.
+
+Finally, if \(\delta\le t/2\), then \(B\ge\log(5/2)\) and
+\(I(\delta/t)\le\pi^2/12\). If \(t/2\le\delta\le t\), then
+\(B\ge\log 2\) and \(I(\delta/t)\le(\log 2)^2/2\). The latter
+gap exceeds \(\log(5/2)-\pi^2/12\). The little-oh errors above
+are for fixed parameters.
+\end{proof}
+
+\section{Fixed congruence restrictions and shift two}
+
+\begin{corollary}\label{cor:local}
+Restrict any of the sums in Theorems~\ref{thm:positive}
+and~\ref{thm:signed} to \(n\equiv b\pmod m\), where \(m\) is fixed
+and \((b,m)=1\). Each leading constant is divided by \(\varphi(m)\).
+In particular, requiring \((n+2,m)=1\) multiplies each leading
+constant by
+\[
+       \prod_{\substack{\ell\mid m\\\ell>2\ {\rm prime}}}
+                     \frac{\ell-2}{\ell-1}.
+\]
+\end{corollary}
+\begin{proof}
+For \(\delta>0\), all prime factors of \(n\) exceed the prime divisors
+of \(m\) once \(X\) is large. Once the smaller factors are fixed, the
+largest prime must belong to one reduced class modulo \(m\).
+The prime number theorem for a fixed arithmetic progression replaces
+each use of the prime number theorem in its interval by a factor
+\(1/\varphi(m)\); see \cite{Tao}. For \(\delta=0\) remove \(r\le
+X^\epsilon\) first. The harmonic tail estimate in
+Theorem~\ref{thm:positive} and the integrals for \(B,J_1\) in
+Theorem~\ref{thm:signed} bound its absolute weight by
+\(O_t(\epsilon X)+o(X)\). Thus nonunit residue classes contribute
+\(o(X)\). Among the reduced residue classes, the additional
+condition excludes exactly one unit class modulo each odd
+\(\ell\mid m\) and excludes none modulo \(2\). The Chinese
+remainder theorem gives the product.
+\end{proof}
+
+For example, at \(t=0.24995\) and \(\delta=1/20\),
+\[
+  I(\delta/t)=0.6114186198\ldots,\qquad
+  B=1.3352010867\ldots .
+\]
+Thus the signed sum with negative three-prime terms omitted is
+\((-0.7237824669\ldots+o(1))X\). Including them gives
+\((-1.0754928449\ldots+o(1))X\) by \eqref{eq:Js}.
+Requiring \(3\nmid n+2\) divides either main term by two.
+A condition that \(n+2\) itself be
+prime requires estimates uniform in growing arithmetic restrictions
+or a direct estimate for the two integers together. A fixed-modulus
+mean leaves that correlation undetermined.
+
+\begin{thebibliography}{9}
+\bibitem{GY} D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
+  \emph{Higher correlations of divisor sums related to primes I:
+  triple correlations}, Integers \textbf{3} (2003), A05.
+  \href{https://arxiv.org/abs/math/0111212}{arXiv:math/0111212}.
+\bibitem{Tao} T.~Tao, \emph{The prime number theorem in arithmetic
+  progressions, and dueling conspiracies}, 24 September 2009.
+  \href{https://terrytao.wordpress.com/2009/09/24/the-prime-number-theorem-in-arithmetic-progressions-and-dueling-conspiracies/}{Author's notes}.
+\end{thebibliography}
+\end{document}

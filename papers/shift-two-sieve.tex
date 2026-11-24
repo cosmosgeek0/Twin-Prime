@@ -1,4 +1,6 @@
 \documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage[a4paper,margin=27mm]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{microtype}
@@ -19,11 +21,13 @@
 \newcommand{\phimin}{P^-}
 \newcommand{\thetap}{\vartheta}
 % EDIT THESE TWO FIELDS before distribution or submission.
-\newcommand{\ManuscriptAuthor}{Author to be confirmed}
-\newcommand{\ManuscriptEmail}{Correspondence address to be supplied}
+\newcommand*{\ManuscriptAuthor}{}
+\newcommand*{\ManuscriptEmail}{}
 \title{A Long-Divisor Sign Classification on Three-Prime Products\\
 \large and an Upper Sieve for Their Shift by Two}
-\author{\ManuscriptAuthor\\\small \ManuscriptEmail}
+\author{\ManuscriptAuthor\ifx\ManuscriptEmail\empty\else
+  \ifx\ManuscriptAuthor\empty\else\\\fi
+  {\small\href{mailto:\ManuscriptEmail}{\expandafter\nolinkurl\expandafter{\ManuscriptEmail}}}\fi}
 \date{Private research draft --- 25 November 2026}
 \begin{document}
 \maketitle
@@ -38,7 +42,7 @@ We determine $F_D$ exactly on products of two and three distinct primes.
 On semiprimes it is negative.  On three-prime products its sole positive
 region consists of $M=rsp$, where the two smaller primes satisfy
 $r,s\le D<rs$, and the weight there is exactly $\log p$.
-The unshifted weighted mass of this region is
+With the additional cutoff \(r>X^{1/20}\), the unshifted weighted mass of this region is
 $(\mathcal I+o(1))X$, where $\mathcal I$ is an explicit dilogarithmic
 constant, $0.611418619809\ldots$.
 We then retain the genuine shift-two condition and prove a uniform
@@ -124,8 +128,9 @@ Requiring in addition $M\equiv2\pmod3$ changes the main term in
 \end{theorem}
 
 The unshifted mass in Theorem \ref{th:unshifted} is of order $X$.
-It must not be identified with the normalized mass for two integers
-at distance two, which is of order $X/\log X$ in the weighting below.
+The shifted estimates below use a normalization of order $X/\log X$.
+We prove a lower bound of this order for the rough family defined below.
+The more restrictive weighted sum has only an upper bound here.
 To define the latter, put
 \[
  C_2=\prod_{\substack{q>2\\q\text{ prime}}}
@@ -356,7 +361,7 @@ The $o(1)$ terms are uniform over all the prescribed $m$.
 
 \begin{proof}
 The primes $r,s$ both exceed $Y$, since $\delta>1/21$.
-For every odd squarefree integer $d$ composed of primes below $Y$,
+For every odd squarefree integer $d$ composed of primes at most $Y$,
 $(m,d)=1$ and
 \begin{equation}\label{eq:congruence}
  d\mid(mp+2)\quad\Longleftrightarrow\quad
@@ -369,7 +374,7 @@ this family since $m,p$ are odd.  For such $d$ set
         \log p.
 \]
 The expected main is $Z/\varphi(d)$, so the multiplicative local
-sieve density is $g(q)/q=1/(q-1)$ for odd $q<Y$, with $g(2)=0$.
+sieve density is $g(q)/q=1/(q-1)$ for odd $q\le Y$, with $g(2)=0$.
 Moreover
 \[
  Z\ge X^{1-2t}=X^{0.50010},\qquad
@@ -395,9 +400,9 @@ and use $|A_m(d)-Z/\varphi(d)|\ll (Z/d+1)\log(2Z)$.
 
 The sifting density is
 \begin{align}\label{eq:prod}
- V(Y)&=\prod_{\substack{3\le q<Y\\q\text{ prime}}}
+ V(Y)&=\prod_{\substack{3\le q\le Y\\q\text{ prime}}}
            \left(1-\frac1{q-1}\right)\\
- &=\prod_{3\le q<Y}\left(1-\frac1q\right)
+ &=\prod_{3\le q\le Y}\left(1-\frac1q\right)
                   \left(1-\frac1{(q-1)^2}\right)
   =\frac{2C_2e^{-\gamma}+o(1)}{\log Y}.
  \notag
@@ -469,7 +474,7 @@ For all sufficiently large $X$, define a nonnegative sequence $a_M$
 supported on $M\in(X,2X]$ having the representation
 \[
  M=rsp,\quad X^{0.127}<r\le1.05X^{0.127},\quad
- X^{0.201}<s\le1.05X^{0.201},\quad p\text{ prime},
+ X^{0.201}<s\le1.05X^{0.201},\quad r,s,p\text{ prime},
 \]
 and set $a_M=(\log p)\one_{\{\phimin(M+2)>Y\}}$ there, zero elsewhere.
 Then $\sum_Ma_M\gg X/(\log X)^3$.
@@ -481,8 +486,10 @@ one has the \emph{exact} equality
   \gamma(v,1)\mu(uv)a_{uv}\right|=\sum_Ma_M,
  \qquad \gamma(v,C)=\sum_{d\mid v,d\le C}\mu(d).
 \end{equation}
-In particular this input cannot meet a bilinear hypothesis demanding
-an arbitrary logarithmic saving relative to its total mass.
+Thus even a single fixed positive power of logarithmic saving over
+the total mass is impossible for this sequence indexed by \(M\).
+Applying the asymptotic sieve to \(N=M+2\) would involve the distinct
+sequence indexed by \(N\); equation~\eqref{eq:FI} concerns the \(M\) indexing.
 This assertion concerns the larger rough family; no positive mass
 is thereby established for the exact gate $M+2\in\aset_X$.
 \end{proposition}
@@ -536,8 +543,9 @@ research is
                    M+2\in\aset_X}}
                G_2(M+2)F_D(M).
 \end{equation}
-The exact rank-two part is negative by Theorem \ref{th:classification}.
-The positive rank-three part is \eqref{eq:S}; higher ranks may have
+The rank-two part is nonpositive by Theorem \ref{th:classification}
+and Lemma \ref{lem:G}.
+The positive rank-three part is \(S_{+,3}(X)/B_X\); higher ranks may have
 additional positive and negative terms.  Hence
 \eqref{eq:wholebound} \emph{cannot} be used as an upper bound for
 $R_X$ by dropping all higher ranks without first establishing their
@@ -545,15 +553,9 @@ signs or separately bounding their positive parts.  Nor can the
 negative rank-two contribution be counted as an independent saving
 without matching it to the same complete summation.
 
-In the wider project a proposed sufficient upper for
-$\liminf R_X$ is approximately $0.21805$, based on additional
-rank estimates documented elsewhere.  These estimates are not
-reproved in this note; the number is \emph{not} a consequence
-of Theorems \ref{th:classification}--\ref{th:rough}.
-Our whole-sector upper $14\mathcal I>8$ is much larger than that
-benchmark, and the local upper \eqref{eq:numericbox} does not
-control the complementary boxes.  Nothing here establishes a positive
-lower bound for genuine twin primes.
+The local estimate \eqref{eq:numericbox} leaves the complementary
+boxes uncontrolled. A positive lower bound for genuine twin primes
+remains open.
 
 For context, recent dispersion theorems impose specific
 factorizations or modulus weights, rather than accepting the

@@ -1,0 +1,349 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[hidelinks]{hyperref}
+
+% Fill these in before release. Empty fields produce no byline.
+\newcommand*{\AuthorName}{}
+\newcommand*{\AuthorEmail}{}
+\newcommand{\byline}{\AuthorName\ifx\AuthorEmail\empty\else
+  \ifx\AuthorName\empty\else\\\fi
+  {\small\href{mailto:\AuthorEmail}{\expandafter\nolinkurl\expandafter{\AuthorEmail}}}\fi}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{Large prime divisors of Fermat congruences\\and semiprime pseudoprimes}
+\author{\byline}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+We count the odd integers \(n\le X\) with exactly two prime factors,
+counted with multiplicity, that satisfy \(2^{n-1}\equiv1\pmod n\).
+Their number is \(O(X^{3/4}/(\log X)^{5/4})\). For distinct
+factors \(r,s\), we group the pairs by \(\gcd(r-1,s-1)\).
+A bound on the number of prime divisors of a single Mersenne number
+handles small gcds, and two applications of the Brun--Titchmarsh
+inequality handle large gcds. We also bound the number of composite
+\(n\le X\) having a prime \(q>Y\) that divides both \(n\) and
+\(2^{n-1}-1\) by \(O((X/Y)^2/\log Y)\). A large prime factor
+of \(n-1\) gives a further bound for prime powers common to
+\(n\) and \(a^{n-1}-1\) at any fixed base \(a\ge2\). These estimates quantify
+the composite contribution to two possible counts of twin primes.
+A lower bound large enough to force infinitely many twin primes remains open.
+\end{abstract}
+
+\section{Semiprime pseudoprimes}
+
+An odd composite integer \(n\) is a base-\(2\) Fermat pseudoprime if
+\(n\mid 2^{n-1}-1\). Write \(Q_2(X)\) for the number of such integers
+\(n\le X\) that are products of two primes, allowing equal factors.
+All logarithms are natural except where the base is indicated. The
+constants in \(O(\cdot)\) and \(\ll\) are absolute unless a
+dependence is indicated.
+
+\begin{theorem}\label{thm:semiprime}
+For \(X\ge3\),
+\[
+             Q_2(X)\ll \frac{X^{3/4}}{(\log X)^{5/4}}.
+\]
+\end{theorem}
+
+Luca, Ralaivaosaona and Jim\'enez Urroz proved
+\(Q_2(X)\ll X^{4/5}/(\log X)^{2/5}\) in
+\cite[Theorem~3.1]{LRJ}. Their result concerns products up to \(X\)
+with unrestricted factor sizes. Their separate estimate for factors
+in a common dyadic interval uses a different counting parameter.
+Theorem~\ref{thm:semiprime} sharpens their bound for the unrestricted
+count. We use their parametrization by the common divisor of the two
+shifted prime factors and count the small values of that parameter
+one at a time.
+
+We use \(\varphi\) for Euler's totient function, \(\mu\) for the
+M\"obius function and \(w(h)=h/\varphi(h)\).
+The following two estimates keep track of both primality conditions
+in the large-gcd range.
+
+\begin{lemma}\label{lem:BT}
+For all positive integers \(h\) and real \(T\ge2\),
+\[
+ \#\{1\le t\le T: ht+1\text{ is prime}\}
+       \ll w(h)\frac{T}{\log(2T)}.
+\]
+For positive integers \(a\) and real \(M\ge2\),
+\[
+ \sum_{\substack{M<g\le2M\\ ag+1\ \mathrm{prime}}}w(g)
+        \ll w(a)\frac{M}{\log(2M)}.
+\]
+In addition \(\sum_{a\le Z} w(a)/a\ll\log(2Z)\) for \(Z\ge1\).
+\end{lemma}
+
+\begin{proof}
+The first inequality is the Brun--Titchmarsh inequality applied
+to the class \(1\bmod h\) up to \(hT+1\) \cite{MV}.
+For the second, use
+\[
+            w(g)=\sum_{d\mid g}\frac{\mu^2(d)}{\varphi(d)}.
+\]
+If \(d\le\sqrt M\), write \(g=dt\) and apply the first estimate
+with \(h=ad\) and \(T=2M/d\). Since \(w(ad)\le w(a)w(d)\),
+the total contribution of these \(d\) is at most a constant times
+\[
+ \frac{M w(a)}{\log(2M)}
+      \sum_{d\ge1}\frac{\mu^2(d)}{\varphi(d)^2}.
+\]
+The series converges by its Euler product. For \(d>\sqrt M\),
+count all multiples of \(d\) up to \(2M\). The inequality
+\(\varphi(d)\ge\sqrt{d/2}\), obtained prime power by prime power,
+bounds their contribution by
+\(2M\sum_{d>\sqrt M}1/(d\varphi(d))\ll M^{3/4}\).
+This gives the second assertion. Finally, expanding \(w(a)\) in the
+same way and summing the harmonic series gives
+\[
+  \sum_{a\le Z}\frac{w(a)}{a}
+       \le (1+\log Z)\sum_{d\ge1}\frac{\mu^2(d)}{d\varphi(d)}
+       \ll\log(2Z).
+\]
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:semiprime}]
+Prime squares contribute at most \(\sqrt X\). For the remaining
+integers write \(n=rs\), with \(r<s\) odd primes, and set
+\(g=\gcd(r-1,s-1)\). The order of \(2\) modulo \(r\) divides
+both \(r-1\) and \(rs-1\), whose gcd is \(g\). Exchanging \(r\)
+and \(s\) gives
+\[
+                  r,s\mid 2^g-1,\qquad r,s\equiv1\pmod g.
+\]
+For fixed \(g\ge2\), let \(t_g\) count the prime divisors of
+\(2^g-1\) congruent to \(1\bmod g\). Their product is at least
+\((g+1)^{t_g}\) and at most \(2^g-1\), whence
+\(t_g\ll g/\log(2g)\). The pairs with \(g\le G\) therefore
+contribute
+\begin{equation}\label{eq:small}
+     \sum_{2\le g\le G}t_g^2\ll \frac{G^3}{(\log(2G))^2}.
+\end{equation}
+For example, splitting the sum at \(\sqrt G\) gives the bound directly.
+
+Take \(G=(X\log X)^{1/4}\) and assume \(X\) is large enough
+that \(G<X^{3/8}\). For \(G<g\le X^{3/8}\), divide the range into
+intervals \(M<g\le2M\), starting at \(M=G\) and truncating the
+last one. Put \(r=ag+1\), \(s=bg+1\). Then
+\[
+       a\le \sqrt X/g,\qquad b\le B:=X/(ag^2),\qquad
+       B\ge \sqrt X/g\ge X^{1/8}.
+\]
+For each eligible \(g,a\), Lemma~\ref{lem:BT} bounds the choices
+of \(b\) for which \(bg+1\) is prime by
+\(\ll Xw(g)/(ag^2\log X)\). Summing first over \(g\), while
+retaining the requirement that \(ag+1\) be prime, bounds the number
+of pairs in this block by
+\begin{align*}
+   &\ll \frac{X}{M^2\log X}
+       \sum_{a\le\sqrt X/M}\frac1a
+       \sum_{\substack{M<g\le2M\\ag+1\ \mathrm{prime}}}w(g)\\
+   &\ll \frac{X}{M\log X\log(2M)}
+               \sum_{a\le\sqrt X/M}\frac{w(a)}a
+     \ll \frac{X}{M\log X}.
+\end{align*}
+Here \(\log(2M)\gg\log X\) because \(M\ge G\). The sum over
+these blocks is \(O(X/(G\log X))\).
+
+For \(g>X^{3/8}\), count every pair of positive integers
+\(a,b\) with \(ab\le X/g^2\). There are at most
+\((X/g^2)(1+\log X)\) such pairs. Summing over \(g\) gives
+\(O(X^{5/8}\log X)\). At our choice of \(G\), this last
+term and the prime squares are absorbed by the claimed bound,
+and both \eqref{eq:small} and \(X/(G\log X)\) have the
+required order.
+\end{proof}
+
+\section{One large common prime divisor}
+
+A single prime factor of \(n\) can satisfy the Fermat congruence
+even when \(n\) fails it. The following estimate applies to all
+composites, with any number of prime factors.
+
+\begin{theorem}\label{thm:common}
+Let \(2\le Y\le X\). The number of pairs \((n,q)\) with
+\(n\le X\) composite, \(q>Y\) prime and
+\(q\mid\gcd(n,2^{n-1}-1)\) is
+\[
+                        \ll \frac{(X/Y)^2}{\log Y}.
+\]
+If \(n\ge5\) is odd, then \(n\) is prime if and only if
+\(\gcd(n,2^{n-1}-1)\) has a prime factor exceeding
+\(2n/\log_2 n\).
+\end{theorem}
+
+\begin{proof}
+Write \(n=qk\). Since \(n-1=qk-1\equiv k-1\pmod{q-1}\),
+Fermat's little theorem gives
+\begin{equation}\label{eq:cofactor}
+             q\mid 2^{n-1}-1\quad\Longleftrightarrow\quad
+             q\mid 2^{k-1}-1.
+\end{equation}
+If \(n\) is composite, \(2\le k\le X/Y\). Distinct primes
+\(q>Y\) dividing \(2^{k-1}-1\) have product at most \(2^{k-1}-1\).
+Their number is at most \((k-1)\log 2/\log Y\). Summing over
+\(k\) counts pairs and proves the first assertion.
+
+If \(q>2n/\log_2 n\), then \(k<\tfrac12\log_2 n\).
+Also \(2n/\log_2 n>\sqrt n\) for \(n\ge5\), as follows
+from \(\log_2 n<2\sqrt n\).
+For \(k\ge2\) this gives \(0<2^{k-1}-1<\sqrt n<q\), contrary
+to \eqref{eq:cofactor}. Thus \(k=1\). Conversely, if \(n\ge5\)
+is prime, \(q=n\) divides the gcd and exceeds the indicated
+threshold.
+\end{proof}
+
+\section{A large prime divisor of the exponent}
+
+The prime \(q\) in Theorem~\ref{thm:common} divides the modulus
+\(n\). We now examine an independent condition on the exponent
+\(n-1\).
+
+\begin{lemma}\label{lem:exponent}
+Let \(n\ge3\) and \(n-1=k\ell\), where \(\ell>\sqrt n\) is
+prime. Then \(n\) is prime if and only if \(\ell\mid\varphi(n)\).
+Equivalently, some residue \(u\not\equiv1\pmod n\) satisfies
+\(u^\ell\equiv1\pmod n\). If \(n\) is composite, every integer
+\(a\) satisfies
+\[
+    \gcd(n,a^{n-1}-1)=\gcd(n,a^k-1).
+\]
+\end{lemma}
+
+\begin{proof}
+If \(n\) is prime, its cyclic unit group has order \(k\ell\) and
+contains an element of order \(\ell\). Conversely, any nontrivial
+\(\ell\)-th root has order \(\ell\) in the group of units modulo
+\(n\), so \(\ell\mid\varphi(n)\). Since \(\ell\nmid n\), the
+product formula for \(\varphi(n)\) then gives a prime \(r\mid n\)
+with \(r\equiv1\pmod\ell\). The cofactor \(n/r\) is also \(1\bmod
+\ell\) and satisfies \(1\le n/r<\ell\). Thus \(n=r\).
+
+Now let \(n\) be composite and let \(r^j\mid n\) be any prime
+power. If \(r\mid a\), neither power of \(a\) in the displayed
+gcd identity is congruent to \(1\bmod r\). Otherwise the order
+of \(a\bmod r^j\) divides \(\varphi(r^j)\), which divides
+\(\varphi(n)\). That order is coprime to \(\ell\), so it divides
+\(k\ell\) exactly when it divides \(k\). This proves equality
+of all prime-power divisibility conditions in the two gcds.
+\end{proof}
+
+\begin{theorem}\label{thm:joint}
+Fix an integer \(a\ge2\), \(\theta>1/2\) and \(\delta>1-\theta\).
+The number of composite \(n\in(X,2X]\) for which \(n-1\) has a
+prime factor \(\ell>X^\theta\) and \(\gcd(n,a^{n-1}-1)\) has a
+prime-power divisor at least \(X^\delta\) is
+\[
+  \ll_{a,\theta,\delta}
+       \frac{X^{2-\theta-\delta}+X^{2-2\theta}}{\log X}.
+\]
+\end{theorem}
+
+\begin{proof}
+If \(\theta>1\), no such \(\ell\) exists for large \(X\). We may
+therefore take \(1/2<\theta\le1\), so \(\delta>0\).
+For sufficiently large \(X\), we have \(\ell>\sqrt{2X}\).
+Write \(n=k\ell+1\), so \(k\le2X^{1-\theta}\). By
+Lemma~\ref{lem:exponent}, the prime power in the hypothesis divides
+\(a^k-1\). For each prime \(r\) for which some power at least
+\(X^\delta\) divides \(a^k-1\), take the least such power \(s_r\).
+The \(s_r\) are pairwise coprime, so their product is at most
+\(a^k-1\). Their number is at most \(k\log a/(\delta\log X)\).
+
+At least one of these \(s_r\) divides \(n\). For fixed \(k,s_r\),
+the congruence \(k\ell\equiv-1\pmod{s_r}\) is impossible if
+\(k\) and \(s_r\) have a common prime divisor. Otherwise it specifies
+one residue class for \(\ell\). The condition \(X<k\ell+1\le2X\)
+allows at most \(X/(k s_r)+1\le X^{1-\delta}/k+1\) integers
+in that class. Summing this bound over the selected prime powers
+and over \(k\le2X^{1-\theta}\) proves the theorem.
+\end{proof}
+
+\section{Consequences for prime pairs}
+
+Averaging over the base gives a different measure of the contribution
+from semiprimes. For odd \(n\ge3\), let
+\[
+   F(n)=\frac1n\#\{a\bmod n:a^{n-1}\equiv1\pmod n\}.
+\]
+Every residue satisfying the congruence is a unit. The denominator
+counts all residue classes, including nonunits.
+
+\begin{lemma}\label{lem:average}
+The sum of \(F(n)\) over odd products of two primes \(n\le X\),
+counting each integer once and allowing squares, is \(O(\sqrt X)\).
+\end{lemma}
+
+\begin{proof}
+For \(n=rs\) with distinct odd primes, cyclicity of the unit groups
+modulo \(r\) and \(s\) and the Chinese remainder theorem give
+\(F(rs)=g^2/(rs)\), where \(g=\gcd(r-1,s-1)\).
+Write \(r=ag+1\) and \(s=bg+1\) with \(a<b\). Then
+\(F(rs)\le1/(ab)\) and \(g\le\sqrt{X/(ab)}\). Summing
+over all positive \(a,b\) gives an upper bound of
+\[
+   \sqrt X\sum_{a,b\ge1}(ab)^{-3/2}\ll\sqrt X.
+\]
+Prime squares contribute at most \(\sqrt X\), since \(F(n)\le1\).
+\end{proof}
+
+Let \(T(X)\) count odd primes \(n\le X\) for which \(n-2\) is
+prime. Let \(B(X)\) count odd integers \(n\le X\) having at most
+two prime factors counted with multiplicity, with \(n-2\) prime
+and \(n\mid 2^{n-1}-1\). Theorem~\ref{thm:semiprime} gives
+\[
+             0\le B(X)-T(X)\ll X^{3/4}(\log X)^{-5/4}.
+\]
+Likewise, let \(H_{\theta}(X)\) count odd \(n\le X\) with
+\(n-2\) prime and a prime divisor \(q>X^\theta\) of
+\(\gcd(n,2^{n-1}-1)\), where \(1/2<\theta<1\) is fixed.
+For \(X^\theta\ge2\), Theorem~\ref{thm:common} gives
+\[
+ 0\le H_{\theta}(X)-\bigl(T(X)-T(X^\theta)\bigr)
+          \ll \frac{X^{2(1-\theta)}}{\theta\log X}.
+\]
+Every prime \(n>X^\theta\) counted by \(T(X)\) supplies the divisor
+\(q=n\). Every other integer contributing to \(H_\theta(X)\)
+is composite. Both upper bounds discard the condition that \(n-2\)
+is prime when estimating this composite contribution.
+
+For the corresponding average over bases, Lemma~\ref{lem:average}
+and \(F(n)=1-1/n\) at an odd prime give
+\[
+  \sum_{\substack{3\le n\le X,\ n\ \mathrm{odd}\\
+                n-2\ \mathrm{prime},\ \Omega(n)\le2}} F(n)
+       =T(X)+O(\sqrt X),
+\]
+where \(\Omega(n)\) counts prime factors with multiplicity.
+The discarded \(1/n\) terms contribute at most \(1+\log X\).
+
+At the logarithmic cutoff of Theorem~\ref{thm:common}, one qualifying
+integer \(n=p+2\) for arbitrarily large primes \(p\) would suffice
+for infinitude. The divisor identity counts the exceptions when a
+smaller cutoff is used. Proving the existence of qualifying divisors
+at the logarithmic cutoff remains the missing step.
+
+\section*{Acknowledgments}
+AI assistants contributed to drafting this manuscript and checking
+its mathematical arguments.
+
+\begin{thebibliography}{9}
+\bibitem{LRJ}
+F.~Luca, D.~Ralaivaosaona and J.~Jim\'enez Urroz,
+\emph{On pseudoprime RSA moduli}, Afrika Matematika
+\textbf{36} (2025), article 118.
+\href{https://doi.org/10.1007/s13370-025-01338-1}{doi:10.1007/s13370-025-01338-1}.
+
+\bibitem{MV}
+H.~L.~Montgomery and R.~C.~Vaughan,
+\emph{The large sieve}, Mathematika \textbf{20} (1973), 119--134.
+\href{https://doi.org/10.1112/S0025579300004708}{doi:10.1112/S0025579300004708}.
+\end{thebibliography}
+\end{document}
