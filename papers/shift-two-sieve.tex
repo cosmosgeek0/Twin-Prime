@@ -1,0 +1,634 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Ctwo}{C_2}
+\newcommand{\twin}{\mathcal T}
+\newcommand{\cset}{\mathcal C}
+\newcommand{\aset}{\mathcal A}
+\newcommand{\phimin}{P^-}
+\newcommand{\thetap}{\vartheta}
+% EDIT THESE TWO FIELDS before distribution or submission.
+\newcommand{\ManuscriptAuthor}{Author to be confirmed}
+\newcommand{\ManuscriptEmail}{Correspondence address to be supplied}
+\title{A Long-Divisor Sign Classification on Three-Prime Products\\
+\large and an Upper Sieve for Their Shift by Two}
+\author{\ManuscriptAuthor\\\small \ManuscriptEmail}
+\date{Private research draft --- 25 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a squarefree composite integer $M$ near $X$ we study the truncated
+long-divisor convolution
+\[
+ F_D(M)=\sum_{\substack{k\mid M\\1<k<M/D}}\mu(M/k)\log k,
+ \qquad D=X^{0.24995}.
+\]
+We determine $F_D$ exactly on products of two and three distinct primes.
+On semiprimes it is negative.  On three-prime products its sole positive
+region consists of $M=rsp$, where the two smaller primes satisfy
+$r,s\le D<rs$, and the weight there is exactly $\log p$.
+The unshifted weighted mass of this region is
+$(\mathcal I+o(1))X$, where $\mathcal I$ is an explicit dilogarithmic
+constant, $0.611418619809\ldots$.
+We then retain the genuine shift-two condition and prove a uniform
+linear-sieve upper bound for the part on which $M+2$ is squarefree with
+exactly two or three sufficiently large prime factors; on a fixed factor
+box the normalized upper bound is $0.005998386331\ldots$.
+A companion positive lower bound is established only for the larger
+family in which $M+2$ is rough.  None of these results bounds the
+complete signed remainder sufficiently to prove the twin-prime conjecture.
+\end{abstract}
+
+\section{Definitions and statements}
+
+Throughout, $X\to\infty$, and a letter denoting a prime is always
+explicitly so designated.  Write $\omega(n)$ for the number of
+\emph{distinct} prime factors, $\mu$ for the M\"obius function,
+$\phimin(n)$ for the least prime factor, and
+$\thetap(n)=\one_{n\text{ prime}}\log n$.
+We use
+\[
+ \delta=\frac1{20},\qquad t=\frac{4999}{20000}=0.24995,
+ \qquad D=X^t,\qquad Y=X^{1/21}.
+\]
+(The two cutoff exponents are different: $\delta>1/21$.)
+For squarefree $M>1$ put
+\begin{equation}\label{eq:F}
+ F_D(M):=\sum_{\substack{k\mid M\\1<k<M/D}}
+                 \mu(M/k)\log k.
+\end{equation}
+The strict inequality in this definition fixes the endpoint convention.
+We emphasize that both $k$ and $M/k$ are numerical divisors, not
+necessarily primes.
+
+\begin{theorem}[Exact low-rank classification]\label{th:classification}
+Let $M\in(X,2X]$ be squarefree.  If $M=rs$ with primes $r<s$, then
+\begin{equation}\label{eq:rank2}
+ F_D(rs)=\begin{cases}-\log r,&r\le D,\\
+                         -\log(rs),&r>D.
+          \end{cases}
+\end{equation}
+If $M=rsp$ with primes $r<s<p$, then
+\begin{equation}\label{eq:rank3}
+ F_D(rsp)=\begin{cases}
+  -\log(rsp),&r>D,\\
+  -\log r,&r\le D<s,\\
+  0,&r<s\le D\ \text{and }rs\le D,\\
+  \log p,&r<s\le D\ \text{and }rs>D.
+ \end{cases}
+\end{equation}
+In particular, the only positive rank-three sector compatible with
+$\phimin(M)>X^\delta$ is
+\begin{equation}\label{eq:C}
+ \cset_X=\left\{M=rsp:\begin{array}{l}
+ X<M\le2X,\ r,s,p\text{ distinct primes},\ r<s<p,\\
+ X^\delta<r<s\le X^t,\ rs>X^t
+ \end{array}\right\}.
+\end{equation}
+Every $M\in\cset_X$ has $p>X^{1-2t}=X^{0.50010}$, and on this set
+$F_D(M)=\log p$.
+\end{theorem}
+
+Define
+\begin{equation}\label{eq:I}
+ \mathcal I=\frac12\int_\delta^t\frac{du}{u}
+              \int_{\max(\delta,t-u)}^t\frac{dv}{v}.
+\end{equation}
+Let $\operatorname{Li}_2(z)=-\int_0^z\log(1-v)\,dv/v$ be the dilogarithm.
+
+\begin{theorem}[The unshifted weighted three-prime mass]\label{th:unshifted}
+The sum over the \emph{genuine} primes in \eqref{eq:C} satisfies
+\begin{equation}\label{eq:unshifted}
+ \sum_{M\in\cset_X}\log P^+(M)=(\mathcal I+o(1))X,
+\end{equation}
+where $P^+(M)=p$ is its largest prime factor.  With $a=\delta/t$,
+\begin{equation}\label{eq:dilog}
+ \mathcal I=\frac12\left\{
+ \operatorname{Li}_2(1-a)-\operatorname{Li}_2(a)
+ +\log(1/a)\log\frac1{1-a}\right\}
+ =0.61141861980926243232\ldots .
+\end{equation}
+Requiring in addition $M\equiv2\pmod3$ changes the main term in
+\eqref{eq:unshifted} to $(\mathcal I/2+o(1))X$.
+\end{theorem}
+
+The unshifted mass in Theorem \ref{th:unshifted} is of order $X$.
+It must not be identified with the normalized mass for two integers
+at distance two, which is of order $X/\log X$ in the weighting below.
+To define the latter, put
+\[
+ C_2=\prod_{\substack{q>2\\q\text{ prime}}}
+          \left(1-\frac1{(q-1)^2}\right),\quad
+ J_X=\int_X^{2X}\frac{du}{\log u},\quad B_X=2C_2J_X
+    \sim\frac{2C_2X}{\log X}.
+\]
+For squarefree $N>1$ define the quadratic truncated divisor weight
+\begin{equation}\label{eq:G}
+ G_2(N)=\sum_{d\mid N}\mu(d)
+                  \left(1-2\frac{\log d}{\log N}\right)_+^2,
+ \qquad v_+=\max(0,v),
+\end{equation}
+and the prescribed neighboring-integer gate
+\begin{equation}\label{eq:A}
+ \aset_X=\{N:\ N\text{ squarefree},\quad
+ \omega(N)\in\{2,3\},\quad \phimin(N)>Y\}.
+\end{equation}
+The genuine coupled contribution from the positive sector is
+\begin{equation}\label{eq:S}
+ S_{+,3}(X)=\sum_{M=rsp\in\cset_X}
+       (\log p)G_2(rsp+2)\one_{\{rsp+2\in\aset_X\}}.
+\end{equation}
+For $0<a_1<a_2<b_1<b_2<t$, with $a_1+b_1>t$ and
+$a_1>\delta$, denote by $S_{+,3}^{\Box}(X)$ the same sum with
+\[
+ X^{a_1}<r\le X^{a_2},\qquad
+ X^{b_1}<s\le X^{b_2}.
+\]
+This rectangle lies entirely in \eqref{eq:C}.
+
+\begin{lemma}[Positivity and size of the gate weight]\label{lem:G}
+For every $N\in\aset_X$, one has $0\le G_2(N)\le1$.
+Writing the prime logarithm shares as nonnegative numbers adding to one,
+$G_2(rs)=4x(1-x)$ for two distinct factors.  For three factors with
+shares $x,y,z$, one has
+\begin{equation}\label{eq:G3}
+ G_2(rsp)=\begin{cases}
+  2-4(x^2+y^2+z^2),&\max(x,y,z)\le\frac12,\\
+  8xy,& z>\frac12,\ \text{where }x+y=1-z.
+ \end{cases}
+\end{equation}
+\end{lemma}
+
+\begin{theorem}[A genuine shifted upper sieve]\label{th:shifted}
+Let $a_1,a_2,b_1,b_2$ obey the preceding strict inequalities.  Then
+\begin{equation}\label{eq:boxbound}
+ 0\le\limsup_{X\to\infty}\frac{S_{+,3}^{\Box}(X)}{B_X}
+ \le14\log\frac{a_2}{a_1}\log\frac{b_2}{b_1}.
+\end{equation}
+For the full sector \eqref{eq:C},
+\begin{equation}\label{eq:wholebound}
+ 0\le\limsup_{X\to\infty}\frac{S_{+,3}(X)}{B_X}
+ \le14\mathcal I=8.5598606773296740\ldots .
+\end{equation}
+For the explicit box
+\begin{equation}\label{eq:box}
+ (a_1,a_2,b_1,b_2)=(0.125,0.1305,0.200,0.202)
+\end{equation}
+this becomes the concrete normalized bound
+\begin{equation}\label{eq:numericbox}
+ \limsup_{X\to\infty}\frac{S_{+,3}^{\Box}(X)}{B_X}
+ \le0.005998386330999321\ldots .
+\end{equation}
+These are bounds for the original \emph{coupled} weight in \eqref{eq:S}.
+They do not assert an asymptotic for $S_{+,3}$.
+\end{theorem}
+
+\begin{theorem}[The larger rough shifted family]\label{th:rough}
+Let $\mathcal R_X^{\Box}$ be the sum obtained by replacing the
+factor gate and $G_2$ in $S_{+,3}^{\Box}$ with
+$\one_{\{\phimin(rsp+2)>Y\}}$ alone.  Then
+\begin{align}\label{eq:rough}
+ 14(\log2)\log\frac{a_2}{a_1}\log\frac{b_2}{b_1}
+ &\le \liminf_{X\to\infty}\frac{\mathcal R_X^{\Box}}{B_X}
+ \le\limsup_{X\to\infty}\frac{\mathcal R_X^{\Box}}{B_X}\\
+ &\le14\log\frac{a_2}{a_1}\log\frac{b_2}{b_1}.
+ \notag
+\end{align}
+In particular, the larger rough family has positive weighted mass
+of order $X/\log X$ on every such fixed nonempty box.  It can contain
+neighbors with more than three prime factors and therefore does not
+supply a lower bound for \eqref{eq:S}.
+\end{theorem}
+
+\section{The exact signed convolution}
+
+\begin{proof}[Proof of Theorem \ref{th:classification}]
+For any positive integer $n$ the standard Dirichlet-convolution
+identity $\mu*\log=\Lambda$ reads
+\begin{equation}\label{eq:mob}
+ \sum_{d\mid n}\mu(d)\log(n/d)=\Lambda(n).
+\end{equation}
+If $M$ is squarefree with at least two distinct prime factors,
+$\Lambda(M)=0$.  In the definition of $F_D$ put $d=M/k$.
+The window $1<k<M/D$ becomes $D<d<M$.  The $d=M$ term in
+\eqref{eq:mob} is zero because it contains $\log1$.  Therefore
+\begin{equation}\label{eq:cut}
+ F_D(M)=-\sum_{\substack{d\mid M\\d\le D}}
+                 \mu(d)\log(M/d).
+\end{equation}
+This formula includes $d=1$ and all eligible nontrivial divisors.
+The $d=1$ term is $-\log M$; omitting it would change the signs.
+
+If $M=rs$ with $r<s$, then $s>D$, since $rs>X$ but
+$D^2=X^{0.49990}<X$.  The only divisors up to $D$ are $1$ and,
+when $r\le D$, $r$.  Thus \eqref{eq:cut} gives \eqref{eq:rank2}.
+
+For $M=rsp$, at least one prime factor exceeds $D$, since
+$D^3=X^{0.74985}<X<M$.  The largest prime $p$ exceeds $D$.
+If $r>D$, only $d=1$ is available.  If $r\le D<s$, the
+contribution $+\log(sp)$ from $d=r$ cancels all but $-\log r$.
+If $r<s\le D$, the contributions $d=1,r,s$ total
+\[
+ -\log(rsp)+\log(sp)+\log(rp)=\log p.
+\]
+When $rs\le D$, the further contribution of $d=rs$ is
+$-\log p$ and the total is zero.  When $rs>D$ it remains $\log p$.
+This proves the exhaustive four-case formula.
+On the positive case $rs\le D^2$ and $M>X$, whence
+$p>X/D^2=X^{1-2t}$, strictly greater than $s\le D$.
+Imposing the stipulated floor $\phimin(M)>X^\delta$ gives
+\eqref{eq:C} without altering any of the signs.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lem:G}]
+For a squarefree semiprime the two nontrivial singleton terms of
+\eqref{eq:G} have arguments $x$ and $1-x$, and the $d=N$ term
+vanishes.  Only the term for the smaller share can be nonzero,
+so $G_2=1-(1-2x)^2=4x(1-x)$.
+For three prime factors, the subset of size two corresponding to
+$x+y$ contributes $(2z-1)_+^2$ because $x+y=1-z$.
+If all shares are at most $1/2$, all size-two terms vanish and
+\[
+ G_2=1-\sum_{w\in\{x,y,z\}}(1-2w)^2
+      =2-4(x^2+y^2+z^2).
+\]
+Cauchy--Schwarz gives $x^2+y^2+z^2\ge1/3$,
+while $x^2+y^2+z^2\le(\max w)\sum w\le1/2$.
+Thus this value lies in $[0,2/3]$.
+If $z>1/2$, then only the singleton terms for $x,y$ and the
+doubleton term for $x+y$ remain, and expansion gives $8xy$.
+It is between zero and $2(x+y)^2<1/2$.
+The stated uniform bound follows.
+\end{proof}
+
+\section{The ordinary mass and its logarithmic geometry}
+
+\begin{proof}[Proof of Theorem \ref{th:unshifted}]
+Fix two primes $r<s$ satisfying the two small-prime constraints
+in \eqref{eq:C}.  Since $rs\le D^2=X^{0.49990}$,
+$Z=X/(rs)\ge X^{0.50010}$, and the prime number theorem gives,
+uniformly for all such pairs,
+\begin{equation}\label{eq:pnt}
+ \sum_{Z<p\le2Z}\log p=Z+O_A(Z(\log X)^{-A})
+\end{equation}
+for every fixed $A>0$.  Here $p>s$ automatically.  Summation
+of \eqref{eq:pnt} over $r,s$ therefore yields
+\begin{equation}\label{eq:primeharmonic}
+ \sum_{M\in\cset_X}\log p
+  =X\sum_{\substack{X^\delta<r<s\le X^t\\rs>X^t}}
+       \frac1{rs}+o(X),
+\end{equation}
+using $\sum_{X^\delta<q\le X^t,q\text{ prime}}q^{-1}=O(1)$.
+By Mertens' reciprocal-prime estimate, the measure on the logarithmic
+coordinate $u=\log q/\log X$ converges on each fixed positive-power
+interval to $du/u$.  The boundary $u+v=t$ and the diagonal $u=v$
+have zero limiting measure.  Thus the harmonic sum on the right
+of \eqref{eq:primeharmonic} tends to
+\[
+ \frac12\int_\delta^t\frac{du}{u}
+       \int_{\max(\delta,t-u)}^t\frac{dv}{v}=\mathcal I.
+\]
+The factor $1/2$ accounts for the unique order $r<s$ in the symmetric
+full square, not for any selection of two among three prime factors.
+
+Set $a=\delta/t$, so $0<a<1/2$, and scale both integration variables
+by $t$.  Splitting the first variable at $1-a$ gives
+\[
+ 2\mathcal I=
+ \int_a^{1-a}\frac{-\log(1-u)}u\,du
+ +\log(1/a)\int_{1-a}^1\frac{du}{u}.
+\]
+Integrating the first term using the definition of $\operatorname{Li}_2$
+and the second term directly proves \eqref{eq:dilog}.
+For the congruence $M\equiv2\pmod3$, both $r,s$ are eventually
+coprime to $3$.  It prescribes one of the two reduced prime residue
+classes $p\pmod3$.  The prime number theorem in the fixed modulus $3$
+replaces \eqref{eq:pnt} by $Z/2+o(Z)$ uniformly, giving half the main.
+No condition on the prime factors of $M+2$ has entered this proof.
+\end{proof}
+
+\begin{remark}[An optional unweighted companion]
+The same argument with the unweighted prime number theorem shows
+\[
+ \#\cset_X\sim\frac{X}{2\log X}
+ \int_\delta^t\frac{du}{u}
+ \int_{\max(\delta,t-u)}^t\frac{dv}{v(1-u-v)}.
+\]
+The factor $(1-u-v)^{-1}$ accounts for the prime density at
+$p\asymp X^{1-u-v}$.  It is absent from the \emph{logarithmically
+weighted} main constant $\mathcal I$.
+\end{remark}
+
+\section{A shifted upper and lower linear sieve}
+
+The analytic input here is the standard one-dimensional linear
+sieve, for which the needed statements and the functions $f,F$ are
+recorded in \cite[Lemma~2.5]{MZA} (see also
+\cite{OperaDeCribro}).  We give the reduction in full to identify
+the exact shifted residues and the uniformity required by that result.
+
+\begin{lemma}[Prime-variable roughness sieve]\label{lem:sieve}
+Uniformly for $m=rs$ with distinct primes
+$X^\delta<r<s\le D$, and $Z=X/m$, let
+\[
+ \mathcal R_m(X)=\sum_{Z<p\le2Z}\thetap(p)
+                    \one_{\{\phimin(mp+2)>Y\}}.
+\]
+Then, as $X\to\infty$,
+\begin{equation}\label{eq:permbound}
+ \left(\frac{4C_2\log2}{3}+o(1)\right)\frac{X}{m\log Y}
+ \le \mathcal R_m(X)
+ \le\left(\frac{4C_2}{3}+o(1)\right)\frac{X}{m\log Y}.
+\end{equation}
+The $o(1)$ terms are uniform over all the prescribed $m$.
+\end{lemma}
+
+\begin{proof}
+The primes $r,s$ both exceed $Y$, since $\delta>1/21$.
+For every odd squarefree integer $d$ composed of primes below $Y$,
+$(m,d)=1$ and
+\begin{equation}\label{eq:congruence}
+ d\mid(mp+2)\quad\Longleftrightarrow\quad
+ p\equiv-2\overline m\pmod d,
+\end{equation}
+a reduced residue.  The prime $2$ never divides $mp+2$ on
+this family since $m,p$ are odd.  For such $d$ set
+\[
+ A_m(d)=\sum_{\substack{Z<p\le2Z\\p\equiv-2\overline m\;(\bmod d)}}
+        \log p.
+\]
+The expected main is $Z/\varphi(d)$, so the multiplicative local
+sieve density is $g(q)/q=1/(q-1)$ for odd $q<Y$, with $g(2)=0$.
+Moreover
+\[
+ Z\ge X^{1-2t}=X^{0.50010},\qquad
+ Y^3=X^{1/7}\le Z^{1/2-\epsilon_0}
+\]
+for some fixed $\epsilon_0>0$.  The maximal
+Bombieri--Vinogradov theorem, with its maximum over reduced residues
+and interval endpoints, gives for every fixed $A>0$
+\begin{equation}\label{eq:BV}
+ \sum_{\substack{d\le Y^3\\d\text{ odd}}}
+ \max_{(a,d)=1}
+ \left|\sum_{\substack{Z<p\le2Z\\p\equiv a\;(\bmod d)}}
+                 \log p-\frac Z{\varphi(d)}\right|
+ \ll_A\frac{Z}{(\log X)^A}.
+\end{equation}
+The inequality is uniform in $m$, because the maximum already includes
+the changing residue $-2\overline m$.  Any \emph{fixed} divisor weight
+needed by the sieve can also be included in \eqref{eq:BV} at the cost
+of choosing a larger $A$: apply Cauchy--Schwarz to the original
+absolute discrepancy sum, use the elementary bound
+$\sum_{d\le Y^3}\tau(d)^K\ll_K Y^3(\log X)^{O_K(1)}$,
+and use $|A_m(d)-Z/\varphi(d)|\ll (Z/d+1)\log(2Z)$.
+
+The sifting density is
+\begin{align}\label{eq:prod}
+ V(Y)&=\prod_{\substack{3\le q<Y\\q\text{ prime}}}
+           \left(1-\frac1{q-1}\right)\\
+ &=\prod_{3\le q<Y}\left(1-\frac1q\right)
+                  \left(1-\frac1{(q-1)^2}\right)
+  =\frac{2C_2e^{-\gamma}+o(1)}{\log Y}.
+ \notag
+\end{align}
+This uses Mertens' product formula and the absolute convergence
+of the twin-prime Euler factor.  The upper and lower linear sieve
+with level $Y^3$ has parameter $s=\log(Y^3)/\log Y=3$.
+Its standard functions satisfy
+\[
+ F(3)=\frac{2e^\gamma}{3},\qquad
+ f(3)=\frac{2e^\gamma}{3}\log2.
+\]
+The sieve thus bounds $\mathcal R_m$ between
+$ZV(Y)(f(3)+o(1))$ and $ZV(Y)(F(3)+o(1))$.
+The error is uniform as $Z$ stays between fixed powers of $X$;
+\eqref{eq:BV} pays all progression remainders.  Substituting
+\eqref{eq:prod} and $Z=X/m$ yields \eqref{eq:permbound}.
+\end{proof}
+
+\begin{proof}[Proof of Theorems \ref{th:shifted} and \ref{th:rough}]
+First, the exact gate satisfies
+\[
+ 0\le G_2(mp+2)\one_{\{mp+2\in\aset_X\}}
+ \le\one_{\{\phimin(mp+2)>Y\}}
+\]
+by Lemma \ref{lem:G}.  The upper half of Lemma \ref{lem:sieve}
+therefore applies to $S_{+,3}^{\Box}$ after summing over the
+allowed \emph{true} primes $r,s$.  Its lower and upper halves apply
+to $\mathcal R_X^{\Box}$.
+
+By the prime reciprocal-sum form of Mertens' theorem,
+\[
+ \sum_{X^{a_1}<r\le X^{a_2}}\frac1r
+  =\log\frac{a_2}{a_1}+o(1),\qquad
+ \sum_{X^{b_1}<s\le X^{b_2}}\frac1s
+  =\log\frac{b_2}{b_1}+o(1).
+\]
+The exponent assumptions give $r<s$ and $rs>D$ automatically,
+with no representation multiplicity.  Since
+$B_X\sim2C_2X/\log X$ and $\log Y=(\log X)/21$,
+dividing the summed sieve upper by $B_X$ yields
+\[
+ \frac{(4C_2/3)X}{B_X\log Y}
+       \longrightarrow14.
+\]
+The corresponding lower has the extra $\log2$ factor.
+This proves \eqref{eq:boxbound} and \eqref{eq:rough}.
+For the entire positive sector, the same prime harmonic limit as
+in \eqref{eq:primeharmonic} gives $\mathcal I$, so its upper is
+$14\mathcal I$.  Substitution of the four rational endpoints in
+\eqref{eq:box} gives \eqref{eq:numericbox}.
+The original rank and squarefree gates on $mp+2$ are retained
+until the displayed one-sided inequality; they have not been
+replaced by a conjectural prime-pair main term.
+\end{proof}
+
+\section{Why an asymptotic sieve does not follow from this input}
+
+A stronger theorem on primes in thin sequences is the
+Friedlander--Iwaniec asymptotic sieve \cite{FI1998}.  Its
+bilinear hypothesis (B), besides its independent remainder
+hypothesis, is a genuine parity-breaking condition.
+Here is an exact obstruction to applying that bilinear hypothesis
+\emph{without new information} to the three-prime input.
+
+\begin{proposition}[A failed bilinear input on a nonempty rough family]
+\label{prop:fi}
+For all sufficiently large $X$, define a nonnegative sequence $a_M$
+supported on $M\in(X,2X]$ having the representation
+\[
+ M=rsp,\quad X^{0.127}<r\le1.05X^{0.127},\quad
+ X^{0.201}<s\le1.05X^{0.201},\quad p\text{ prime},
+\]
+and set $a_M=(\log p)\one_{\{\phimin(M+2)>Y\}}$ there, zero elsewhere.
+Then $\sum_Ma_M\gg X/(\log X)^3$.
+For the Friedlander--Iwaniec bilinear expression with parameter
+$C=1$ and the dyadic divisor range $H<v\le2H$ where $H=X^{0.328}$,
+one has the \emph{exact} equality
+\begin{equation}\label{eq:FI}
+ \sum_u\left|\sum_{\substack{H<v\le2H\\uv\le2X}}
+  \gamma(v,1)\mu(uv)a_{uv}\right|=\sum_Ma_M,
+ \qquad \gamma(v,C)=\sum_{d\mid v,d\le C}\mu(d).
+\end{equation}
+In particular this input cannot meet a bilinear hypothesis demanding
+an arbitrary logarithmic saving relative to its total mass.
+This assertion concerns the larger rough family; no positive mass
+is thereby established for the exact gate $M+2\in\aset_X$.
+\end{proposition}
+
+\begin{proof}
+The lower linear sieve in Lemma \ref{lem:sieve} applies uniformly
+to the given $r,s$.  By the prime number theorem in fixed-ratio
+intervals,
+\[
+ \sum_{X^a<q\le1.05X^a}\frac1q
+  \sim\frac{\log1.05}{a\log X}
+ \qquad(a=0.127,0.201).
+\]
+The product of these two sums and the sieve lower is a positive
+constant times $X/(\log X)^3$.
+Every integer on the support has exactly the three distinct prime
+factors $r,s,p$, so $\mu(M)=-1$.  Its divisors in
+$(X^{0.328},2X^{0.328}]$ consist of the unique divisor $v=rs$:
+$r,s$ are smaller by fixed powers of $X$, and $p,pr,ps,M$ are
+larger by fixed powers.  Further, $\gamma(v,1)=1$.
+Thus each inner sum in \eqref{eq:FI} is a sum of negative
+numbers, and upon removing the absolute values and changing sign,
+every $a_M$ is counted exactly once.  This proves the equality.
+For instance, taking the asymptotic-sieve parameters
+$D_{\mathrm{FI}}=(2X)^{0.70}$ and
+$\Delta=(2X)^{0.04}$ places $H\asymp X^{0.328}$ strictly between
+$\sqrt{D_{\mathrm{FI}}}/\Delta$ and
+$\sqrt{2X}/(\log X)^{10}$, so this is a genuine tested bilinear
+range, not a divisor range outside the theorem's hypotheses.
+No claim is made that the remaining, unrelated hypotheses of
+\cite{FI1998} hold for the sequence $a_M$.
+\end{proof}
+
+\section{Normalization, comparison, and outstanding problem}
+
+Theorem \ref{th:unshifted} is a \emph{one-site} result: it
+counts $rsp$ without testing $rsp+2$.  In contrast,
+Theorem \ref{th:shifted} is about the \emph{actual} pair
+$(rsp,rsp+2)$ and keeps the squarefree, factor-count, and large-factor
+conditions on its right member, but furnishes only an upper bound.
+Theorem \ref{th:rough} proves positive shifted mass only after replacing
+those right-member requirements by roughness.
+The conditions $r,s,p$ prime do not make $rsp+2$ prime or a
+product of two or three primes.
+
+For clarity, the containing signed quantity studied in the originating
+research is
+\begin{equation}\label{eq:fullsigned}
+ R_X=\frac1{B_X}\sum_{\substack{M\in(X,2X]\ \mathrm{squarefree}\\
+                   2\le\omega(M)\le7,\ \phimin(M)>X^\delta\\
+                   M+2\in\aset_X}}
+               G_2(M+2)F_D(M).
+\end{equation}
+The exact rank-two part is negative by Theorem \ref{th:classification}.
+The positive rank-three part is \eqref{eq:S}; higher ranks may have
+additional positive and negative terms.  Hence
+\eqref{eq:wholebound} \emph{cannot} be used as an upper bound for
+$R_X$ by dropping all higher ranks without first establishing their
+signs or separately bounding their positive parts.  Nor can the
+negative rank-two contribution be counted as an independent saving
+without matching it to the same complete summation.
+
+In the wider project a proposed sufficient upper for
+$\liminf R_X$ is approximately $0.21805$, based on additional
+rank estimates documented elsewhere.  These estimates are not
+reproved in this note; the number is \emph{not} a consequence
+of Theorems \ref{th:classification}--\ref{th:rough}.
+Our whole-sector upper $14\mathcal I>8$ is much larger than that
+benchmark, and the local upper \eqref{eq:numericbox} does not
+control the complementary boxes.  Nothing here establishes a positive
+lower bound for genuine twin primes.
+
+For context, recent dispersion theorems impose specific
+factorizations or modulus weights, rather than accepting the
+arbitrary joint rank gate $G_2(rsp+2)$ as a product of independent
+coefficients; see \cite{Maynard, PascadiSmooth, PascadiLevels}.
+An application to \eqref{eq:fullsigned} would require a new
+arithmetic estimate keeping the fixed shift, all relevant factor
+ranks, and the additive precision of the signed sum.
+
+\paragraph{Provenance and verification.}
+This standalone note is extracted from an internally developed
+twin-prime research record, notably its sections 308LQ--308LU and
+the additional sign and shifted-sieve calculations dated
+19--20 November 2026.  The elementary formulas and the constants
+in this note have been reconstructed for this manuscript.
+The analytic sieve is invoked only in its standard established range.
+The note has not undergone external peer review or a formal proof check.
+Substantive initial research and manuscript preparation involved
+OpenAI ChatGPT under human direction.  Authorship and the correspondence
+address are editable fields at the top of this \LaTeX{} source.
+
+\appendix
+\section{Numerical consistency check for the dilogarithm constant}
+The following optional Python 3 computation uses \texttt{mpmath}.
+It is not a substitute for the integration proof in
+Theorem \ref{th:unshifted}.
+\begin{verbatim}
+import mpmath as mp
+mp.mp.dps = 40
+delta, t = mp.mpf('0.05'), mp.mpf('0.24995')
+a = delta / t
+I = (mp.polylog(2, 1-a) - mp.polylog(2, a)
+     + mp.log(1/a)*mp.log(1/(1-a))) / 2
+J = mp.quad(lambda u: mp.log(t/max(delta, t-u))/u,
+            [delta, t-delta, t]) / 2
+box = (14 * mp.log(mp.mpf('0.1305')/mp.mpf('0.125'))
+       * mp.log(mp.mpf('0.202')/mp.mpf('0.200')))
+print(I, J, I-J, box, 14*I)
+\end{verbatim}
+
+\begin{thebibliography}{99}
+\bibitem{FI1998}
+ J. Friedlander and H. Iwaniec,
+ \emph{Asymptotic sieve for primes},
+ Ann. of Math. (2) \textbf{148} (1998), 1041--1065.
+ \url{https://annals.math.princeton.edu/articles/13036}.
+\bibitem{OperaDeCribro}
+ J. Friedlander and H. Iwaniec,
+ \emph{Opera de Cribro}, Amer. Math. Soc. Colloquium Publ.,
+ vol.~57, 2010.
+\bibitem{MZA}
+ K. Matom\"aki and S. Z\'u\~niga-Alterman,
+ \emph{Weighted sieves with switching},
+ Math. Proc. Cambridge Philos. Soc. \textbf{179} (2025), 351--372,
+ Lemma~2.5 and the linear-sieve functions in \S2.
+ \url{https://doi.org/10.1017/S0305004125000258}.
+\bibitem{Maynard}
+ J. Maynard,
+ \emph{Primes in arithmetic progressions to large moduli I:
+ Fixed residue classes},
+ \url{https://arxiv.org/abs/2006.06572}.
+\bibitem{PascadiSmooth}
+ A. Pascadi,
+ \emph{Smooth numbers in arithmetic progressions to large moduli},
+ Compos. Math. \textbf{161} (2025), 1923--1974.
+ \url{https://doi.org/10.1112/S0010437X2500747X}.
+\bibitem{PascadiLevels}
+ A. Pascadi,
+ \emph{On the exponents of distribution of primes and smooth numbers},
+ \url{https://arxiv.org/abs/2505.00653}.
+\bibitem{BV}
+ E. Bombieri,
+ \emph{On the large sieve}, Mathematika \textbf{12} (1965), 201--225;
+ A. I. Vinogradov, \emph{The density hypothesis for Dirichlet
+ $L$-series}, Izv. Akad. Nauk SSSR Ser. Mat. \textbf{29} (1965),
+ 903--934.  (Classical Bombieri--Vinogradov theorem.)
+\end{thebibliography}
+\end{document}
