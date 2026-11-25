@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[margin=1in]{geometry}\usepackage[hidelinks]{hyperref}
+\setlength\emergencystretch{1.5em}
+\newtheorem{theorem}{Theorem}
+\title{Omitted branches in a paired Jacobsthal lower sieve}
+\author{Research coordination: DEEPAK KUMAR\\\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{Public working paper for specialist review}
+\begin{document}\maketitle
+\begin{abstract}
+Let $L=\log z$. Sieving $n,n+2$ on $(z,z^2-2]$ through $z/L^A$ leaves $O_A(z^2\log L/L^3)$ composite exceptions in addition to ordinary twin pairs. We examine the signed lower tree obtained by applying the admission rule of the OpenAI Jacobsthal preprint to two forbidden classes. Using its compact prime-path occupation estimate, we prove that the omitted-node count exceeds every fixed multiple of $z^2/\log^2 z$ for all sufficiently large $z$. This obstruction persists under exact stops confined to a fixed exponent window.
+\end{abstract}
+\section{Composite exceptions}
+Write $P^-(m)$ for the least prime factor of $m>1$, $L=\log z$, $I_z=(z,z^2-2]\cap\mathbb Z$ and $H=|I_z|$. Fix $A>0$ and put $z_0=z/L^A$. Define
+\[
+ S(y)=\#\{n\in I_z:P^-(n(n+2))>y\},\qquad T(z)=\#\{n\in I_z:n,n+2\text{ prime}\}.
+\]
+Both endpoints exceed $z$ and are at most $z^2$, hence $S(z)=T(z)$.
+\begin{theorem}For every fixed $A>0$,
+\[
+ 0\le S(z_0)-T(z)\ll_A H\log L/L^3.
+\]
+\end{theorem}
+\begin{proof}
+Since $z_0^3>z^2$ eventually, every surviving composite endpoint is $rs$, with $z_0<r\le s$ prime and $r\le z$. For fixed $r$, apply the two-linear-form upper-bound sieve to $s,rs\pm2$ on $[1,z^2/r]$ through a sufficiently small fixed power of $z$. The length is at least $z$. Every sieving prime other than $2$ has two distinct roots since $r>z_0$; at $2$ there is one. Each root class has interval counting error $O(1)$. A sufficiently small fixed power as divisor level absorbs even the sum of absolute divisor-weighted boundary errors. The standard Selberg upper bound gives $O(z^2/(rL^2))$ uniformly. Partial summation and the prime number theorem with its classical remainder give $\sum_{z_0<r\le z,\ r\ \rm prime}1/r\ll_A(\log L)/L$. Sum over $r$ and allow either endpoint to be composite; squares are included.
+\end{proof}
+\section{The signed tree}
+Let $w=L/(\log L)^2$, $B=\log_w z_0$, $a_*=1/100$. Nodes carry decreasing primes in $(w,z_0]$, each labelled by $p\mid n$ or $p\mid n+2$. For their product $d$ put $r_d=\log_w(H/d)+2-a_*$. The root and the other even-depth nodes admit every available smaller prime. An odd-depth node with product $d'$ admits a new prime of exponent $u=\log_w p$ exactly when
+\[
+                     r_{d'}-u\ge\max(2u,u+2).                 \tag{1}
+\]
+The initial upper endpoint is included. Let $N_\nu$ count the integers satisfying the node congruences and $P^-(n(n+2))>w$. Let $S_\nu$ additionally exclude all available smaller prime hits. Partition by the least smaller prime hit. The two labels at an odd prime are disjoint. Thus $S_\nu=N_\nu-\sum_{\nu'} S_{\nu'}$ over all possible children. Expanding to the first rejected nodes gives
+\[
+             S(z_0)=\mathcal L+\Delta,\qquad
+ \mathcal L=\sum_{\nu\ {\rm admitted}}(-1)^{\mathrm{depth}(\nu)}N_\nu,
+ \quad\Delta=\sum_{\nu\ {\rm first\ rejected}}S_\nu.           \tag{2}
+\]
+Every first rejected child has even depth. Node counts in $\Delta$ carry their multiplicities.
+
+\paragraph{Occupation input.} Retain the single colour $p\mid n$, exponents $>2$, and the standard rule $r_{d'}-u\ge2u$ at odd-depth parents. For a nonempty node put $s_d=r_d/\log_w P^-(d)$. We use the following consequence of the compact-window prime-occupation proposition in \cite[\S5, Proposition 5.5(iv)]{OAI}. For each fixed $b\ge20$,
+\[
+ \liminf_{z\to\infty}B^2
+ \sum_{\substack{d'\ {\rm odd\ depth}\\2.5b<r_{d'}<2.8b\\2.05<s_{d'}<2.2}}
+ \frac1{d'}\ge c_0 b^2                                      \tag{3}
+\]
+with $c_0>0$ independent of $b$. Indeed $r_1/B\to2$ and the odd-state limit on the rectangle is a fixed positive multiple of $r(1-s^{-2})\,dr\,ds$; the support restriction $s<r/2$ holds there. These paths retain precisely the same $1/d'$ weights as in (1) since the two admission rules agree above exponent $2$. The following theorem states the dependence on (3) explicitly.
+
+\begin{theorem}\label{main}Assuming (3), $\Delta/(H/L^2)\to+\infty$ and $\mathcal L/(H/L^2)\to-\infty$. The latter assertion also holds if exact survivor counts replace the lower-tree expansions at a prefix-free set of nonroot stops whose last exponents are bounded above by a fixed constant.
+\end{theorem}
+\begin{proof}
+To each parent in (3) append a prime $p=w^u$ of the same colour with $b<u<1.1b$. The preceding exponent is $>2.5b/2.2>1.13b$, but $r_{d'}-u<1.8b<2u$, so the child is first rejected. For $d=d'p$ put $v=\log_w(H/d)$. Direct substitution gives
+\[
+ v=r_{d'}-u-2+a_*,\qquad v-u>0.3b-2,\quad v<2u,\quad uv<1.98b^2. \tag{4}
+\]
+For fixed $b$, each $d$ exceeds $z$ eventually. In its count use only $n=dk$ with $k>p$ prime. The first endpoint then survives all primes $<p$. We claim that, summed over these $d$, the number of witnesses with $P^-(dk+2)\ge p$ is
+\[
+ \sum_d W(p)\#\{k>p:k\text{ prime},\ dk\in I_z\}+o_b(H/L^2),
+ \qquad W(p)=\prod_{2<\ell<p}(1-1/(\ell-1)).                  \tag{5}
+\]
+First discard products whose largest prime is at most $R_*=\exp(L^{1/3})$. Their reciprocal mass is bounded by
+\[
+ z^{-L^{-1/3}}\prod_{\ell\le R_*,\ \ell\ {\rm prime}}
+       (1+\ell^{-1+L^{-1/3}})\ll e^{-L^{2/3}} L^{O(1)} .
+\]
+Each numerical $d$ determines its decreasing tuple; it contributes $O(H/d)$ integers since $d<H$. This removal is negligible on both sides of (5).
+
+For the remaining products let $P$ be the largest prime, and $d=Pa$. For fixed $a,k$ and $R<P\le2R$, the admissible $P$ lie in an interval $J\subseteq[R,2R]$. Here $p=P^-(a)$, and every later prefix gap is affine in $\log P$. The admission tests, rectangle (3), decreasing order and $Pak\in I_z$ each restrict $\log P$ to an interval. The largest prime cannot be the appended $p$, or the last prime of the parent once $P>R_*$. For each odd $\ell<p$ the class $-2(ak)^{-1}\pmod\ell$ is forbidden. Uniformly for these classes and intervals, and for fixed $D>0$,
+\[
+ \#\{P\in J:P\text{ prime},\,P^-(Pak+2)\ge p\}
+ =W(p)\#\{P\in J:P\text{ prime}\}+O_{D,b}(RL^{-D}).           \tag{6}
+\]
+Indeed truncate inclusion--exclusion at adjacent even and odd orders $J_0,J_0+1$, with $J_0\asymp C_D\log L$. The principal discrepancy is bounded by the reciprocal factorial tail with parameter $\sum_{2<\ell<p}1/(\ell-1)=O_b(\log\log L+1)$, hence by $O_{D,b}(L^{-D-2})$. Each squarefree modulus occurs at most once in each sum. All moduli are at most $p^{J_0+1}=\exp(O_{D,b}((\log L)^2))$. As $R\gg\exp(L^{1/3})$, maximal Bombieri--Vinogradov and partial summation give the error in (6) with any required logarithmic precision, including on short $J$ as an absolute error. The prime number theorem allows the unrestricted prime count on the right. There are $O((H/R)L)$ possible pairs $a,k$ per dyadic block and $O(L)$ blocks. Choosing $D>4$ proves (5).
+
+By (4) and the prime number theorem the inner prime count in (5) is $(1+o_b(1))H/(dv\log w)$ uniformly. Mertens' theorem gives $W(p)\sim2C_2e^{-\gamma}/(u\log w)$, $C_2=\prod_{\ell>2,\ \ell\ {\rm prime}}(1-1/(\ell-1)^2)$. Also $\sum_{w^b<p<w^{1.1b}}1/p\to\log(1.1)$. Applying (3) and (4) in (5), using $B\log w\sim L$, gives
+\[
+ \liminf_{z\to\infty}\frac{\Delta_b}{H/L^2}
+ \ge \frac{2C_2e^{-\gamma} c_0}{1.98}\log(1.1)>0
+\]
+for the selected omissions in this band. The lower bound is independent of $b$. Take $M$ disjoint bands $b_j=20\cdot2^j$, keeping $M$ fixed while taking the lower limit. Nonnegativity in (2) permits their contributions to be added, and $M$ is arbitrary. The ordinary upper-bound sieve through a small fixed power of $z$ yields $S(z_0)\ll H/L^2$, proving both limits. For stops with bounded terminal exponent take all $b_j$ above that bound plus one. All ancestors of each selected rejected child remain above the stop window, so its omission persists after exact substitution.
+\end{proof}
+
+\paragraph{Provenance.} The original Twin Prime Research chats supplied the paired-tree adaptation and its independent arithmetic check. Theorem~\ref{main} addresses the specified signed lower tree. The existence of survivors at arbitrarily large cutoffs and the priority of this adaptation remain open.
+\begin{thebibliography}{9}
+\bibitem{OAI}OpenAI, \emph{A quadratic bound for Jacobsthal's function} (2026). \href{https://github.com/openai/math/blob/main/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/build/sections/prime-paths.tex}{Prime-path occupation proposition}.
+\bibitem{IK}H. Iwaniec and E. Kowalski, \emph{Analytic Number Theory}, AMS, 2004.
+\bibitem{record}\href{https://github.com/cosmosgeek0/twin-prime-research-archive/blob/main/hosted-research-responses-2026-11-25.md}{Original project research and independent check}, section on the paired Jacobsthal lower sieve.
+\end{thebibliography}
+\end{document}

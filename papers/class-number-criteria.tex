@@ -1,0 +1,261 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\DeclareMathOperator{\Cl}{Cl}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+\title{A conductor correction for class-number tests of twin-prime neighbors}
+\author{\small Project coordinator: DEEPAK KUMAR\\
+\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{Public research draft, November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For an even midpoint $m\ge4$, two congruences of imaginary quadratic
+order class numbers, together with two auxiliary Jacobi symbols, are
+equivalent to the simultaneous primality of $m-1$ and $m+1$. One
+congruence removes unramified conductor primes; a square-divisor
+M\"obius difference removes conductors supported on ramified primes.
+For each fixed auxiliary prime $\ell\equiv1\bmod4$, a Pell family gives
+infinitely many even midpoints with both neighbors composite and
+Hurwitz class number $H(\ell(m^2-1))\equiv4\bmod8$.
+A second calculation gives the asymptotic count of fundamental
+discriminants passing the test when the auxiliary prime varies.
+\end{abstract}
+
+\section{The two order class numbers}
+For $-n<0$ a discriminant, let $h(-n)$ denote the proper ideal class
+number of the order of discriminant $-n$. For the odd integers
+$n\equiv3\bmod4$ occurring below put
+\[
+ J(n)=\sum_{s^2\mid n}\mu(s)\,h(-n/s^2).
+\]
+All the arguments $-n/s^2$ here are again discriminants.
+For even $m\ge4$ put $a=m-1$ and $b=m+1$. Call a prime
+$\ell\equiv1\bmod4$ admissible for $m$ if its Jacobi symbols satisfy
+\[
+             \leg{\ell}{a}=\leg{\ell}{b}=-1 .
+\]
+In particular $\ell\nmid ab$.
+
+\begin{theorem}\label{th:main}
+The integers $m-1$ and $m+1$ are both prime if and only if there
+is an admissible prime $\ell$ for which, with $n=\ell(m^2-1)$,
+\[
+                  h(-n)\equiv J(n)\equiv4\pmod8.
+\]
+If both neighbors are prime, every admissible $\ell$ works, and there
+are infinitely many such $\ell$.
+\end{theorem}
+
+We use two classical facts. For a negative fundamental discriminant
+with $t$ distinct prime-discriminant factors, the $2$-rank of its
+class group is $t-1$, and its $4$-rank is $t-1$ minus the rank of
+the R\'edei matrix over $\mathbb F_2$ \cite[\S\S2--3]{stev}.
+For a positive odd squarefree $d\equiv3\bmod4$ with $d>3$, the ring
+class number formula \cite[Theorem~7.24]{cox} is
+\begin{equation}\label{eq:order}
+ h(-df^2)=h(-d) A_d(f),\qquad
+ A_d(f)=f\prod_{t\mid f,\ t\ {\rm prime}}
+ \left(1-\frac{\chi_{-d}(t)}{t}\right),
+\end{equation}
+where $\chi_{-d}$ is the primitive quadratic character. Both the
+maximal order and the orders in \eqref{eq:order} have just two units.
+
+\begin{lemma}\label{lem:redei}
+Let $p,q,\ell$ be distinct odd primes, exactly one of $p,q$ congruent to
+$3\bmod4$, and $\ell\equiv1\bmod4$. Let $x,y,z$ be the additive
+Legendre symbols of $(q/p),(\ell/p),(\ell/q)$, respectively, with a
+nonresidue encoded by $1$. Then
+\[
+               h(-\ell pq)\equiv4\bmod8
+               \quad\Longleftrightarrow\quad xy+xz+yz=1
+               \quad\text{in }\mathbb F_2.
+\]
+\end{lemma}
+\begin{proof}
+The discriminant $-\ell pq$ is fundamental. The off-diagonal entries
+of its R\'edei matrix are symmetric by quadratic reciprocity: the
+single negative prime-discriminant factor is paired only with primes
+$1\bmod4$. With the diagonal determined by zero column sums, the matrix is
+\[
+ \begin{pmatrix}x+y&x&y\\x&x+z&z\\y&z&y+z\end{pmatrix}.
+\]
+Its rank is two precisely when the displayed quadratic polynomial is one:
+all cofactors are equal, since the row and column sums vanish.
+The $2$-rank is two. The $2$-primary part therefore has order four
+exactly when the $4$-rank is zero.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{th:main}]
+Write $n=df^2$ with $d$ squarefree, and fix an admissible $\ell$.
+Since $ab\equiv3\bmod4$, $-d$ is fundamental. The coprime odd integers
+$a$ and $b$ each have a prime of odd valuation, by the two negative
+Jacobi symbols. Together with $\ell$ this gives at least three prime
+factors of $d$, so $4\mid h(-d)$ and $d>3$.
+
+The function $A_d$ in \eqref{eq:order} is multiplicative and
+$A_d(t^e)=t^{e-1}(t-\chi_{-d}(t))$ for $e\ge1$. If an unramified
+prime divides $f$, this factor is even and $8\mid h(-n)$.
+If $f>1$ is supported entirely on ramified primes, then $A_d(c)=c$
+for every divisor $c$ of $f$, so
+\[
+ J(n)=h(-d)\sum_{s\mid f}\mu(s)A_d(f/s)
+     =h(-d)\varphi(f)\equiv0\pmod8.
+\]
+Here $f$ is odd. Thus joint success forces $f=1$. A composite neighbor
+would now supply a fourth distinct prime factor of $d$, forcing
+$8\mid h(-d)$ by genus theory.
+
+Conversely, for prime neighbors $p=a,q=b$, use the Chinese remainder
+theorem and Dirichlet's theorem to choose $\ell\equiv1\bmod4$ a
+nonresidue modulo both. In Lemma~\ref{lem:redei}, $y=z=1$ and
+$xy+xz+yz=1$ regardless of $x$. We have $f=1$, so $J(n)=h(-n)$.
+\end{proof}
+
+\section{How many discriminants can come from fixed neighbors?}
+On the squarefree subfamily there is also an exact count without
+imposing the two negative-symbol conditions. For a fixed genuine twin
+center, $x$ in Lemma~\ref{lem:redei} is determined by $(2/(m-1))$.
+Among primes $\ell\equiv1\bmod4$, the four pairs $(y,z)$ have equal
+limiting frequency by the prime number theorem in fixed progressions.
+If $x=0$ only $(1,1)$ works; if $x=1$ all but $(0,0)$ work.
+
+\begin{proposition}
+Let $N(X)$ count distinct fundamental discriminants
+$-\ell(m^2-1)$ of absolute value at most $X$ with $m\ge4$ even,
+$\ell>2m$ prime congruent to $1\bmod4$, and class number $4\bmod8$.
+Then
+\[
+ N(X)\sim\frac X{\log X}
+ \sum_{\substack{m\ge4\text{ even}\\m-1,m+1\text{ prime}}}
+ \frac{\delta_m}{m^2-1},
+ \qquad
+ \delta_m=
+ \begin{cases}
+ 1/8,&m\equiv0,2\pmod8,\\
+ 3/8,&m\equiv4,6\pmod8 .
+ \end{cases}
+\]
+\end{proposition}
+\begin{proof}
+Genus theory forces both neighbors to be prime. The largest prime
+factor is $\ell$, so the representation is unique. The calculated
+densities, including the density $1/2$ for $\ell\equiv1\bmod4$, give
+the formula for any finite sum over $m$. For $B<m\le X^{1/4}$,
+$\pi(X/(m^2-1))\ll X/(m^2\log X)$ and the sum is
+$O(X/(B\log X))$. For larger $m$ the trivial bound gives
+$O(X^{3/4})$. Let $X\to\infty$ and then $B\to\infty$.
+The single center $m=4$ contributes $1/40$ to the sum.
+\end{proof}
+In particular the main term is compatible with finitely many genuine
+centers. A result forcing arbitrarily large successful midpoints is
+still needed.
+
+\section{Composite neighbors in a Hurwitz congruence}
+Let $H(n)$ be the Hurwitz class number, normalized by weights
+$1/|\mathrm{Aut}_{\mathrm{PSL}_2}(Q)|$. For $d$ as in
+\eqref{eq:order}, partitioning forms by their common content gives
+\begin{equation}\label{eq:hurwitz}
+ H(df^2)=\sum_{c\mid f}h(-dc^2)
+        =h(-d)\prod_{t^e\parallel f}
+                 \left(1+\sum_{j=1}^e A_d(t^j)\right).
+\end{equation}
+Here and below $t^e\parallel f$ in a product denotes exact prime
+powers. This is the usual conductor formula for Hurwitz coefficients
+\cite{brr}. For odd $t\nmid d$ the corresponding factor is odd for
+every $e$. For odd $t\mid d$ its parity is $e+1\bmod2$.
+
+\begin{theorem}\label{th:pell}
+For every prime $\ell\equiv1\bmod4$, infinitely many even $m$
+have two composite neighbors and $H(\ell(m^2-1))\equiv4\bmod8$.
+For $\ell=13$ this holds even with $\ell$ admissible for $m$.
+\end{theorem}
+\begin{proof}
+Choose primes $u,v>3$ distinct from $\ell$, with
+\[
+ u\equiv5\bmod8,\quad v\equiv3\bmod4,\quad
+ \leg{\ell}{u}=\leg{\ell}{v}=\leg{u}{v}=-1 .
+\]
+To do this, choose $u$ in a nonresidue class modulo $\ell$ and the
+specified class modulo eight; then impose independent nonresidue
+classes modulo $\ell,u$ in choosing $v$. Reciprocity, CRT and
+Dirichlet's theorem give the required primes. Set $D=uv$.
+Lemma~\ref{lem:redei} yields $h(-\ell D)\equiv4\bmod8$.
+
+Let $x+y\sqrt D>1$ be the least norm-one positive Pell unit in
+$\mathbb Z[\sqrt D]$; $x,y>0$. We claim $x$ is even. If $x$ were odd,
+$y$ would be even and the coprime consecutive integers
+$(x+1)/2,(x-1)/2$ would have product $D(y/2)^2$.
+If the first is a square and the second is $D$ times a square, the
+Pell unit is the square of a smaller positive norm-one unit.
+The reversed allocation would solve $s^2-Dt^2=-1$, impossible
+modulo $v\equiv3\bmod4$. The remaining allocations would give
+$u s^2-vt^2=1$ or $v s^2-ut^2=1$. Reduction modulo $v$ or $u$,
+respectively, contradicts $(u/v)=(v/u)=-1$. This proves the claim.
+
+Every odd power $x'+y'\sqrt D$ of this unit has $x'$ even, $y'$ odd
+(by reduction modulo two). Each of the coprime odd neighbors $x'\pm1$
+must carry one of the two squarefree factors $u,v$ in
+$(x'-1)(x'+1)=D(y')^2$. Indeed, if both factors belonged to one side,
+the other would be a square congruent to $2$ or $-2$ modulo $u$.
+Both are nonresidues since $u\equiv5\bmod8$. Thus for large $x'$ both
+neighbors are composite.
+
+We arrange that $v_t(y')$ is even at $t=u,v,\ell$. For any Pell unit
+$X+Y\sqrt D$ and prime $t\ge5$ dividing $DY^2$, its $n$th power
+$X_n+Y_n\sqrt D$ satisfies
+\[
+ v_t(Y_n)=v_t(Y)+v_t(n).
+\]
+Indeed, in $Y_n/(nY)$ the first binomial term is $X^{n-1}$,
+a $t$-adic unit. The terms indexed by $j\ge1$ have factors
+$(DY^2)^j\binom{n-1}{2j}/(2j+1)$ and are divisible by $t$, since
+$j>v_t(2j+1)$. First take an odd power with an additional factor
+$u$ or $v$ precisely for each of these two primes where the valuation
+is odd. In the resulting unit, if $v_\ell(Y)$ is odd, take the
+$\ell$th power. This makes all three valuations even.
+
+We may now raise the resulting unit to arbitrarily large odd powers
+$n$ with $(n,uv\ell)=1$ and $n\equiv1$ modulo its multiplicative
+order in $(\mathbb F_\ell[\sqrt D])^\times$ (the quadratic algebra
+here means $\mathbb F_\ell[T]/(T^2-D)$). This also preserves
+$\ell\nmid Y_n$ when $v_\ell(Y)=0$. All three valuations stay even.
+Formula \eqref{eq:hurwitz} for $d=\ell D$, $f=Y_n$ gives the required
+congruence at $m=X_n$.
+
+For the stronger example start directly with $6+\sqrt{35}$ and
+$\ell=13$. Take arbitrarily large powers congruent to one modulo
+the order of this unit in
+$((\mathbb Z/(2\cdot5\cdot7\cdot13))[T]/(T^2-35))^\times$.
+The new $m$ is even, $Y_n$ is coprime to $2\cdot5\cdot7\cdot13$,
+and $m-1,m+1$ have squarefree parts $5,7$ respectively (the chosen
+congruences fix their allocation). Both are composite for $m>8$.
+Since $(13/5)=(13/7)=-1$, both Jacobi gates hold.
+\end{proof}
+
+\paragraph{Scope and provenance.}
+The two-congruence test combines genus theory, the R\'edei matrix
+and the ring class number formula. The Pell construction and the
+fixed-center count describe the two distinct multiplicities a
+nonvanishing argument must control. They give no unbounded sequence
+of genuine twin centers. The original Twin Prime research chats and
+Codex contributed the mathematical development, extraction, and
+internal checks. Specialist review and the priority of these
+specializations remain open.
+
+\begin{thebibliography}{9}
+\bibitem{stev} P. Stevenhagen, \emph{R\'edei reciprocity, governing
+fields, and negative Pell}, \S\S2--3, Theorem 3.1.
+\href{https://arxiv.org/abs/1806.06250}{arXiv:1806.06250}.
+\bibitem{cox} D. A. Cox, \emph{Primes of the Form $x^2+ny^2$},
+Theorem 7.24.
+\bibitem{brr} O. Beckwith, M. Raum and O. K. Richter,
+\emph{Nonholomorphic Ramanujan-type congruences for Hurwitz class numbers}.
+\href{https://doi.org/10.1073/pnas.2005984117}{Proc. Natl. Acad. Sci. USA 117 (2020)}.
+\end{thebibliography}
+\end{document}

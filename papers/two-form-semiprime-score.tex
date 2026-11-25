@@ -1,0 +1,138 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newcommand{\ind}{\mathbf{1}}
+\title{A uniform upper bound for a two-form semiprime sieve score}
+\author{Deepak Kumar, project coordinator\\
+\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{Public research draft}
+\begin{document}
+\maketitle
+\begin{abstract}
+For the one-polynomial Goldston--Graham--Pintz--Y{\i}ld{\i}r{\i}m
+score with two forms and level of distribution $1/2$, we give an
+upper bound of $-0.01265$ times the denominator quadratic form.
+The estimate is uniform in the degree and coefficients of the
+polynomial and in the admissible fixed lower factor cutoff.
+We also show that affine gap-two identities obtained by odd
+positive rescaling form a bipartite graph. These statements give
+two limitations of particular attempts to use semiprime pairs.
+\end{abstract}
+
+\section{The two-form quadratic form}
+Goldston, Graham, Pintz and Y{\i}ld{\i}r{\i}m prove results about
+small gaps between products of two primes \cite{GGPY}. Their Theorem~3
+gives, for an admissible pair of linear forms, infinitely many
+arguments at which both values have at most two prime factors.
+Their Theorems~7 and~8 evaluate the main terms for a specific
+one-polynomial sieve weight. We ask whether choosing a different
+polynomial in that score can force a positive leading coefficient
+for two selected $E_2$ values, where an $E_2$ is a product of two
+distinct primes.
+
+Use the notation of \cite[Thms.~7--8 and \S8, (8.1)]{GGPY} in the
+case $k=2$, $\nu=1$, $B=2/\vartheta=4$. Let $P$ be a real polynomial,
+$F(t)=\int_0^tP(v)\,dv$, and $h=4\eta$ the fixed lower cutoff
+in the integral for the smaller prime factor. The required score,
+up to a positive prefactor, is
+\begin{align}
+J&=\tfrac12(J_1+J_2+J_3)-J_0,
+&J_0&=\int_0^1(1-t)P(t)^2\,dt . \label{score}
+\end{align}
+Changing variables from $x$ to $t=1-x$ and combining the two
+ranges of the inner integral gives
+\begin{align}
+J_1+J_2
+ &=\int_h^1\frac{4}{y(4-y)}
+       \int_0^1\bigl(F(t)-F((t-y)_+)\bigr)^2\,dt\,dy, \label{diff}\\
+J_3&=\log(3)\int_0^1 F(t)^2\,dt. \label{J3}
+\end{align}
+Here $(t-y)_+=\max(t-y,0)$ and the coefficient in \eqref{J3} is
+$\int_1^2 4/[y(4-y)]\,dy$. The following estimate also covers
+the limiting integral with $h=0$.
+
+\begin{proposition}
+For $0\le h\le1$,
+\[
+ J\le\left(2\log(4/3)+\tfrac38\log 3-1\right)J_0.
+\]
+The coefficient is approximately $-0.0126562$.
+\end{proposition}
+\begin{proof}
+For $0<y\le1$, Cauchy--Schwarz gives
+\[
+ \bigl(F(t)-F((t-y)_+)\bigr)^2
+       \le y\int_{(t-y)_+}^t P(v)^2\,dv.
+\]
+For a fixed $v$, the allowable $t$ form the interval
+$[v,\min(1,v+y)]$ of length at most $1-v$. Consequently
+\[
+ \int_0^1\bigl(F(t)-F((t-y)_+)\bigr)^2\,dt\le yJ_0 .
+\]
+Integrating \eqref{diff} and enlarging the outer interval to $[0,1]$
+gives $J_1+J_2\le 4\log(4/3)J_0$.
+
+For $J_3$ use $\phi(t)=t+t^2/2$. Expanding
+$F'=(F/\phi)'\phi+(F/\phi)\phi'$ and integrating the cross term
+by parts gives
+\[
+ J_0=\int_0^1(1-t)\phi(t)^2\bigl((F/\phi)'(t)\bigr)^2\,dt
+      +\int_0^1 \frac{2}{1+t/2}F(t)^2\,dt .
+\]
+Indeed $-((1-t)\phi')'=2t$. The boundary term
+$(1-t)\phi'F^2/\phi$ vanishes at $1$, and it is $O(t)$ at $0$
+since $F(0)=0$. The coefficient $2/(1+t/2)$ is at least $4/3$.
+It follows that $\int_0^1F^2\le 3J_0/4$. Substitution in
+\eqref{score} proves the bound.
+\end{proof}
+Since $J_0>0$ for $P\ne0$, every such fixed polynomial gives a
+strictly negative leading score. The conclusion concerns this
+quadratic form at distribution level $1/2$. In particular the
+prime-inclusive two-form result of \cite[Theorem~3]{GGPY} employs
+a different score.
+
+\section{An obstruction to rescaling selected forms}
+Another possible transfer starts with a family of
+integer affine forms $L_i(t)=a_it+b_i$, $a_i>0$. Its aim is to
+attach a gap-two identity to whichever pair of indices a selection
+theorem supplies.
+\begin{proposition}
+Join $i$ and $j$ when there exist odd positive integers $c,d$
+such that $cL_i(t)-dL_j(t)=\pm2$ identically in $t$. The resulting
+graph is bipartite.
+\end{proposition}
+\begin{proof}
+Write $a_i=2^{v_i}u_i$ with $u_i$ odd. An edge requires
+$ca_i=da_j$, hence $v_i=v_j$ and $M=cu_i=du_j$ is odd.
+In $\mathbb Z/4\mathbb Z$ put $z_i=b_i u_i^{-1}$. The constant
+coefficient identity gives
+\[
+ M(z_i-z_j)=cb_i-db_j=2 \pmod4.
+\]
+Thus $z_i-z_j=2\bmod4$. The vertices with residues $0,1$ lie
+on one side and those with residues $2,3$ on the other.
+\end{proof}
+In particular, no triple of forms can cover all three potential
+selected pairs by identities of the specified type. A theorem
+giving an unspecified pair from three indices therefore requires
+additional information to force such a rescaled gap.
+
+\paragraph{Provenance.}
+The two estimates were developed during the Twin Prime research
+project coordinated by Deepak Kumar. The derivation and drafting
+involved ChatGPT and Codex. The original account calculation is
+linked in the \href{https://github.com/cosmosgeek0/twin-prime-research-archive/blob/main/hosted-research-responses-2026-11-25.md}{public research record}.
+Specialist review and priority assessment remain open.
+\begin{thebibliography}{9}
+\bibitem{GGPY} D.~A.~Goldston, S.~W.~Graham, J.~Pintz and C.~Y.~Y{\i}ld{\i}r{\i}m,
+\emph{Small gaps between products of two primes}, Proc. Lond. Math.
+Soc. (3) \textbf{98} (2009), 741--774.
+\href{https://doi.org/10.1112/plms/pdn046}{Published paper};
+\href{https://arxiv.org/abs/math/0609615}{authors' preprint}.
+See also the \href{https://doi.org/10.1112/plms/pds053}{2013 corrigendum}.
+\end{thebibliography}
+\end{document}

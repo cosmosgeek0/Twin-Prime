@@ -1,0 +1,131 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\one}{\mathbf1}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\pp}{\mathbb P}
+\allowdisplaybreaks
+\raggedbottom
+\setlength\emergencystretch{2em}
+\title{The last prime factor collected in a moving divisor moment}
+\author{\small Research coordination: DEEPAK KUMAR\\
+\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{Public research draft for specialist review}
+\begin{document}
+\maketitle
+\begin{abstract}
+Choose prime factors of an integer \(m\) by repeated independent draws, giving each distinct prime \(p\mid m\) probability \(\log p/\log m\). The remaining probability is assigned to a blank. We average the event that the last previously unseen prime first appears at draw \(j+1\), with \(j=\lfloor(\log X)^v\rfloor\), \(0<v<1\). Over \(m=P+2\) with \(X<P\le2X\) prime, the total weight is asymptotic to \(2C_2X/(\log X)^2\). Under this weight the rescaled size \(j\log p/\log X\) of the last prime converges to an exponential law of mean one. On adjacent odd integers the analogous two marks have independent exponential limits. The proof retains prime powers and takes finite differences after a uniform Taylor expansion of the averaged moments.
+\end{abstract}
+
+\section{Completion and its mark}
+Put \(L=\log X\), \(C_2=\prod_{p>2}(1-(p-1)^{-2})\) and \(R_X=L^2/(2C_2X)\). Write \(x_p(m)=\log p/\log m\) for \(p\mid m\). The independent draws in the abstract have total prime probability \(\log\operatorname{rad}(m)/\log m\); the blank handles repeated prime factors. Let \(Q_j(m)\) be the probability that all bases have been seen by draw \(j\). Let \(D_{j,p}(m)\) be the probability of completing at draw \(j+1\) with last base \(p\), and set \(D_j=\sum_p D_{j,p}=Q_{j+1}-Q_j\). All three quantities are nonnegative. Inclusion--exclusion gives
+\begin{align}
+ Q_j(m)&=\sum_{d\mid m}\mu(d)(1-\log d/\log m)^j,\label{eq:Q}\\
+ D_{j,p}(m)&=\one_{p\mid m}\, x_p(m)
+ \sum_{\substack{e\mid m\\(e,p)=1}}\mu(e)
+       (1-\log(pe)/\log m)^j.\label{eq:mark}
+\end{align}
+Indeed, in \eqref{eq:mark} the first \(j\) draws miss \(p\), meet every other base, and the next draw is \(p\). For an interval \(I\subset(0,\infty)\), write \(D_j^I(m)=\sum_{p:\,j\log p/L\in I}D_{j,p}(m)\).
+\begin{theorem}
+Fix \(0<v,w<1\), let \(j=\lfloor L^v\rfloor\), \(k=\lfloor L^w\rfloor\), and set \(\nu((a,b])=e^{-a}-e^{-b}\) for \(0<a<b<\infty\), \(\nu((0,\infty))=1\). For such intervals \(I,J\), allowing the entire positive axis, one has
+\begin{align}
+ R_X\sum_{\substack{X<P\le2X\\P\ {\rm prime}}}D_j^I(P+2)&\longrightarrow \nu(I),\\
+ R_X\sum_{\substack{X<n\le2X\\n\ {\rm odd}}}D_j^I(n)D_k^J(n+2)&\longrightarrow \nu(I)\nu(J).
+\end{align}
+\end{theorem}
+A prime \(m\) has \(D_j(m)=0\) for \(j\ge1\). Thus the positive mass above occurs even without any contribution from twin primes.
+
+\section{Averaging and the moving-order expansion}
+Define
+\[
+ A_j(T)=\sum_{d\ \rm odd}\frac{\mu(d)}{\varphi(d)}(1-\log d/T)_+^j,
+ \qquad G(s)=\prod_{p>2}\left(1-\frac{p^{-s}}{p-1}\right).
+\]
+For the two-site average put
+\[
+ A_{j,k}(T,U)=\frac12\sum_{\substack{d,e\ {\rm odd}\\(d,e)=1}}
+   \frac{\mu(d)\mu(e)}{de}(1-\log d/T)_+^j(1-\log e/U)_+^k,
+ \]
+\[
+ G_2(s,t)=\frac12\prod_{p>2}(1-p^{-1-s}-p^{-1-t}).
+\]
+
+\begin{lemma}\label{lem:replace}
+For every fixed \(A>0\), the unnormalized prime sum of \(Q_j(P+2)\) equals
+\[\int_X^{2X} A_j(\log(y+2))\,dy/\log y+O_{A,v}(X L^{-A}).\]
+The unnormalized odd-integer sum of \(Q_j(n)Q_k(n+2)\) equals
+\[\int_X^{2X}A_{j,k}(\log y,\log(y+2))\,dy+O_{A,v,w}(X L^{-A}).\]
+The same bounds hold with either order increased by one.
+\end{lemma}
+\begin{proof}
+Truncate each expanded divisor label at \(X^{1/20}\). The omitted physical weights are \(O(e^{-c\min(j,k)})\) per term, since \(\log n=L+O(1)\) throughout. Cauchy--Schwarz bounds their total multiplicity using the standard estimate \[\sum_{n\le 3X}\tau(n)^h\ll_h X(\log X)^{2^h-1}\qquad(h\in\NN).\] Enlarging the prime row to all integers preserves this upper bound. The same exponential estimate applies to principal tails, multiplied by harmonic divisor sums of logarithmic size.
+
+In the first sum the condition is \(P\equiv-2\bmod d\), a primitive class. The maximal-interval Bombieri--Vinogradov theorem \cite{BV}, followed by partial summation of the monotone kernel in \(y\), gives the asserted error; the version counting primes with principal \(\int dy/\log y\) follows by partial summation and removal of proper powers. In the second sum the two conditions on \(n,n+2\), together with oddness, give exactly one class modulo \(2de\) when \((d,e)=1\), and none otherwise. The error \(O(1)\) per pair, also after partial summation of its monotone kernel, costs \(O(X^{1/10})\). These arguments prove the lemma.
+\end{proof}
+
+In a fixed disk around zero, \(G(s)=s(2C_2+O(s))\). Indeed, dividing by \(\zeta(1+s)^{-1}\) gives an absolutely convergent product near zero, including the factor at two, whose value is \(2C_2\). Likewise \(G_2(s,t)=st(2C_2+O(|s|+|t|))\) on a small polydisk: remove \(\zeta(1+s)^{-1}\zeta(1+t)^{-1}\). Write \(G(s)=\sum_{h\ge1}g_hs^h\) and \(G_2(s,t)=\sum_{h,l\ge1}g_{hl}s^ht^l\).
+
+For \(T=L+O(1)\) and fixed \(H\), one has
+\begin{equation}\label{eq:taylor}
+ A_j(T)=\sum_{h=1}^H g_h (j)_h T^{-h}
+       +O_H((j/T)^{H+1}),
+ \qquad (j)_h=j(j-1)\cdots(j-h+1).
+\end{equation}
+Indeed the inverse Laplace formula gives
+\[
+ A_j(T)=\frac{j!}{T^j}\frac1{2\pi i}
+       \int_{\Re s=j/T}G(s)e^{Ts}\frac{ds}{s^{j+1}}.
+\]
+Each Taylor monomial integrates exactly to the displayed falling factorial. Within a fixed disk the absolute integral of an error \(O(|s|^a)\) is \(O((j/T)^a)\), since Stirling's formula gives \(j!e^j/j^j\ll\sqrt j\) and \(\int_{\mathbb R}(1+y^2)^{-(j+1-a)/2}dy\ll j^{-1/2}\) for fixed \(a\). Outside that disk the Euler product is bounded by a fixed power of \(T/j\) in absolute value, and the kernel decays geometrically in \(j\). The same estimate applies to the polynomial tails.
+
+The two-contour argument gives the rectangular Taylor expansion
+\[
+ A_{j,k}(T,U)=\sum_{h,l=1}^H g_{hl}(j)_h(k)_l T^{-h}U^{-l}
+       +O_H((j/T)^{H+1}+(k/U)^{H+1})
+\]
+when \(U=L+O(1)\). Apply the preceding estimate to both vertical integrals and the polydisk Taylor remainder. All bounds continue to hold for \(T,U\asymp L\). In particular \(H\) may be chosen, after \(v,w\) and the target precision, so that the error is \(O(L^{-A})\). This is why finite differences of these moving-order moments are controlled.
+\section{Total and marked limits}
+Since \((j+1)_h-(j)_h=h(j)_{h-1}\), the first difference of \eqref{eq:taylor} is
+\[
+ A_{j+1}(T)-A_j(T)=2C_2/T+O(j/T^2+L^{-3}).
+\]
+The mixed difference in the two-site formula is
+\(2C_2/(TU)+O((j/T+k/U)/(TU)+L^{-3})\), on taking \(H\) sufficiently large. Lemma~\ref{lem:replace} now proves both total masses.
+
+For \(I=(a,b]\) fixed away from zero write \(p\in I_j\) for \(a<j\log p/L\le b\); here \(p=X^{o(1)}\) and \(p\to\infty\) uniformly. On the prime row use \eqref{eq:mark}. The conditional principal at \(p\), with \(T=\log(y+2)\), is
+\[
+ \frac{\log p}{T(p-1)}
+       (1-\log p/T)^j\, A^{(p)}_j(T-\log p),
+\]
+where the Euler function for \(A^{(p)}_j\) is
+\(G(s)/(1-p^{-s}/(p-1))\). To justify the replacement, truncate \(e\le X^{1/20}\) as before; the progression modulus is \(pe\le X^{1/20+o(1)}\) and carries at most \(\tau(pe)\) markings. All-log Bombieri--Vinogradov persists with that divisor multiplicity. Indeed, for the maximal prime-counting error \(E_d\) at such moduli use Cauchy--Schwarz on \(\sum_d \tau(d) E_d\), the unweighted bound with arbitrary log saving, the elementary \(E_d\ll X\log X/d\), and \(\sum_{d\le X}\tau(d)^2/d\ll(\log X)^4\). The two factors \(\log p/T\) and \((1-\log(pe)/T)_+^j\) are bounded and monotone in opposite directions, so their product has uniformly bounded variation. The tails still cost \(O(X L^{-A})\) since the total marking multiplicity on a single integer is bounded by \(\tau(m)^2\).
+ 
+On the fixed Taylor disk the deleted factor is \(1+O(p^{-1/2})\); hence uniformly for \(p\in I_j\),
+\[
+ A^{(p)}_j(T-\log p)=(2C_2+o(1))j/L,\qquad
+ (1-\log p/T)^j=(1+o(1))e^{-j\log p/L}.
+\]
+The marked limit follows by prime partial summation:
+\[
+ \frac{j}{L}\sum_{p\in I_j}\frac{\log p}{p-1}e^{-j\log p/L}
+ \longrightarrow \int_a^b e^{-s}\,ds .
+\]
+
+On the odd-integer row, mark \(p\in I_j,q\in J_k\) with \(p\ne q\). The conditions \(p\mid n,\ q\mid n+2\) cannot hold with \(p=q\). For the remaining coprime divisor labels, the Chinese remainder theorem gives density \(1/(2pqde)\); both marked primes are now omitted from both Euler variables. Thus the conditional integrand is
+\[
+ \frac{\log p\,\log q}{T U p q}
+ (1-\log p/T)^j(1-\log q/U)^k
+ A^{(p,q)}_{j,k}(T-\log p,U-\log q).
+\]
+Here \(T=\log y,\ U=\log(y+2)\), and \(G_2^{(p,q)}\) is \(G_2\) divided by its two indicated local factors. Coprimality across the two sites follows from oddness, so the density above applies even to nonsquarefree inputs. After truncation, all floor and bounded-variation errors cost \(O(X^{1/10+o(1)})\). The uniform polydisk expansion now gives \(A^{(p,q)}_{j,k}=(2C_2+o(1))jk/L^2\); to obtain the relative error, retain enough Taylor terms, using divisibility by \(st\). Two applications of prime partial summation give \(\nu(I)\nu(J)\), and the deleted formal diagonal is negligible since its primes exceed \(\exp(cL^{1-\max(v,w)})\). Positive total mass and convergence on every interior rectangle imply tightness at both ends of each coordinate by exhausting \((0,\infty)^2\). This also gives the assertions with one or both panels unrestricted.
+
+\paragraph{Source and scope.} This working draft extracts the positive moving-integer-order theorem in \S308CR of the project's archived 14 and 19 November research records. The quantitative input on primes is Bombieri--Vinogradov; the last-mark statistic and its limiting law are the subject of this note. ChatGPT and Codex assisted with research and preparation. International priority and independent peer review have not been established.
+
+\begin{thebibliography}{9}\raggedright
+\bibitem{BV} E. Bombieri, \emph{On the large sieve}, Mathematika \textbf{12} (1965), 201--225. \href{https://doi.org/10.1112/S0025579300005313}{doi:10.1112/S0025579300005313}.
+\end{thebibliography}
+\end{document}

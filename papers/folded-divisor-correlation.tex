@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\lcm}{\operatorname{lcm}}
+\title{A squarefree folded divisor correlation at shift two}
+\author{Deepak Kumar, project coordinator\\
+\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{Public research draft}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We compute the shift-two autocorrelation of a squarefree truncated
+von Mangoldt weight whose cutoff is the square root of its argument.
+We also evaluate both mixed correlations with the prime weight.
+Subtracting the prime weight leaves a signed function supported on
+squarefree composites with an even number of factors. Its correlation
+at shift two agrees with the weighted twin-prime count up to $o(X)$
+on a dyadic interval. The proof combines a perturbed Kloosterman
+fraction estimate with a fixed-residue mean-value theorem for primes
+in the range of moduli near $\sqrt X$.
+\end{abstract}
+
+\section{The weights and their correlations}
+Write $I=(X/2,X]$, $Y=X/2$, $L=\log X$ and
+\[
+ K=2\prod_{p>2}\frac{p(p-2)}{(p-1)^2}.
+\]
+For $n>1$ put
+\[
+ P(n)=\mathbf1_{\{n\ {\rm prime}\}}\log n,\qquad
+ A(n)=2\mu^2(n)\sum_{d\mid n}\mu(d)\log_+(\sqrt n/d),
+ \qquad C(n)=A(n)-P(n),
+\]
+where $\log_+(t)=\max(0,\log t)$. Truncated correlations
+of divisor approximations to the von Mangoldt function have an
+extensive literature, including Goldston and Y{\i}ld{\i}r{\i}m
+\cite{GY}. Here the cutoff varies with the integer and squarefreeness
+is imposed at both endpoints.
+\begin{theorem}\label{main}
+As $X\to\infty$,
+\begin{align}
+ \sum_{n\in I}A(n)A(n+2)&=4KY+o(X), \label{aa}\\
+ \sum_{n\in I}P(n)A(n+2)
+  =2KY+o(X),\qquad
+ \sum_{n\in I}A(n)P(n+2)&=2KY+o(X). \label{ap}
+\end{align}
+Consequently
+\[
+ \sum_{n\in I}C(n)C(n+2)
+  =\sum_{n\in I}P(n)P(n+2)+o(X).
+\]
+\end{theorem}
+For a squarefree integer of odd factor count, complementary divisors
+have opposite M\"obius signs. Pairing them gives
+\[
+2\sum_{d\mid n}\mu(d)\log_+(\sqrt n/d)
+ =\sum_{d\mid n}\mu(d)\log(\sqrt n/d)=\Lambda(n).
+\]
+Thus $C$ is supported on squarefree composites of even factor count.
+The theorem gives an equivalence at the scale $X$. A positive
+limit superior of the composite correlation divided by $X$
+would imply infinitely many twin primes. Infinitude alone need
+not imply such a positive limit superior.
+
+\section{The integer correlation}
+We use $\log_+(R/d)=\int_1^R\mathbf1_{d\le u}\,du/u$ for $R\ge1$.
+After this substitution, at fixed $u,v\le\sqrt{X+2}$ the
+condition on $n$ is intersection of $I$ with $n\ge u^2$ and
+$n+2\ge v^2$. Endpoints of measure zero in $u,v$ are immaterial.
+
+Expand each squarefree indicator as
+$\mu^2(n)=\sum_{a^2\mid n}\mu(a)$ and truncate each sum at
+$Q=X^{1/1000}$. The number of integers in either interval divisible
+by some square $a^2$ with $a>Q$ is $O(X/Q+\sqrt X)$. The individual
+divisor multiplicities and logarithmic factors in the original and
+truncated expressions are all $X^{o(1)}$. This truncation therefore
+costs $o(X)$.
+
+Fix $a,b\le Q$, and set $D=[d,a^2]$, $E=[e,b^2]$, where the
+brackets denote least common multiple. The congruences are
+$D\mid n$, $E\mid n+2$. They are compatible precisely when
+$g=(D,E)$ divides $2$. A compatible pair has density $1/[D,E]$.
+Writing $D=gm$, $E=gr$ gives $(m,r)=1$ and an interval count
+in the residue class
+\[
+ \frac{n}{D}\equiv-\frac{2}{g}\,\overline m\pmod r .
+\]
+Grouping $d\le u$ and $e\le v$ by $D$ and $E$ produces two
+separate coefficient sequences with entries $X^{o(1)}$.
+In particular the moduli may contain square factors.
+
+We give the error estimate for replacing the count by its density
+times interval length. For an endpoint $T=O(X)$ the sawtooth
+has phase
+\[
+ h\left(\frac{2}{g}\frac{\overline m}{r}
+                +\frac{T}{gmr}\right).
+\]
+One may use half-integer interval endpoints when counting integers;
+the change from the original interval length is $O(1)$ per endpoint
+in length, hence is weighted by $1/[D,E]$. The sum of these weights
+over all $d,e$ and $a,b\le Q$ is $O(L^{O(1)})$ by the divisor
+bounds below. This convention avoids endpoint ambiguities.
+
+On a dyadic block $m\asymp M,r\asymp N$ we have $M,N\ll X^{0.502}$.
+If $MN\le X^{0.99}$, the total floor error is
+$O(X^{0.99+o(1)})$ for fixed $a,b$. Otherwise apply the
+degree-$H$ trigonometric majorant/minorant for the sawtooth
+\cite{Vaaler}, with $H=\lfloor X^{0.01}\rfloor$. Its main
+coefficients are $O(1/|h|)$ and its nonnegative Fej\'er error
+majorant has coefficients $O(1/H)$ for $|h|\le H$.
+In the latter use absolute values of the grouped arithmetic
+coefficients. This retains the separated coefficient structure.
+
+For $1\le |h|\le H$ apply Theorem~1 and Remark~1 of
+Bettin--Chandee \cite{BC} with a single numerator (their parameter
+$A=1$), frequency parameter $2h/g$, and perturbation $hT/(gmr)$.
+The latter's two derivatives are
+$O(|h|X/(M^2N))$ and $O(|h|X/(MN^2))$ on the block.
+The resulting estimate for the exponential sum is
+\[
+ X^{o(1)}(MN)^{1/2}
+ \left(1+\frac{|h|X}{MN}\right)^{1/2}
+ \left((MN)^{7/20}(M+N)^{1/4}
+              +(MN)^{3/8}(M+N)^{1/8}\right).
+\]
+Here $X^{o(1)}$ denotes a bound by $O_\epsilon(X^\epsilon)$
+for every fixed $\epsilon>0$. The perturbation factor is
+$O(X^{0.01})$. The larger resulting exponent is at most
+$0.502+0.01+1.004(7/20)+0.502/4=0.9889$.
+The zero-frequency Fej\'er term is $O(X^{0.994+o(1)})$.
+The dyadic and harmonic sums cost logarithms; summing the $O(Q^2)$
+square-divisor pairs and integrating in $u,v$ still gives $o(X)$.
+
+It remains to evaluate the principal term. The compatible density
+is at most $2/(DE)$. For squarefree $a$,
+\[
+ \sum_{d\le R}\frac1{[d,a^2]}
+ =\frac1{a^2}\sum_{d\le R}\frac{(d,a^2)}d
+ \ll\frac{\tau(a^2)\log(2R)}{a^2},
+\]
+by expanding the gcd over divisors. This bound is summable in $a$,
+and the tail $a>Q$ is $O(Q^{-1+o(1)}\log(2R))$.
+Thus the main term extends to the full squarefree gates at cost
+$o(X)$, including the two logarithmic integrations.
+
+Let $\rho(d,e)$ be the natural density of $d\mid n$, $e\mid n+2$,
+with $n,n+2$ squarefree. The preceding summability justifies
+computing this density by local factors. For $\Re s,\Re t>0$ let
+\[
+ D(s,t)=\sum_{d,e\ge1}\frac{\mu(d)\mu(e)\rho(d,e)}
+                                    {d^s e^t}.
+\]
+For odd $p$ the local factor is
+\[
+ 1-2/p^2-\frac{p-1}{p^2}(p^{-s}+p^{-t}).
+\]
+The two deleted square residue classes are distinct; $p$ cannot
+divide both endpoints. The factor at $2$ is $1/2$, since both
+endpoints must be odd. It follows that
+\[
+ D(s,t)=\frac{G(s,t)}{\zeta(1+s)\zeta(1+t)},\qquad G(0,0)=K .
+\]
+The series of absolute values of the double Dirichlet coefficients
+of $G$ converges also for $\Re s,\Re t\ge-\delta$ with any fixed
+$0<\delta<1/2$: after dividing out the two displayed inverse-zeta
+local factors the nonconstant terms have total absolute bound
+$O_\delta(p^{-2+2\delta})$ at large $p$.
+
+The classical prime number theorem with its zero-free-region error
+gives
+\[
+ U(R)=\sum_{m\le R}\frac{\mu(m)}m\log(R/m)\longrightarrow1.
+\]
+For instance $\sum\mu(m)m^{-1-s}=1/\zeta(1+s)=s+O(s^2)$
+at $s=0$, and the classical Mertens-function error justifies
+partial summation at this endpoint. In particular $U$ is bounded;
+set it to zero for $R<1$. With $R_1=\sqrt x$, $R_2=\sqrt{x+2}$,
+convolution gives the full double ramp as
+$\sum_{a,b}g(a,b)U(R_1/a)U(R_2/b)\to K$, where $g$ is the
+coefficient sequence of $G$. Absolute convergence gives this limit
+uniformly for $x\in I$. Integrating over $I$ restores the two
+coefficients $2$ in $A$ and proves \eqref{aa}.
+
+\section{The mixed correlations}
+Write $h=2$ or $-2$ and use the prime endpoint as variable.
+The interval for it is either $I$ or $I+2$, both of length $Y$.
+One may start with $\Lambda$ at this endpoint: the contribution
+of proper prime powers is $O(X^{1/2+o(1)})$.
+Here truncate the square-divisor gate at $Q_1=L^{40}$.
+If a larger square divisor occurs, the divisor factors from the
+gate and the ramp together are bounded by $\tau(n+h)^2$.
+Cauchy--Schwarz, the bound
+$\sum_{n\le 2X}\tau(n)^4\ll X\log^{15}(2X)$, and the preceding
+large-square count give truncation error
+\[
+ \ll L^2(X/Q_1+\sqrt X)^{1/2}(XL^{15})^{1/2}=o(X).
+\]
+The divisor moment follows, for example, from $\tau^4\le\tau_{16}$
+and the elementary mean bound for $\tau_{16}$.
+
+For fixed $u$ group $(a,d)$ by $D=[d,a^2]$ with $a\le Q_1$,
+$d\le u$ squarefree. The primes occurring to exponent two in
+$D$ specify $a$ uniquely; the corresponding $d$ have at most
+$\tau(a)$ choices. Thus each coefficient is bounded by
+$L^{o(1)}$. Apart from prime powers of $2$, the prime being counted
+and its shift are odd, so only odd moduli contribute.
+For odd $D$ use $\psi(T;D,-h)$ with main term $T/\varphi(D)$.
+
+For $D\le \sqrt X/L^B$ apply the Bombieri--Vinogradov theorem
+with arbitrarily large fixed logarithmic saving and suitable $B$.
+For the remaining moduli
+$D\ll\sqrt X L^{80}$ use the fixed-residue theorem of
+Bombieri--Friedlander--Iwaniec \cite{BFI}. In the form needed here
+it bounds the dyadic sum of absolute errors
+\[
+ \sum_{\substack{V<D\le2V\\(D,h)=1}}
+ \left|\psi(T;D,-h)-\frac{T}{\varphi(D)}\right|
+ \ll X L^{-2}(\log L)^{O(1)}
+\]
+for $T\asymp X$, $V\ll\sqrt X L^{80}$.
+Indeed, take the theorem's parameter $y$ a sufficiently large
+fixed power of $L$ so that $V^2\le Ty$. There are only
+$O(\log L)$ dyadic blocks above the Bombieri--Vinogradov range.
+The endpoint $T$ can depend on $u$, since both estimates are uniform
+for $T\asymp X$. After multiplication by $L^{o(1)}$ and integration
+in $du/u$ the total error is $o(X)$.
+
+As in the previous section the square-divisor gate can be
+restored in the main term. For $a\le X$, the factor $D/\varphi(D)$
+costs $O(\log\log(3X))$ in the bound on $\sum_{d\le R}1/[d,a^2]$;
+for $a>X$ the bound $D/\varphi(D)\ll_\epsilon D^\epsilon$ suffices.
+The discarded tail times the single logarithmic integration and $X$
+is $o(X)$.
+
+Conditional on a prime argument in a reduced residue class, the
+local series at odd $p$ for the shifted ramp is
+\[
+ 1-\frac1{p(p-1)}-\frac{p^{-s}}p.
+\]
+Indeed the bad square class has density $1/\varphi(p^2)$ and the
+classes divisible exactly once by $p$ have total density $1/p$.
+The factor at $2$ is one. Removing $1/\zeta(1+s)$ leaves an
+absolutely convergent Dirichlet series near $s=0$, with value
+$2\prod_{p>2}p(p-2)/(p-1)^2=K$. Convolution with the single
+ramp $U$ gives $2KY+o(X)$, proving \eqref{ap}.
+Expanding $C(n)C(n+2)$ now proves the last assertion of the theorem.
+
+\paragraph{Provenance.}
+Deepak Kumar coordinated the Twin Prime research project.
+ChatGPT and Codex contributed the mathematical derivation and drafting.
+The source is the second archived reply in \emph{Confirm research
+rules}, \href{https://github.com/cosmosgeek0/twin-prime-research-archive/blob/main/hosted-research-responses-2026-11-25.md}{hosted research record}.
+The exact scope of priority requires independent specialist review.
+
+\begin{thebibliography}{9}
+\bibitem{BC} S.~Bettin and V.~Chandee,
+\emph{Trilinear forms with Kloosterman fractions},
+Adv. Math. \textbf{328} (2018), 1234--1262.
+\href{https://arxiv.org/abs/1502.00769}{Authors' paper}.
+\bibitem{BFI} E.~Bombieri, J.~B.~Friedlander and H.~Iwaniec,
+\emph{Primes in arithmetic progressions to large moduli. II},
+Math. Ann. \textbf{277} (1987), 361--393.
+\href{https://doi.org/10.1007/BF01458321}{Published paper}.
+\bibitem{GY} D.~A.~Goldston and C.~Y.~Y{\i}ld{\i}r{\i}m,
+\emph{Higher correlations of divisor sums related to primes, I:
+triple correlations}, Integers \textbf{3} (2003), A5.
+\href{https://math.colgate.edu/~integers/d5/d5.pdf}{Published paper}.
+\bibitem{Vaaler} J.~D.~Vaaler,
+\emph{Some extremal functions in Fourier analysis},
+Bull. Amer. Math. Soc. (N.S.) \textbf{12} (1985), 183--216.
+\end{thebibliography}
+\end{document}

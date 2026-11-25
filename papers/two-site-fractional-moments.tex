@@ -1,0 +1,372 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\E}{\mathbb E}
+\newcommand{\PP}{\mathbb P}
+\setlength\emergencystretch{3em}
+\title{Joint fractional divisor moments at shifts zero and two}
+\author{\normalsize DEEPAK KUMAR (research coordinator)\\[-2pt]\small
+\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{Public working paper\quad 25 November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For odd $n$ in a dyadic interval we evaluate the absolute mass of
+two near-critical fractional von Mangoldt weights on $n$ and $n+2$,
+when both integers have at least two distinct prime factors. The
+limiting mass is a product. The signed moment has two prime-axis
+terms and a joint signed density on the unit square. Each one-sign
+marginal vanishes at every fixed pair of interior scales; on
+logarithmically typical dyadic intervals the joint density also
+vanishes on a fixed corner. The marginal estimates use the
+Bombieri--Vinogradov theorem for the M\"obius function. The corner
+estimate is an application of a quantitative correlation theorem
+of Tao and Ter\"av\"ainen.
+\end{abstract}
+
+\section{The two-site limit}
+
+Set $L=\log X$, $H=\log L$, $C_2=\prod_{p>2}(1-(p-1)^{-2})$ and
+$R_X=L^2/(2C_2X)$. Sums over $n$ below are on odd $X<n\le 2X$;
+write $m=n+2$. Call $n$ a \emph{composite endpoint} in a restricted
+sum when $\omega(n)\ge2$. Proper prime powers are handled separately.
+Define, for $\Re\alpha>0$ and $a>1$,
+\[
+Q_\alpha(a)=\sum_{d\mid a}\mu(d)
+ \left(\frac{\log(a/d)}{\log a}\right)^\alpha,\qquad 0^\alpha=0 .
+\]
+At a prime its value is one. Let $\tau_X=R_X\#\{n:n,m\in\PP\}$.
+An integral over the square below uses Lebesgue measure.
+
+\begin{theorem}\label{main}
+For fixed real $z,w$, as $X\to\infty$,
+\[
+ R_X\sum_{\omega(n),\omega(m)\ge2}
+ |Q_{1+z/H}(n)Q_{1+w/H}(m)|
+ \longrightarrow |(1-e^{-z})(1-e^{-w})|.
+\]
+Along a subsequence of every sequence $X\to\infty$,
+\[ R_X\sum_n Q_{1+z/H}(n)Q_{1+w/H}(m) \]
+converges locally uniformly in $(z,w)\in\mathbb C^2$ to
+\begin{align*}
+\tau&+z\int_0^1 e^{-zv}b_1(v)\,dv
+     +w\int_0^1 e^{-wu}b_2(u)\,du\\
+ &+zw\int_{(0,1)^2}e^{-zv-wu}K(v,u)\,dv\,du.
+\end{align*}
+Here $\tau$ is a limit of $\tau_X$, and $b_1,b_2,K$ are real
+with absolute value at most one almost everywhere.
+\end{theorem}
+
+The two one-dimensional terms come from the rows $m$ prime and
+$n$ prime, respectively. The remaining sections show which signed
+quantities can be removed from the joint term.
+
+\section{A uniform positive majorant}
+
+Put $h_s=\mu*(n\mapsto n^{-s})$ for $s>0$ and $g_s=|h_s|$.
+At a prime power,
+\[
+ h_s(p^j)=-(1-p^{-s})p^{-(j-1)s}\quad(j\ge1).
+\]
+Thus $h_s(a)=(-1)^{\omega(a)}g_s(a)$ and
+$g_s(a)=(\rad(a)/a)^s\prod_{p\mid a}(1-p^{-s})$.
+Define $D(t)=t^2$ for $0<t\le1$, $D(t)=t$ for $1<t\le L$,
+and $D(t)=L$ for $t>L$. For $t,u>0$, set
+\[
+ A_X(t,u)=R_X\sum_{\omega(n),\omega(m)\ge2}
+        g_{t/\log n}(n)g_{u/\log m}(m).
+\]
+
+\begin{lemma}\label{pos}
+Uniformly in $t,u>0$, $A_X(t,u)\ll D(t)D(u)$. For fixed
+$0<v,w<1$,
+\[
+ \frac{A_X(L^v,L^w)}{L^{v+w}}\longrightarrow1.
+\]
+\end{lemma}
+
+\begin{proof}
+For the upper bound set $Z=X^{1/100}$. For each prime $2<p\le Z$
+and each site use the local weight $a_p=\log p/L$ at $t\le1$,
+$a_p=1-p^{-t/L}$ at $1<t\le L$, and $a_p=1$ otherwise.
+At the first site the multiplicative product of these weights over
+$p\mid n,\ p\le Z$ majorizes $g_{t/\log n}(n)$ after including
+an additional multiplier $t^2$ when $t\le1$. Indeed in this range
+$1-e^{-y}\le y$ and $\omega(n)\ge2$, and the omitted factors
+$\log p/\log n$ are at most one. Make the same choices $b_p$
+at the second site with parameter $u$.
+
+For each $p$ independently exclude $0\bmod p$ with probability
+$1-a_p$ and $-2\bmod p$ with probability $1-b_p$, with the two
+choices independent. Apply the dimension-two upper-bound fundamental
+lemma \cite[Theorems 18.11, 19.1]{Kouk} to each realization. The
+number of excluded odd residue classes is at most two, the class
+modulo $2$ is fixed, and Mertens' estimate gives a dimension-two
+product bound uniform in the choices. Taking level $X^{1/4}$, the CRT
+discrepancies sum to $O(\sum_{d\le X^{1/4}}2^{\omega(d)})=O(X^{1/2})$.
+Taking expectations gives an upper bound
+\[
+ \ll X\prod_{2<p\le Z}\!\left(1-\frac2p+
+                  \frac{a_p+b_p}{p}\right)+X^{1/2}.
+\]
+The product is $\ll L^{-2}\exp(\sum(a_p+b_p)/(p-2))$. The sum for
+one site is $O(1)$, $\log t+O(1)$, or $\log L+O(1)$ in the three
+ranges. In the middle range split at $e^{L/t}$ and use
+$1-p^{-t/L}\le(t/L)\log p$ below that point. This proves the bound,
+including both small-parameter multipliers.
+
+For the pointwise limit temporarily use fixed $s=L^{v-1}$,
+$d=L^{w-1}$. Set $U=\min(L^v,L^w)$ and $Y=\exp(L/\sqrt U)$.
+For either site, omitting primes larger than $Y$ changes $g_s$ by
+$O(LY^{-s})$, except when a square of such a prime divides the site.
+There are $O(X/Y+\sqrt X)$ such integers. The total cost is
+$O_{B,v,w}(X/L^B)$ for every $B$.
+
+We give the short-divisor justification for comparing both sites at
+once. Let $f_s=g_s*\mu$; then
+\[
+ f_s(p)=-p^{-s},\qquad
+ f_s(p^j)=-(1-p^{-s})^2p^{-(j-2)s}\quad(j\ge2).
+\]
+In particular $|f_s(e)|\le1$. The truncated-prime product is the
+sum of $f_s(e)$ over $e$ dividing the integer and composed of
+primes at most $Y$. Keep only $e\le D_0=X^{1/100}$. The mean
+absolute error is at most
+\[
+ \ll \sum_{\substack{e>D_0\\P^+(e)\le Y}}\frac1e
+ \le D_0^{-1/\log Y}
+       \prod_{p\le Y}(1-p^{-1+1/\log Y})^{-1}
+ \ll \exp(-c\sqrt{\min(L^v,L^w)})(\log Y)^C .
+\]
+Here the actual divisors are $\le 2X+2$, so the mean number of
+multiples is $O(1/e)$. The Euler product bound follows by
+$p^{1/\log Y}\le e^{1}$ and Mertens' estimate, treating the smallest
+primes separately. The error for one integer is at most its divisor
+function. Cauchy--Schwarz and the classical fixed divisor-moment
+bounds therefore give mean square error $O_{B,v,w}(L^{-B})$ for
+each truncation: for an error $T$, use
+$\E T^2\le(\E |T|)^{1/2}(\E |T|^3)^{1/2}$.
+This permits multiplication of the two truncated expansions.
+
+In the resulting double sum only odd coprime divisors $e,e'$
+occur. CRT gives $X/(2ee')+O(1)$ for the joint multiplicity.
+The total floor error is $O(D_0^2)$. Extending the principal sum
+back to all $Y$-smooth divisors costs $O_{B,v,w}(X/L^B)$ by the
+same Rankin bound and the $O((\log Y)^C)$ absolute Euler products.
+Thus the mean, divided by $X$, is asymptotic to
+\[
+ \frac12\prod_{2<p\le Y}
+ \left(1+\sum_{j\ge1}\frac{f_s(p^j)+f_d(p^j)}{p^j}\right)
+ \sim 2 C_2 s d .
+\]
+For the last equivalence extend the product to all odd primes. Its
+tail has logarithm
+\[ O\left(\frac{Y^{-s}}{s\log Y}+\frac{Y^{-d}}{d\log Y}+\frac1Y\right)=o(1) \]
+by partial summation. Dividing by
+$\prod_{p>2}(1-p^{-1-s})(1-p^{-1-d})$ produces local ratios
+$1+O(p^{-2})$, tending individually to $(1-2/p)/(1-1/p)^2$.
+The local factors are positive: they are the mean of nonnegative
+valuation weights on the two distinct odd residue classes, including
+the mass $1-2/p$. The two inverse zeta factors contribute $4sd$;
+odd parity contributes the factor $1/2$.
+
+Replacing $s$ by $L^v/\log n$ and $d$ by $L^w/\log m$ costs relative
+$o(1)$ pointwise in absolute weights: the absolute logarithmic
+derivative in $\log s$ is at most $\omega(n)+s\log(n/\rad n)$,
+and $\omega(n)\ll L/\log L$, while the relative parameter change is
+$O(1/L)$. Prime rows contribute $O(L^v+L^w+1)$ in $R_X$ units by
+the one-site estimates of \cite{OneSite}, in both shift orientations
+(the proof for $p-2$ uses the other primitive class at odd primes).
+Proper prime powers cost $O(R_X\sqrt X\log X)$. Removing these
+rows costs $o(L^{v+w})$ as required.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{main}]
+For $\omega(a)\ge2$, Mellin inversion of the finite difference gives
+\[
+ Q_\alpha(a)=\Gamma(-\alpha)^{-1}\int_0^\infty
+                 h_{t/\log a}(a)t^{-1-\alpha}\,dt
+ \qquad (0<\Re\alpha<2).
+\]
+The subtracted constant and linear terms vanish by
+$\sum_{d\mid a}\mu(d)=\Lambda(a)=0$. The integrand has a fixed sign
+for real orders, up to the gamma factor. The contributions where
+either integration variable lies outside $[1,L]$ are $O(H^{-1})$
+on compact parameter sets, by Lemma \ref{pos} and the factors
+$\Gamma(-1-z/H)^{-1},\Gamma(-1-w/H)^{-1}=O(H^{-1})$.
+Changing both variables to powers of $L$ leaves these factors
+multiplied by $H$, tending to $z$ and $w$. Lemma \ref{pos} and
+dominated convergence now give the asserted absolute mass.
+
+For the signed limit, insert the factor
+$(-1)^{\omega(n)+\omega(m)}$ into the normalized positive density.
+A weak-star subsequential limit $K$ satisfies $|K|\le1$
+almost everywhere by the positive pointwise limit and domination.
+The two prime/composite axes are covered by the one-site argument
+of \cite{OneSite}. Proper prime powers in either position have
+negligible total by the divisor bound $\tau(n)\tau(n+2)\ll X^{o(1)}$
+and the $O(\sqrt X\log X)$ exceptional integers. The upper twin sieve
+bounds $\tau_X$. Take a common subsequence for these four quantities;
+the exponential test functions range over compact subsets of $L^1$
+on each compact parameter set, giving local uniformity.
+\end{proof}
+
+\section{The one-sign marginals}
+
+\begin{theorem}\label{marginal}
+For $0<v,w<1$ fixed, put $s=L^{v-1}$, $d=L^{w-1}$. For every
+$B>0$,
+\[
+ \left|\sum_{n}h_s(n)g_d(m)\right|
+ +\left|\sum_{n}g_s(n)h_d(m)\right|
+ \ll_{B,v,w} X L^{-B}.
+\]
+\end{theorem}
+
+\begin{proof}
+Consider the first sum. Retain primes at most $Y=\exp(L^{1-w/2})$
+in $g_d(m)$ and open it as the sum of $f_d(e)$ over smooth
+$e\mid m$, $e\le D_0=X^{1/100}$. The large prime, large square and
+long smooth-divisor errors proved above are $O_{B,w}(XL^{-B})$
+since $|h_s|\le1$. Open $h_s(n)=\sum_{k\mid n}k^{-s}\mu(n/k)$.
+The terms with $k>D_0$ cost
+\[
+ D_0^{-s}\sum_{X<n\le2X}\tau(n)\tau(n+2)
+ \ll e^{-L^v/100}X L^{O(1)} .
+\]
+For the remaining terms $e,k$ are odd and $(e,k)=1$. With $n=k u$
+the inner sum is over $X/k<u\le2X/k$ and a single primitive
+class modulo $2e$, prescribed by $u$ odd and $ku\equiv-2\bmod e$.
+
+We use the classical M\"obius Bombieri--Vinogradov estimate in the
+form
+\[\sum_{q\le Y_0^{1/10}}\max_{(a,q)=1}\left|\sum_{\substack{Y_0<u\le2Y_0\\u\equiv a\pmod q}}\mu(u)\right|\ll_B Y_0/(\log Y_0)^B.\]
+For example,
+the discrepancy version follows from Granville--Shao
+\cite[Theorem 1.1]{GS} with the inverse pair $\mu,1$, prime
+Bombieri--Vinogradov and Siegel--Walfisz. The removed principal
+mean satisfies the same averaged bound. In fact the coprimality
+restriction has Dirichlet series $\zeta(z)^{-1}
+\prod_{p\mid q}(1-p^{-z})^{-1}$, so its summatory function is
+$\sum_{d\mid q^\infty}M(Y_0/d)$, where the sum
+means $d\le Y_0$ has all prime divisors dividing $q$, and
+$M(y)=\sum_{j\le y}\mu(j)$. Averaging with $1/\varphi(q)$ costs
+$O(\log(2Y_0)/\varphi(\rad d))$ per $d$ since $\rad d\mid q$.
+For $d\le\sqrt{Y_0}$ use $M(y)\ll_A y/\log^A(2y)$; the remaining
+$d$ give a power saving since
+$\sum_d d^{-3/4}/\varphi(\rad d)<\infty$ by its Euler product.
+Differences of the two initial intervals give the dyadic version.
+
+Now $Y_0=X/k\ge X^{0.99}$, and $2D_0\le Y_0^{1/10}$.
+For each $k$ the resulting absolute sum over $e$ is
+$\ll_A(X/k)L^{-A}$. Summing $k^{-s}/k$ costs $O(L)$; take
+$A>B+2$. For the other orientation use $m=ku$ and
+$ku\equiv +2\bmod e$, with an endpoint displacement of $2/k$
+that costs $O(D_0^2)$. This proves the estimates.
+\end{proof}
+
+Replace the fixed parameters by the physical logarithms and remove
+single-base and prime rows as in Lemma \ref{pos}. These operations
+cost $o(1)$ in the interior normalization $R_X/L^{v+w}$ by its
+absolute envelope; the all-logarithm saving itself was asserted for
+the fixed parameters. In the weak limits of the physically weighted
+sign classes $\sigma,\sigma'\in\{-1,1\}$ on the two composite sites,
+the four masses consequently have densities
+\[
+ \frac{1+\sigma\sigma'K(v,w)}4 .
+\]
+Indeed the two marginal signed terms disappear when one expands the
+two sign indicators, and the positive total density has limit one.
+
+\section{A corner with joint cancellation}
+
+\begin{theorem}
+There are absolute constants $\gamma,\delta>0$ with the following
+property. For large $Y$, apart from $X\in[\sqrt Y,Y]$ of relative
+logarithmic measure $O((\log Y)^{-\delta})$, the normalized odd-row
+sum $(Xsd)^{-1}\sum_n h_s(n)h_d(n+2)$ tends uniformly to zero for
+$(\log Y)^{-\gamma}\le s,d\le1$. Along subsequences chosen from
+these good scales the density $K$ of Theorem \ref{main} vanishes
+almost everywhere on $(1-\gamma,1)^2$.
+\end{theorem}
+
+\begin{proof}
+Write $L_0=\log Y$. In the notation of \cite[(1.18)]{TT} the
+quantity $M(g;Y^2,L_0^{1/125})$ is the infimum of
+squared distances to $\chi(p)p^{i\tau}$. Replacing the Liouville
+function $\lambda$ by $h_s$ changes every squared distance by
+at most $\sum_p p^{-1-s}\le\log(1/s)+O(1)$, since their values
+at primes differ by $p^{-s}$. The Liouville estimate in
+\cite[Remarks 3.2]{TT} gives $M(\lambda;Y^2,L_0^{1/125})\ge
+c_0\log L_0$ for some absolute $c_0>0$. Choose
+$\gamma<c_0/4$. The nonpretentiousness hypothesis of
+\cite[Theorem 3.1(ii)]{TT} holds with $\mathcal L=L_0^{c_1}$
+for a fixed $0<c_1<\min(1,c_0/2)$. Use $W=2$, residue class $1$,
+and the shifts $0,2$. For each tested pair $(s,d)$ the unnormalized
+dyadic mean is $O(L_0^{-d_0})$ outside an exceptional set of
+relative logarithmic measure $O(L_0^{-d_0})$, with $d_0>0$ fixed
+independently of the pair.
+
+Test a grid with mesh at most $L_0^{-5\gamma}$ in each logarithmic
+parameter. Its size is $O(L_0^{10\gamma}(\log L_0)^2)$. Reduce
+$\gamma$ so that $12\gamma<d_0$; the union bound leaves a power
+saving for the exceptional measure, where relative logarithmic
+measure means $(\log Y)^{-1}\int dX/X$. After division by $sd$
+the grid-point bound is $O(L_0^{-d_0+2\gamma})$.
+At each prime power the absolute derivative of $h_s(p^j)$
+with respect to $\log s$ is at most $2$, since the local factor is
+the difference of two exponentials. The product rule, $|h_s|\le1$,
+and the elementary dyadic bound $\sum_{n\asymp X}\omega(n)\ll
+X\log\log X$ give logarithmic derivatives of the normalized mean
+$O(L_0^{2\gamma}(1+\log L_0))$. The interpolation error also tends
+to zero. For interior $v,w>1-\gamma$ the parameters
+$(\log X)^{v-1},(\log X)^{w-1}$ are in this range. Restoring the
+physical logarithms and omitting prime and proper-power sites
+costs $o(1)$ as above. The envelope now proves the asserted
+vanishing of $K$ on the corner.
+\end{proof}
+
+For the binomial weights $R_{k,X}$ defined in \cite{OneSite}, the
+limiting nonnegative kernel is $k e^{-v}(1-e^{-v})^{k-1}$. Write
+$e_k=(1-e^{-1})^k$ and $a_k=(1-e^{-(1-\gamma)})^k$. The absolute
+both-composite contribution for $R_{k,X}(n)R_{k,X}(m)$ tends
+to $e_k^2$ by the two-site envelope. Along the good scales the
+absolute value of its \emph{signed sum}, after normalization, has
+limsup at most $2e_ka_k-a_k^2$, since the top-right rectangle has
+zero limiting signed density. The terms with one genuine prime
+remain. The sign of $K$ off this rectangle and a positive lower
+bound for the twin-prime count remain open here.
+
+\section*{Sources and attribution}
+The results were extracted from entries 308CP--CQ of the
+\href{https://github.com/cosmosgeek0/twin-prime-research-archive}
+{Twin Prime research archive}. The project used ChatGPT and Codex
+for research, drafting and internal checks. The applications above
+use the cited distribution theorems. Literature priority and
+independent specialist review remain open.
+
+\begin{thebibliography}{9}
+\bibitem{OneSite} D. Kumar (research coordinator),
+\emph{Absolute error of fractional von Mangoldt approximants on
+shifted primes}, \href{https://github.com/cosmosgeek0/twin-prime-research}
+{companion working paper}.
+\bibitem{Kouk} D. Koukoulopoulos, \emph{The Distribution of Prime
+Numbers}, Chs. 18--19,
+\href{https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf}{author's text}.
+\bibitem{GS} A. Granville and X. Shao, \emph{When does the
+Bombieri--Vinogradov theorem hold for a given multiplicative
+function?}, Forum Math. Sigma \textbf{6} (2018), e15.
+\href{https://doi.org/10.1017/fms.2018.14}{Published paper}.
+\bibitem{TT} T. Tao and J. Ter\"av\"ainen,
+\emph{Quantitative correlations and some problems on prime
+factors of consecutive integers},
+\href{https://arxiv.org/abs/2512.01739}{arXiv:2512.01739}, v2, Theorem~3.1.
+\end{thebibliography}
+\end{document}
