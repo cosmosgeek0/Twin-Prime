@@ -1,0 +1,606 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[left=.94in,right=.94in,top=.78in,bottom=.82in]{geometry}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Liouville signs of short differences in sets of primes},
+pdfsubject={Research draft on weighted prime pairs and local tuples}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\Sf}{\mathfrak S}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\range}[1]{[\,#1\,]}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\HS}{\mathrm{HS}}
+\newcommand{\e}{\mathrm e}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\NN}{\mathcal N}
+\allowdisplaybreaks[1]
+\raggedbottom
+\setlength\emergencystretch{1.8em}
+\title{\vspace{-1.1em}\bfseries Liouville signs of short differences\\in sets of primes}
+\author{\normalsize Project coordinator: DEEPAK KUMAR\\
+\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{\small Working paper \enspace$\cdot$\enspace November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let \(A\) be a subset of the primes between \(X\) and \(2X\) of fixed positive relative density.
+Among pairs \(p<q\) of elements of \(A\) with \(q-p\le 2R\), the integer
+\((q-p)/2\) has an even number of prime factors with limiting frequency \(1/2\),
+counting multiplicity, whenever \(R/\log X\to\infty\) and \(R\le X/100\).
+The estimate is uniform in \(A\). At \(R=\lfloor4\log X\rfloor\) a positive-relative-density
+selection can give every such pair the same sign. For fixed-size ordered tuples
+in a translated window, all assignments of signs to their pairwise half-differences
+have equal limiting frequencies under the window count. We prove a weighted
+form for one or two polynomially rough translates by combining a smooth sieve
+correlation estimate with Fourier cancellation on the difference variable.
+For two rough translates we also construct single-sign selections below the squared-logarithmic scale.
+\end{abstract}
+
+\section{Short prime differences}
+Write \(\lambda(d)=(-1)^{\Omega(d)}\), where \(\Omega\) counts prime factors
+with multiplicity, and set \(\lambda(1)=1\). All logarithms are natural.
+For \(A\subset\PP\cap(X,2X]\) and \(\sigma=\pm1\), let \(N_\sigma(A,R)\)
+count pairs \(p<q\) in \(A\) satisfying \(q-p\le2R\) and
+\(\lambda((q-p)/2)=\sigma\). Write \(N=N_++N_-\), and \(L=\log X\).
+
+\begin{theorem}\label{th:prime}
+Suppose \(R\) is a positive integer, \(R/L\to\infty\), and \(R\le X/100\).
+For each fixed \(\delta>0\), uniformly over \(A\) with \(|A|\ge\delta X/L\),
+\[
+    N(A,R)\asymp_\delta XR/L^2,\qquad
+    N_\sigma(A,R)=\bigl(\tfrac12+o_\delta(1)\bigr)N(A,R).
+\]
+For \(R=\lfloor4L\rfloor\) and all sufficiently large \(X\), there is a set
+\(A_X\) of primes in the same interval, \(|A_X|\gg X/L\), for which
+\(N(A_X,R)\gg X/L\) and one of \(N_+(A_X,R),N_-(A_X,R)\) vanishes.
+\end{theorem}
+
+At \(R\) just above the mean prime spacing, a particular interval can have very
+few primes. The theorem sums over the dyad and permits the set to depend on
+\(X\) and \(R\). Each pair has unit weight in Theorem~\ref{th:prime}, including
+pairs with intervening primes. The assertions concern averaged separations.
+They give no estimate for the count at the single separation \(q-p=2\).
+
+Rivat, S\'ark\"ozy and Stewart \cite[Theorem 1]{rss} study \(\Omega(a+b)\)
+modulo an integer for arbitrary sets in \([1,N]\). Their error has size
+\((|A||B|)^{1/2}N/(\log N)^E\). At a local scale \(N\asymp R\) near
+\(\log X\), such a saving in \(\log R\) does not compensate for the density
+\(1/\log X\) at each prime endpoint. Banks and Shparlinski
+\cite[\S7.1]{banks} treat M\"obius-weighted sums of two prime variables,
+allowing injective transformations of the summation variables. Their bound
+in that application requires the endpoint scale to be at most
+\(\exp((\log R)^C)\) for fixed \(C\), when the transformed sum has size at
+most \(R\). Lichtman's averaged shifted-prime theorem
+\cite[Theorem 1.1]{lichtman} places the M\"obius factor on \(p+h\).
+Our oscillating factor is evaluated on the short difference of two selected
+vertices.
+
+Tao and Ziegler \cite{tz} and Shao \cite{shao} establish narrow arithmetic
+progressions in dense subsets of primes. Shao's Proposition 2.6 gives smooth
+majorant correlations at widths exceeding a system-dependent power of \(\log X\)
+by an arbitrarily slowly growing factor. His collision analysis and averaged
+singular factors are particularly relevant here. We use the Goldston--Y{\i}ld{\i}r{\i}m
+estimate in Green and Tao \cite[Appendix D, Theorem D.3]{gt}. The contribution
+here is the short-distance sign statistic uniformly over endpoint selections,
+its joint version for all edges of a local tuple, and the mean-spacing
+counterexample in Theorem~\ref{th:prime}. The tuple indices vary independently.
+No arithmetic-progression constraint is imposed on them.
+
+\section{Weighted pairs and tuples}
+Fix a positive integer \(s\), a real number \(0<\beta<1\), and one of
+\(\mathcal H=\{0\},\{0,2\}\). Put \(j=|\mathcal H|\). Call \(n\) admissible
+if \(X<n\le2X\) and every \(n+h\), \(h\in\mathcal H\), has all its prime
+factors greater than \(X^\beta\). A vertex weight is any complex function
+supported on the admissible integers with absolute value at most \(L^j\).
+Throughout this section let \(R\) be a positive integer and assume
+\begin{equation}\label{eq:width}
+       R/L^j\longrightarrow\infty,\qquad 1\le R\le X/(100s).
+\end{equation}
+The notation \([R]\) means \(\{1,\ldots,R\}\).
+
+\begin{theorem}\label{th:weighted}
+For any two vertex weights \(F,G\), any interval \(I\subseteq[R]\), and
+\(a=\lambda\) or the M\"obius function \(\mu\),
+\begin{equation}\label{eq:pair}
+       \frac{1}{XR}\sum_{d\in I} a(d)\sum_{n\in\Z}F(n)G(n+2sd)=o(1).
+\end{equation}
+Fix \(k\ge2\) and a nonempty simple graph \(E\) on \(\{1,\ldots,k\}\).
+With \(F_1,\ldots,F_k\) any vertex weights and
+\(\mathcal X=\Z\cap[X/2,3X]\), one has
+\begin{equation}\label{eq:graph}
+ \frac{1}{XR^k}\sum_{x\in\mathcal X}
+ \sum_{\substack{u_1,\ldots,u_k\in[R]\\\text{pairwise distinct}}}
+ \ \prod_{i=1}^k F_i(x+2su_i)
+ \prod_{\{i,l\}\in E}\lambda(|u_i-u_l|)=o(1).
+\end{equation}
+The errors are uniform in the weights and in \(I\), for the indicated fixed
+parameters and every sequence satisfying \eqref{eq:width}.
+\end{theorem}
+
+\begin{corollary}\label{co:tuple}
+Let \(A\) be a set of admissible integers of cardinality at least
+\(\delta X/L^j\). Count ordered tuples by summing over \(x\in\mathcal X\)
+and distinct \(u_i\in[R]\) for which every \(x+2su_i\) belongs to \(A\).
+If \(T\) is their number, then \(T\asymp_{\delta,k,s,\beta} XR^k/L^{jk}\).
+For each prescribed array of signs
+\(\sigma_{il}\), \(1\le i<l\le k\), the proportion with
+\(\lambda(|u_i-u_l|)=\sigma_{il}\) for all these pairs is
+\(2^{-\binom{k}{2}}+o_\delta(1)\), with \(k,s,\beta\) fixed.
+\end{corollary}
+
+This sampling counts a physical tuple once for every window containing it.
+For \(s=1\), an ordered tuple of odd primes of diameter \(2d<2R\)
+has \(R-d\) anchors. Thus the tuple theorem specifies its sampling even
+when \(R\) is a substantial fraction of \(X\). The two-translate case gives a
+relative frequency when the selected rows have the stated density.
+Its signed estimate \eqref{eq:pair} is absolute and needs no lower count.
+
+\section{Moments of the sieve weight}
+Choose a real smooth function \(\chi\) supported in \([-1,1]\) with
+\(\chi(0)=1\). For this proof take \(N_0=\lceil4X\rceil\),
+\(D=N_0^\eta<X^\beta\) with a fixed \(\eta>0\) sufficiently small for all
+the finitely many applications below. Set
+\[
+ S(n)=\sum_{d\mid n}\mu(d)\chi(\log d/\log D),\qquad
+ \nu_0(n)=(\log D)S(n)^2,\qquad
+ \nu(n)=C_0\prod_{h\in\mathcal H}\nu_0(n+h).
+\]
+Take \(C_0\) fixed and large enough that \(C_0(\log D)^j\ge L^j\).
+All arguments of these weights in the proof are positive; on an admissible
+row all the divisor sums in its majorant equal one. Write \(\nu_t=\nu(x+2st)\).
+We use normalized counting measure for \(\E\).
+
+Here is the precise consequence of \cite[Theorem D.3]{gt} used in the proof.
+For distinct integer shifts \(t_1,\ldots,t_m\) with \(\max_i|t_i|=O(X)\),
+positive fixed integers \(a_i\), and an \(x\)-interval of length \(\asymp X\)
+inside \([-N_0,N_0]\) where the shifted arguments are positive, put
+\[
+ \Delta=\prod_{i<l}|t_i-t_l|,\qquad
+ \Sf(\mathbf t)=\prod_p
+ \frac{1-|\{t_1,\ldots,t_m\}\bmod p|/p}{(1-1/p)^m}.
+\]
+An empty product is one. Here \(c_{\chi,a}\) denotes the sieve factor in
+\cite[Definition D.1]{gt}; it depends only on the fixed function \(\chi\)
+and the fixed integer \(a\). In particular,
+\(c_{\chi,2}=\int_0^\infty |\chi'(t)|^2\,dt\), by
+\cite[Lemma D.2]{gt}. With this normalization, the average over the
+interval satisfies
+\begin{align}
+ \E_x \prod_{i=1}^m [(\log D) S(x+t_i)^{a_i}]
+ =\Big(\prod_{i=1}^m c_{\chi,a_i}\Big)\Sf(\mathbf t)
+ +O\!\left(L^{-1/20}
+       \exp\!\left(C\sum_{p\mid\Delta}p^{-1/2}\right)\right).
+ \label{eq:GT}
+\end{align}
+The interval-length normalization in place of its Euclidean volume costs
+\(O(X^{-1})\) times the main coefficient and is absorbed here.
+The forms \(x+t_i\) have bounded scaled coefficients. Two become proportional
+over \(\mathbb F_p\) precisely when their shifts coincide modulo \(p\).
+Grouping equal integer shifts before using \eqref{eq:GT} is essential.
+
+\begin{lemma}\label{lem:mom}
+Let \(b\) be fixed and the \(b\) indices be averaged independently on
+\([R]\) or \([2R]\), with \(x\) uniform on \(\mathcal X\). Form the \(jb\)
+shifts \(2st_i+h\), \(i\le b,\ h\in\mathcal H\).
+Under \eqref{eq:width},
+\(\E\prod_{i=1}^b\nu_{t_i}=O_b(1)\), with the fixed parameters understood.
+The contribution where two shifts coincide as integers is
+\[
+       O_b\!\left(\sum_{c=1}^{b-1}(L^j/R)^{b-c}\right).
+\]
+On the remaining tuples the \(x\)-average equals
+\(C_0^b c_{\chi,2}^{jb}\Sf(\mathbf t')\), with average absolute error
+\(O_b(L^{-1/20})\), where \(\mathbf t'\) lists the \(jb\) shifts.
+If \(\Sf_{\le w}\) is the product restricted to \(p\le w\), then
+\[
+ \lim_{w\to\infty}\limsup_{X\to\infty}
+ \E_{\mathbf t}\one_{\rm distinct\ shifts}
+       |\Sf(\mathbf t')-\Sf_{\le w}(\mathbf t')|=0.
+\]
+\end{lemma}
+
+\begin{proof}
+Join two index slots if some of their shifts coincide. In a connected
+component, equality determines each index from one free index by a
+bounded fixed offset; inconsistent equalities give an empty set.
+For fixed \(b,s,\mathcal H\) there are finitely many patterns. A pattern
+with \(c\) components has \(O_b(R^c)\) index tuples. If there are \(m\)
+distinct shifts overall, then \(m\ge jc\): each component contains at
+least one full translate of \(\mathcal H\), disjoint from the others.
+A shift of multiplicity \(r\) contributes
+\(\nu_0(x+t)^r=(\log D)^{r-1}[(\log D)S(x+t)^{2r}]\).
+Hence \eqref{eq:GT} carries an extra factor \((\log D)^{jb-m}\).
+
+For \(\Delta\) formed with distinct shifts, all fixed moments of
+\(B(\Delta)=\exp(C\sum_{p\mid\Delta}p^{-1/2})\) have bounded average
+over the free indices, with normalization \(R^{-c}\), on the specified
+pattern. Indeed, differences within a component are fixed nonzero
+integers. Each other difference is of the form \(2s(v-v')+a\) with
+bounded fixed \(a\). Its nonzero absolute values are \(O_s(R)\), each with
+multiplicity \(O_s(R)\) in the two free indices. For every \(C'>0\),
+\begin{equation}\label{eq:euler}
+ \frac1Y\sum_{n\le Y}\exp\!\Big(C'\sum_{p\mid n}p^{-1/2}\Big)
+ \le\prod_p\Big(1+\frac{\exp(C'/\sqrt p)-1}{p}\Big)\ll_{C'}1.
+\end{equation}
+This follows by opening a nonnegative squarefree divisor sum and bounding
+\(\lfloor Y/d\rfloor/Y\le1/d\). H\"older across the bounded list of
+differences proves the assertion, including after restrictions on the free
+indices. Both the full singular series and every partial product are bounded
+above by a constant times \(B(\Delta)\): beyond the fixed small primes the
+logarithm of a local factor is \(O_b(p^{-2}+\one_{p\mid\Delta}/p)\).
+Zero factors are allowed. Thus each collision pattern contributes at most
+\[
+  O_b\big(R^{c-b}L^{jb-m}\big)
+       \ll_b (L^j/R)^{b-c}.
+\]
+For \(c=b\) all shifts are distinct and \eqref{eq:GT} gives the stated
+main and averaged error directly.
+
+For the tail take \(w>2jb\), also exceeding the prime divisors of the
+fixed nonzero within-slot differences. The expectation, on the distinct
+tuples, of \(\sum_{p>w,\ p\mid\Delta}1/p\) is
+\(O_{b,s}(\sum_{p>w}p^{-2})\). For a nonconstant difference this follows
+by the same two-index multiplicity bound and by
+\(\sum_{1\le n\le Y,\ p\mid n}1\le Y/p\).
+The logarithm of the tail product therefore tends to zero in measure in
+the indicated order of limits. The uniform second-moment bounds on both
+products give the asserted \(L^1\) convergence by Cauchy--Schwarz on the
+exceptional event. A zero small-prime factor makes both products zero.
+\end{proof}
+
+\section{A signed edge after two Cauchy--Schwarz inequalities}
+We prove a bound usable for both statements of Theorem~\ref{th:weighted}.
+Choose \(u\) uniform on \([R]\), and \(v\) uniform on either \([R]\) or
+\([2R]\). The auxiliary indices \(\mathbf t\) are finitely many independent
+uniform elements of \([R]\). Write \(z=(x,\mathbf t)\) with \(x\) uniform
+on \(\mathcal X\), and put \(W(z)=\prod_i\nu_{t_i}\).
+For functions \(|f_z(u)|\le\nu_u,\ |g_z(v)|\le\nu_v\) consider
+\[
+       T=\E_z W(z)\E_{u,v} f_z(u)g_z(v) h(v-u).
+\]
+We use two kernels, extended by zero elsewhere:
+\(h(d)=\one_I(d)a(d)\) for the pair assertion, and
+\(h(d)=\one_{1\le|d|\le 2R}\lambda(|d|)\) for the tuple assertion.
+
+Let \(v_1,v_2\) be independent copies of \(v\), and similarly \(u_1,u_2\).
+Then
+\begin{align}
+ |T|^4&\le (\E_{z,u}W\nu_u)^2
+       (\E_{z,v_1,v_2}W\nu_{v_1}\nu_{v_2})\, B, \label{eq:cs}\\
+ B&=\E_{z,v_1,v_2}W\nu_{v_1}\nu_{v_2}
+ \left|\E_u \nu_u h(v_1-u)\overline{h(v_2-u)}\right|^2. \nonumber
+\end{align}
+Indeed, Cauchy--Schwarz in \((z,u)\) with measure \(W\nu_u\) first gives
+\(|T|^2\le(\E W\nu_u)\E W\nu_u|\E_v g_z(v)h(v-u)|^2\).
+Open the \(v\)-square, integrate in \(u\), and apply Cauchy--Schwarz with
+measure \(W\nu_{v_1}\nu_{v_2}\), using the bounds on \(g\).
+The other two factors in \eqref{eq:cs} are bounded by Lemma~\ref{lem:mom}.
+The remaining expression is nonnegative and contains no selected weights.
+Opening the \(u\)-square leaves the four factors
+\begin{equation}\label{eq:cycle}
+ h(v_1-u_1)\overline{h(v_2-u_1)}
+ \overline{h(v_1-u_2)}h(v_2-u_2)
+\end{equation}
+and one \(\nu\) for each of the four indices and each auxiliary slot.
+Put \(b=4+\#\{\text{auxiliary slots}\}\).
+
+By Lemma~\ref{lem:mom}, tuples with colliding physical shifts contribute
+\(o(1)\) to \(B\) in absolute value. The generic \(x\)-average can be
+replaced by its stated constant times \(\Sf_{\le w}\), with errors tending
+to zero first in \(X\) and then in \(w\). For fixed \(w\) the truncated
+product, evaluated by its residue formula with denominator exponent \(jb\),
+extends to a bounded periodic function of all indices, with period
+\(P_w=\prod_{p\le w}p\). Restoring tuples with a collision in this periodic
+average costs \(O_w(R^{-1})\). Expanding by residue tuples leaves products
+of separate indicator functions at each index. Auxiliary indices give
+bounded scalars. It remains to average \eqref{eq:cycle} against four
+one-variable residue and interval masks.
+
+Embed the indices in \(G_M=\Z/M\Z\) with \(M=16R+1\), using normalized
+counting measure. Put the kernel on its representatives in \([-2R,2R]\)
+and zero elsewhere, and let \(K\) be the operator with kernel \(h(v-u)\).
+There is no cyclic overlap on the ranges in use, and changing normalization
+costs a bounded factor. Fourier diagonalization gives
+\[
+ \|K\|_{\op}
+ \le\frac1M\sup_{\theta\in\mathbb R}
+          \left|\sum_{|d|\le2R} h(d)\e^{2\pi i\theta d}\right|=o(1),
+ \qquad \|K\|_{\HS}^2=\E_{d\in G_M}|h(d)|^2\le1.
+\]
+For \(\mu\), the Fourier estimate follows from Davenport
+\cite{dav}, also \cite[(1.1)]{gtnil}. Uniformity in \(I\) follows by
+subtracting prefixes: prefixes up to \(\sqrt R\) cost \(O(\sqrt R)\),
+and the remaining ones satisfy the uniform logarithmic saving. For
+\(\lambda\), use \(\lambda(n)=\sum_{m^2\mid n}\mu(n/m^2)\), which follows
+on prime powers and then by multiplicativity. Terms with \(m>B_0\)
+cost \(O(R/B_0)\) before division by \(M\); for each \(m\le B_0\) apply
+the same estimate with phase \(m^2\theta\). Take \(R\to\infty\) and then
+\(B_0\to\infty\). Reflection handles the negative half.
+
+The masked cycle is the trace of a product of four copies of \(K,K^*,K,K^*\)
+in cyclic order with multiplication operators for the intervening masks.
+Each mask is a contraction. The absolute trace is at most
+\(\|K\|_{\op}^{\,2}\|K\|_{\HS}^{\,2}\) by the Hilbert--Schmidt
+Cauchy--Schwarz inequality, bounding two factors in operator norm.
+For fixed \(w\) there are only finitely many residue tuples.
+
+To make the width condition and the order of limits explicit, write
+\(\mathbf r=(u_1,u_2,v_1,v_2,\mathbf t)\). The indices in this vector
+have exactly the independent distributions used in the opened square.
+Let \(\mathbf r'\) list their \(jb\) physical shifts \(2sr_i+h\),
+\(h\in\mathcal H\), and set
+\[
+ \mathcal E_b(X,R;w)=
+ \E_{\mathbf r}\one_{\rm distinct\ physical\ shifts}
+       |\Sf(\mathbf r')-\Sf_{\le w}(\mathbf r')|,
+\]
+where the summand is defined to be zero on collisions. Combining the
+preceding estimates with \eqref{eq:cs} gives, for sufficiently large
+\(X\) along a sequence satisfying \eqref{eq:width},
+\begin{align}
+ |T|^4 \le{}& C_b\left\{
+       \sum_{c=1}^{b-1}(L^j/R)^{b-c}
+       +L^{-1/20}+\mathcal E_b(X,R;w)\right\} \nonumber\\
+ &{}+C_{b,w}\left\{R^{-1}
+       +\|K\|_{\op}^{\,2}\|K\|_{\HS}^{\,2}\right\}.
+ \label{eq:combined-error}
+\end{align}
+The constants may depend on the fixed parameters
+\(b,s,\mathcal H,\beta,\chi,\eta,C_0\), but not on \(X,R,I\) or any
+selected weight; \(C_b\) is also independent of \(w\).
+Lemma~\ref{lem:mom} states that
+\[
+ \lim_{w\to\infty}\limsup_{X\to\infty}
+       \mathcal E_b(X,R;w)=0
+\]
+along every such sequence. First hold \(w\) fixed and let \(X\to\infty\):
+the collision and sieve errors vanish, while \(R\to\infty\) makes the
+Fourier term vanish uniformly in \(I\). Then let \(w\to\infty\).
+No rate of decay in \(w\) is asserted or needed. This proves
+\(T=o(1)\) uniformly in all the separated weights, even when
+\(R/L^j\) tends to infinity arbitrarily slowly.
+
+\begin{proof}[Completion of Theorem~\ref{th:weighted}]
+For \eqref{eq:pair}, take no auxiliary slots,
+\(f_x(u)=F(x+2su)\), \(g_x(v)=G(x+2sv)\), \(v\in[2R]\).
+Every counted \((n,d)\) occurs exactly \(R\) times: choose \(u\in[R]\),
+put \(v=u+d\) and \(x=n-2su\). All such \(x\) lie in \(\mathcal X\).
+The normalized pair sum is \(2|\mathcal X|T/X\).
+
+For \eqref{eq:graph} choose an edge of \(E\) with endpoints \(u,v\)
+and fix the other \(k-2\) indices in \(z\).
+All other edges incident to \(u\) or \(v\) give bounded factors of
+\(u\) alone or \(v\) alone once \(z\) is fixed. The auxiliary vertex
+weights divided by \(W\), and the remaining edges, form a bounded
+common factor, absorbed in \(f_z\); set ratios to zero where \(W=0\).
+Take \(v\in[R]\). Extend the edge functions harmlessly at zero and
+remove repeated indices at the end using the collision estimate of
+Lemma~\ref{lem:mom}. This proves the assertion. The same proof allows
+arbitrary bounded factors on all untested edges provided each depends
+only on \(x\) and its own two endpoint indices.
+\end{proof}
+
+\section{Counting tuples and the endpoint example}
+\begin{proof}[Proof of Corollary~\ref{co:tuple} and the supercritical part of
+Theorem~\ref{th:prime}]
+Write \(f=L^j\one_A\). Every \(n\in A\) and \(u\in[R]\) has an anchor in
+\(\mathcal X\), so \(\E_{x,u} f(x+2su)=L^j|A|/|\mathcal X|\gg\delta\).
+Jensen gives a lower bound \(\gg_k\delta^k\) for the average of
+\((\E_u f(x+2su))^k\). Repetitions contribute \(o(1)\), and the unrestricted
+upper is \(O(1)\), by Lemma~\ref{lem:mom}. For distinct indices expand
+\(2^{-\binom k2}\prod_{i<l}(1+\sigma_{il}\lambda(|u_i-u_l|))\).
+Each nonconstant term tends to zero by \eqref{eq:graph}. Dividing by the
+unsigned mass proves the corollary.
+
+For primes use \(j=s=1\) and, for example, \(\beta=1/3\).
+The two-vertex lower just proved counts each positive-gap pair in both
+orders with at most \(R\) anchors per order. It gives
+\(N\gg_\delta XR/L^2\).
+The exact pair embedding above and the two-slot moment bound give
+\(N\ll XR/L^2\), now taking the positive interval kernel bounded by one.
+Equation~\eqref{eq:pair} with \(F=G=L\one_A\) gives
+\(N_+-N_-=o(XR/L^2)\), proving the two relative frequencies.
+\end{proof}
+
+\begin{proof}[Proof of the critical-width part of Theorem~\ref{th:prime}]
+Let \(R=\lfloor4L\rfloor\). Partition the dyad's integers into consecutive
+complete bins of length \(R\), dropping the last incomplete bin. Write
+\(B\sim X/R\) for the number of bins and \(K_i\) for their prime counts.
+The prime number theorem gives \(B^{-1}\sum_iK_i=4+o(1)\).
+We claim \(B^{-1}\sum_iK_i^2=O(1)\). For two distinct primes within a bin
+their separation \(h\) satisfies \(1\le h<R\). The product of their prime
+indicators is \(O(\nu_0(n)\nu_0(n+h)/L^2)\).
+For each \(h>0\) apply \eqref{eq:GT} to the two distinct shifts \(0,h\).
+The average over \(h\le R\) of both the singular factor and the error's
+exponential factor is bounded by \eqref{eq:euler}. Consequently
+\[
+ \sum_i K_i(K_i-1)\ll XR/L^2,\qquad
+ B^{-1}\sum_i K_i^2\ll 1+R^2/L^2\ll1 .
+\]
+This use of distinct shifts requires no supercritical width assumption.
+The contribution of bins with \(K_i<2\) to the first moment is at most
+one. Cauchy--Schwarz now gives \(\gg B\) bins containing at least two primes.
+
+Choose one pair in each such bin and classify it by its half-difference
+sign and the bin index modulo five. One class contains \(M\gg B\) bins.
+Let \(A_X\) consist of the two chosen primes in each retained bin.
+Two different retained bins have all their integers more than \(2R\)
+apart. Each retained intrabin pair has a positive even gap less than \(R\).
+Hence the entire count consists of exactly \(M\) pairs of the same sign
+and \(|A_X|=2M\gg X/L\). This proves the claim for the same set at both
+endpoints. The construction selects primes separately at each \(X\).
+\end{proof}
+
+
+\section{A subcritical obstruction for two rough translates}
+The scale in \eqref{eq:width} also has a selection obstruction on the
+two-translate rows. The following construction uses actual squarefree
+composite integers at both translates.
+
+\begin{proposition}\label{prop:roughsharp}
+There exists $\beta_0>0$ with the following property. Fix
+$0<\beta<\beta_0$. Let $\mathcal V$ consist of $X<n\le2X$ such that both
+$n,n+2$ are squarefree composites all of whose prime factors exceed
+$X^\beta$. Join $n,n+2d\in\mathcal V$ for $1\le d\le R$, and give
+the edge sign $\lambda(d)$. If $R\to\infty$ and $R=o(L^2)$, then for each
+$\sigma\in\{-1,1\}$ one can delete $O_\beta(XR/L^4)$ vertices so that
+all remaining edges have sign $\sigma$ and at least
+$c_\beta XR/L^4$ edges remain. Here $|\mathcal V|\gg_\beta X/L^2$.
+\end{proposition}
+
+\begin{proof}
+We give the sieve estimates with their dependence on $\beta$.
+For at most six distinct shifts $t_i$ with $|t_i|\ll R$, let
+$\rho(p)$ be the number of forbidden residue classes
+$-t_i\bmod p$, using just the shifts being sifted at $p$.
+At a squarefree modulus $d$, the count on any interval of length
+$\asymp X$ is its length times $\rho(d)/d$, with error $O(\rho(d))$,
+where $\rho$ is extended multiplicatively. Up to level $D=X^{1/10}$
+the sum of these errors is $O(D(1+\log D)^6)$, since
+$\rho(d)\le 6^{\Omega(d)}\le \tau_6(d)$ for squarefree $d$.
+An inadmissible small prime leaves no survivors. In all other cases
+the dimension bound for the sieve is uniform: for $p>12$ use
+$\rho(p)\le6$ and Mertens' theorem, and bound the finitely many
+smaller factors separately. Choose $b>0$ small enough that the
+fundamental lemma at level $D$ gives fixed-factor upper and lower
+bounds with largest sifting prime at most $X^b$
+\cite[Theorem~6.9]{fi}. In particular these factors are uniform
+in $0<\beta<b$ and the shifts.
+
+For $d\le R$ divisible by $30$, the four shifts $0,2,2d,2d+2$
+are distinct and admissible. Sifting all of them up to $X^\beta$
+gives $\gg X/(\beta L)^4$ starts. For example, take the starts in
+$(X,2X-2R]$ to accommodate both endpoints. The lower bound for
+the product of local densities follows by taking
+$\rho(p)\le4$ for $p>5$ and using admissibility at the smaller
+primes. A positive proportion of the multiples $d=30k$ have each
+sign, by $\lambda(30k)=\lambda(30)\lambda(k)$ and the estimate
+for $\lambda$ at frequency zero above.
+
+To bound the count in which a specified site is prime, sift that
+site further, up to $X^b$, while retaining the original threshold
+at the other three. This gains the factor
+$\prod_{X^\beta<p\le X^b}(1-1/p)\ll\beta/b$.
+The four-site product up to $X^\beta$ is at most
+\[
+ C(\beta L)^{-4}\prod_{p\mid\Delta}(1+C/p),
+ \qquad \Delta=\prod_{i<j}|t_i-t_j|.
+\]
+The product on the right has bounded average as $d$ ranges over
+the multiples of $30$: each varying nonzero difference is linear
+in $d$ with fixed coefficients, so the divisor expansion and
+H\"older estimate in Lemma~\ref{lem:mom} apply.
+Consequently, summed over $d$, removing all four possibilities for
+a prime site costs $O(XR/(b\beta^3L^4))$. Removing squares of
+primes $p>X^\beta$ costs $O(R(X^{1-\beta}+\sqrt X))$ by summing
+$X/p^2+1$ for $p\le\sqrt{3X}$. Choose $\beta_0$ sufficiently small
+compared with $b$. Both signs then occur on $\gg_\beta XR/L^4$
+edges of $\mathcal V$. The two-site version of the same lower
+sieve and the same prime and square removals give
+$|\mathcal V|\gg_\beta X/L^2$.
+
+Every start in $\mathcal V$ is $2\bmod3$, so every feasible $d$
+is divisible by $3$. The four-site upper sieve, averaged over these
+$d$, bounds the total edge count by $O_\beta(XR/L^4)$. Two distinct
+edges at a common vertex have signed displacements $2d,2e$, with
+$d,e$ distinct nonzero multiples of $3$ and $|d|,|e|\le R$.
+The six corresponding shifts $0,2,2d,2d+2,2e,2e+2$ are distinct.
+The six-site upper sieve gives $O_\beta(XR^2/L^6)$ incident edge
+pairs after averaging over $d,e$. Indeed the nonconstant differences
+depend linearly on $d,e$, or $d-e$; each nonzero value occurs
+$O(R)$ times among the $O(R^2)$ choices. The same divisor expansion
+bounds the averaged singular factors.
+
+Delete both endpoints of every edge of sign $-\sigma$. Each lost
+edge of sign $\sigma$ meets such an edge. The number lost is
+$O_\beta(XR^2/L^6)=o_\beta(XR/L^4)$, which proves the assertion.
+\end{proof}
+
+\appendix
+\section{Verification details}
+The two prime-pair counts and the tuple count use different multiplicities.
+For example, the ordered vertices \((101,103,107)\) with \(s=1,R=5\)
+have two anchors, \(x=97,99\). Their three half-differences are \(1,3,2\)
+in edge order \(12,13,23\), with signs \(+,-,-\).
+In the one-sided pair embedding any one of these pairs has exactly five
+representations. These identities hold before taking a limit.
+
+For a two-row weight an overlap already occurs for two \emph{distinct}
+indices. With \(s=1,\mathcal H=\{0,2\}\) and \(v=u+1\), the four shifts
+have multiplicities \(1,2,1\). Their extra sieve factor is \(\log D\).
+When \(v=u\), the two distinct shifts each have multiplicity two, giving
+\((\log D)^2\). Each coincidence imposes one index relation and costs
+\(O(1/R)\) in counting measure. These cases check why the uniform proof
+for two rough translates uses \(R/L^2\to\infty\). The graph test uses one
+copy of each of the \(k-2\) auxiliary weights after both Cauchy steps,
+and four weights at the opened edge, so its largest correlation has
+\(j(k+2)\) shifts before merging.
+
+The chain of analytic inputs is \eqref{eq:GT}, \eqref{eq:euler},
+the collision bound, the periodic truncation, and \eqref{eq:cs} with
+Davenport's bound. The limit order is \(X\to\infty\) at fixed parameters
+and fixed primorial, followed by \(w\to\infty\). Fourier cancellation is
+required only for the unshifted difference kernel on scale \(R\).
+The principal proof uses no numerical fit or short-interval prime
+asymptotic. The critical-width example also uses the ordinary prime
+number theorem for the whole dyad.
+
+\paragraph{Provenance and disclosure.}
+The pair and tuple assertions in Theorem~\ref{th:weighted} were extracted
+from an unpublished research record. The fixed-width prime selection in
+Theorem~\ref{th:prime} was derived and checked during manuscript preparation.
+The subcritical two-translate construction in Proposition~\ref{prop:roughsharp}
+was recovered from the subsequent research record (Section 308DK).
+The underlying mathematical research was substantially AI-generated.
+OpenAI ChatGPT in Pro mode and AI review agents were used for extraction,
+mathematical reconstruction, proof and prior-art reviews, and manuscript
+writing. These checks are internal. DEEPAK KUMAR
+(\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}) is the research
+coordinator and contact. Human authorship and responsibility for a final
+manuscript remain pending.
+
+\begin{thebibliography}{9}\small
+\bibitem{banks} W.\ D.\ Banks and I.\ E.\ Shparlinski,
+Multiple sums with the M\"obius function, \emph{Quart. J. Math.}
+\textbf{77} (2026), 109--127. \href{https://doi.org/10.1093/qmath/haaf049}{doi:10.1093/qmath/haaf049}.
+\href{https://arxiv.org/abs/2506.08787}{arXiv:2506.08787}.
+\bibitem{dav} H.\ Davenport, On some infinite series involving arithmetical
+functions (II), \emph{Quart. J. Math., Oxford Ser.} \textbf{8} (1937), 313--320.
+\href{https://doi.org/10.1093/qmath/os-8.1.313}{doi:10.1093/qmath/os-8.1.313}.
+\bibitem{gt} B.\ Green and T.\ Tao, Linear equations in primes,
+\emph{Ann. of Math.} (2) \textbf{171} (2010), 1753--1850.
+\href{https://annals.math.princeton.edu/2010/171-3/p08}{Publisher's text}.
+\href{https://arxiv.org/html/math/0606088}{Readable preprint, including Appendix D}.
+\bibitem{fi} J.\ Friedlander and H.\ Iwaniec, \emph{Opera de Cribro},
+Amer. Math. Soc. Colloquium Publications, vol.~57 (2010), Chapter~6.
+\bibitem{gtnil} B.\ Green and T.\ Tao, The M\"obius function is strongly
+orthogonal to nilsequences, \emph{Ann. of Math.} (2) \textbf{175} (2012),
+541--566. \href{https://annals.math.princeton.edu/2012/175-2/p03}{Publisher's text}.
+\href{https://arxiv.org/html/0807.1736}{Readable preprint}.
+\bibitem{lichtman} J.\ D.\ Lichtman, Averages of the M\"obius function on
+shifted primes, \emph{Quart. J. Math.} \textbf{73} (2022), 729--757.
+\href{https://doi.org/10.1093/qmath/haab054}{doi:10.1093/qmath/haab054}.
+\href{https://arxiv.org/abs/2009.08969}{arXiv:2009.08969}.
+\bibitem{rss} J.\ Rivat, A.\ S\'ark\"ozy and C.\ L.\ Stewart, Congruence
+properties of the \(\Omega\)-function on sumsets, \emph{Illinois J. Math.}
+\textbf{43} (1999), 1--18.
+\href{https://uwaterloo.ca/pure-mathematics/sites/default/files/uploads/documents/1255985334.pdf}{Author-hosted text}.
+\bibitem{shao} X.\ Shao, Narrow arithmetic progressions in the primes,
+\emph{Int. Math. Res. Not. IMRN} (2017), 391--428.
+\href{https://arxiv.org/abs/1509.04955}{arXiv:1509.04955}.
+\bibitem{tz} T.\ Tao and T.\ Ziegler, Narrow progressions in the primes,
+in \emph{Analytic Number Theory: In Honor of Helmut Maier's 60th Birthday},
+Springer (2015), 357--379.
+\href{https://arxiv.org/abs/1409.1327}{arXiv:1409.1327}.
+\end{thebibliography}
+\end{document}

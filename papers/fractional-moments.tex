@@ -1,0 +1,596 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Absolute error of fractional von Mangoldt approximants on shifted primes}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\rad}{\operatorname{rad}}
+\newcommand{\Li}{\operatorname{Li}}
+\newcommand{\TV}{d_{\mathrm{TV}}}
+\newcommand{\err}{\mathcal E_X}
+\newcommand{\Mcal}{\mathcal M_X}
+\allowdisplaybreaks[1]
+\raggedbottom
+\setlength\emergencystretch{1.5em}
+\title{\bfseries Absolute error of fractional von Mangoldt\\approximants on shifted primes}
+\author{\normalsize DEEPAK KUMAR (research coordinator)\\[-2pt]\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{\small Public working paper\quad 25 November 2026}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+For real $\alpha>0$ put
+$Q_\alpha(m)=\sum_{d\mid m}\mu(d)(\log(m/d)/\log m)^\alpha$.
+These weights equal one on primes and $Q_1(m)=\Lambda(m)/\log m$.
+On the shifted-prime row $m=p+2$, we evaluate the entire composite
+absolute error at orders $1\pm c/\log\log X$: in the normalization
+$2C_2X/\log^2X$, its limits are $1-e^{-c}$ and $e^c-1$.
+A fixed binomial combination of orders strictly greater than one has
+absolute error $(1-e^{-1})^k$ in the same normalization.
+The arithmetic input is Ford's total-variation model for small prime
+valuations, together with the classical upper-bound sieve. We give the
+uniform positive envelope needed to integrate the moving-order Mellin
+formula, including repeated prime factors. The estimates do not supply
+a positive lower bound for the twin-prime count.
+\end{abstract}
+
+\section{Statements and arithmetic inputs}
+Let $X\to\infty$, $L=\log X$, $H=\log L$, and
+\[
+ C_2=\prod_{\ell>2}\left(1-\frac1{(\ell-1)^2}\right),\qquad
+ \mathcal P_X=\{p\in\PP:X<p\le2X\}.
+\]
+Letters $p,\ell$ denote primes. For $m>1$ and real $\alpha>0$ define
+\begin{equation}\label{eq:Q}
+ Q_\alpha(m)=\sum_{d\mid m}\mu(d)
+       \left(\frac{\log(m/d)}{\log m}\right)^\alpha,
+ \qquad 0^\alpha=0.
+\end{equation}
+For a function $F$ with $F(p)=1$ at primes, write
+\begin{equation}\label{eq:error}
+ \err(F)=\frac{L^2}{2C_2X}\sum_{p\in\mathcal P_X}
+        |F(p+2)-\one_{\PP}(p+2)|.
+\end{equation}
+Thus proper prime powers are included in this definition of error.
+
+\begin{theorem}\label{th:critical}
+For every fixed $c>0$,
+\[
+ \err(Q_{1+c/H})\longrightarrow1-e^{-c},\qquad
+ \err(Q_{1-c/H})\longrightarrow e^c-1.
+\]
+The second order is positive for all sufficiently large $X$.
+For every fixed positive integer $k$, the function
+\begin{equation}\label{eq:Rk}
+ R_{k,X}(m)=\sum_{j=1}^k(-1)^{j+1}\binom{k}{j}Q_{1+j/H}(m)
+\end{equation}
+equals one on primes and satisfies
+\[
+       \err(R_{k,X})\longrightarrow(1-e^{-1})^k.
+\]
+All parameters $c$ and $k$ are fixed before $X$ tends to infinity.
+\end{theorem}
+
+For comparison, set
+\[
+ \tau_X=\frac{L^2}{2C_2X}
+       |\{p\in\mathcal P_X:p+2\in\PP\}|,
+ \qquad
+ \Mcal(F)=\frac{L^2}{2C_2X}\sum_{p\in\mathcal P_X}F(p+2).
+\]
+One always has $|\Mcal(F)-\tau_X|\le\err(F)$. Theorem~\ref{th:critical}
+evaluates the right side. It does not evaluate the signed quantity
+$\Mcal(F)$ or show that it exceeds this error. Nor does it justify
+choosing $k=k(X)$ without a further uniform estimate.
+
+The functions $Q_k$ at positive integer orders are normalized generalized
+von Mangoldt functions. Higher moments and their distinction from prime
+detection are classical; see Ford's discussion of the asymptotic sieve
+\cite{ford-asymptotic}. The distribution input here is much more directly
+Ford's valuation model \cite[Theorem 1]{ford-model}. The contribution of
+this note is the explicit moving fractional-order absolute-error law
+and its binomial consequence, as applications of that model. We assert
+no new level of distribution or prime-factor independence theorem, and
+make no global priority claim for this formulation.
+
+We record the precise form of Ford's input. Let $W_2=0$ and let the
+$W_\ell$, for odd primes $\ell$, be independent with
+\begin{equation}\label{eq:ford-law}
+ \mathbb P(W_\ell=0)=1-\frac1{\ell-1},\qquad
+ \mathbb P(W_\ell=a)=\ell^{-a}\quad(a\ge1).
+\end{equation}
+For a uniformly chosen prime $p\le x$, with finitely many small primes
+omitted, Ford's theorem gives
+\begin{equation}\label{eq:ford}
+ \TV\big((v_\ell(p+2))_{\ell\le y},(W_\ell)_{\ell\le y}\big)
+ \ll_{A,\theta} e^{-\theta u\log u}+\log^{-A}x,
+ \qquad u=\frac{\log x}{\log y},
+\end{equation}
+for $2\le y\le x$, every fixed $A>0$ and any fixed $0<\theta<1/2$.
+Indeed the theorem assumes its hypothesis $Z(\gamma)$ and
+$\theta<\gamma$; $Z(1/2)$ follows from Bombieri--Vinogradov, as stated
+in \cite{ford-model}. The shift is the fixed integer $2$.
+Subtracting the cumulative estimates at $2X$ and $X$ gives the same
+bound, up to a constant and the smaller of the two $u$'s, for
+$p\in\mathcal P_X$. The ratio of the cumulative prime counts to
+$|\mathcal P_X|$ is bounded by the prime number theorem.
+In particular, \eqref{eq:ford} applies to every $[0,1]$-valued function
+of the indicated valuations, even when that function depends on $X$.
+
+\section{A uniform nonnegative envelope}
+For $w>0$ define the nonnegative multiplicative weights
+\begin{equation}\label{eq:DH}
+ D_w(m)=\prod_{\ell\mid m}(1-\ell^{-w}),\qquad
+ B_w(m)=\left(\frac{\rad m}{m}\right)^wD_w(m).
+\end{equation}
+Both weights lie in $[0,1]$. Let
+\[
+ \mathcal C_X=\{p\in\mathcal P_X:\omega(p+2)\ge2\},
+\]
+where $\omega$ counts distinct prime divisors. For every $t>0$, put
+\begin{equation}\label{eq:AX}
+ A_X(t)=\frac{L^2}{2C_2X}\sum_{p\in\mathcal C_X}
+                  B_{t/\log(p+2)}(p+2).
+\end{equation}
+
+\begin{lemma}[Randomized upper sieve]\label{lem:sieve}
+Fix $a=1/100$ and $z=X^a$. For arbitrary numbers
+$g_\ell\in[0,1]$ on the odd primes $\ell\le z$,
+\begin{equation}\label{eq:random-upper}
+ \sum_{p\in\mathcal P_X}\prod_{\substack{\ell\mid p+2\\2<\ell\le z}}g_\ell
+ \ll \frac{X}{L^2}
+       \exp\left(\sum_{2<\ell\le z}\frac{g_\ell}{\ell-2}\right)
+       +X^{1/2}.
+\end{equation}
+The implicit constant is independent of $X$ and of all the $g_\ell$.
+\end{lemma}
+
+\begin{proof}
+Independently put each odd prime $\ell\le z$ in a set $\mathcal S$ with
+probability $1-g_\ell$. The product in \eqref{eq:random-upper} is the
+probability that no member of $\mathcal S$ divides $p+2$.
+For a fixed $\mathcal S$, majorize the prime condition by excluding
+$0\pmod\ell$ from $n$ for every $\ell\le z$, and also exclude
+$-2\pmod\ell$ when $\ell\in\mathcal S$. At $2$ there is one excluded
+residue; at an odd prime there are
+$\rho_\ell=1+\one_{\mathcal S}(\ell)$.
+
+The upper-bound fundamental lemma, in the form of
+\cite[Theorem 19.1 and its deduction of Theorem 18.11]{kouk}, gives
+upper sieve weights supported on squarefree $d\le D=X^{1/4}$,
+with absolute value at most one, and main term at most a fixed
+constant times $X\prod_{\ell\le z}(1-\rho_\ell/\ell)$.
+Here the sieve clock is $25$, and the dimension-two product condition
+is uniform because $\rho_2=1$ and $1\le\rho_\ell\le2$ at odd primes.
+The latter condition follows directly from Mertens' estimate applied
+to the larger factors $(1-2/\ell)^{-1}$, with the prime $2$ separated.
+For completeness, CRT gives $\rho(d)$ forbidden-residue combinations
+and discrepancy $O(\rho(d))$ on the interval $(X,2X]$. Therefore the
+remainder is at most
+\[
+ \sum_{d\le D}\mu^2(d)2^{\omega(d)}\ll D\log(2D)\ll X^{1/2},
+\]
+uniformly in $\mathcal S$. This is an integer-sequence sieve, not a
+distribution assumption about primes.
+
+Taking expectations, its local main factors become
+\[
+ \frac12\prod_{2<\ell\le z}
+       \left(1-\frac2\ell+\frac{g_\ell}{\ell}\right)
+ =\frac12\prod_{2<\ell\le z}\left(1-\frac2\ell\right)
+       \prod_{2<\ell\le z}\left(1+\frac{g_\ell}{\ell-2}\right).
+\]
+The first product is $\ll1/\log^2z\ll1/L^2$, and the second is bounded
+by the exponential in \eqref{eq:random-upper}.
+\end{proof}
+
+\begin{proposition}[Uniform envelope]\label{prop:envelope}
+For all sufficiently large $X$, with one absolute implicit constant,
+\begin{equation}\label{eq:envelope}
+ A_X(t)\ll
+ \begin{cases}
+ t^2,&0<t\le1,\\
+ t,&1\le t\le L,\\
+ L,&t\ge L.
+ \end{cases}
+\end{equation}
+Repeated prime factors are included throughout.
+\end{proposition}
+
+\begin{proof}
+Suppose first that $0<t\le1$ and $m=p+2$, $p\in\mathcal C_X$.
+Writing $r=\omega(m)\ge2$, the inequality $1-e^{-u}\le u$ gives
+\[
+ B_{t/\log m}(m)
+ \le t^r\prod_{\ell\mid m}\frac{\log\ell}{\log m}
+ \le t^2\prod_{\substack{\ell\mid m\\2<\ell\le z}}
+                     \frac{\log\ell}{L}.
+\]
+In the last step all deleted factors are at most one, and $\log m>L$.
+Apply Lemma~\ref{lem:sieve} with $g_\ell=\log\ell/L$.
+The exponent is bounded, since
+$L^{-1}\sum_{\ell\le z}\log\ell/\ell=O(1)$ and the replacement of
+$1/\ell$ by $1/(\ell-2)$ costs $O(1)$.
+Its remainder, after normalization and multiplication by $t^2$, is
+$O(t^2L^2X^{-1/2})$. This proves the first bound.
+
+For $1\le t\le L$ set $w=t/L$. Since $\log m\ge L$,
+\[
+ B_{t/\log m}(m)\le
+ \prod_{\substack{\ell\mid m\\2<\ell\le z}}(1-\ell^{-w}).
+\]
+Use $g_\ell=1-\ell^{-w}$. Uniformly for $1\le t\le L$,
+\begin{equation}\label{eq:harmonic-envelope}
+ \sum_{2<\ell\le z}\frac{1-\ell^{-t/L}}{\ell-2}
+                   \le\log t+O(1).
+\end{equation}
+To verify this, replace the denominator by $\ell$ at bounded cost
+and split at $y_0=\exp(L/t)$. Below $y_0$ use
+$1-\ell^{-t/L}\le(t/L)\log\ell$, whose reciprocal sum is $O(1)$.
+If $y_0<z$, the remaining reciprocal-prime sum is at most
+$\log(\log z/\log y_0)+O(1)\le\log t+O(1)$ by Mertens.
+If $y_0\ge z$, the whole sum is $O(1)$.
+The second bound follows from the randomized sieve; the normalized
+remainder $O(L^2X^{-1/2})$ is absorbed by $t$.
+Finally $B_w\le1$ and $|\mathcal P_X|\ll X/L$ give the third bound.
+\end{proof}
+
+\section{The positive interior asymptotic}
+\begin{proposition}\label{prop:interior}
+For every fixed $0<v<1$,
+\begin{equation}\label{eq:interior}
+                    \frac{A_X(L^v)}{L^v}\longrightarrow1.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Put $t=L^v$, $w=t/L$, and $y=\exp(L/\sqrt t)$.
+Then $w\to0$, $w\log y=\sqrt t$, and
+$u=\log X/\log y=\sqrt t$ in Ford's theorem.
+For a prime $\ell>2$ the model expectations of the local factors of
+$D_w$ and $B_w$, respectively, are
+\begin{align}
+ d_\ell(w)&=1-\frac{\ell^{-w}}{\ell-1},\label{eq:local-d}\\
+ b_\ell(w)&=1-\frac1{\ell-1}
+       +\frac{1-\ell^{-w}}{\ell(1-\ell^{-1-w})}.
+       \label{eq:local-b}
+\end{align}
+The difference satisfies
+\begin{align*}
+ 0\le d_\ell(w)-b_\ell(w)
+ &=\sum_{a\ge2}\ell^{-a}(1-\ell^{-w})
+                         (1-\ell^{-(a-1)w})\\
+ &\le\frac{w\log\ell\,(1-\ell^{-w})}{(\ell-1)^2}
+ \le\frac{w^2(\log\ell)^2}{(\ell-1)^2}.
+\end{align*}
+Since $d_\ell(w)\ge1/2$, it follows uniformly in $y$ that
+\begin{equation}\label{eq:model-powers}
+       \prod_{2<\ell\le y}b_\ell(w)
+          =\bigl(1+O(w^2)\bigr)\prod_{2<\ell\le y}d_\ell(w).
+\end{equation}
+The sign of the $O$ term here is immaterial.
+
+The full undamped Euler product has the asymptotic
+\begin{equation}\label{eq:euler-main}
+ \prod_{\ell>2}d_\ell(w)\sim2C_2w\qquad(w\downarrow0).
+\end{equation}
+Indeed divide it by the odd-prime part of $\zeta(1+w)^{-1}$.
+The quotient converges uniformly near $w=0$ by $O(\ell^{-2})$ local
+errors, and its value at zero is $C_2$. The omitted prime $2$ supplies
+$(1-2^{-1-w})^{-1}\to2$, while $\zeta(1+w)^{-1}\sim w$.
+Also
+\[
+ \sum_{\ell>y}\frac{\ell^{-w}}{\ell-1}
+ \ll\int_y^\infty\frac{x^{-1-w}}{\log x}\,dx
+ \ll\frac{e^{-w\log y}}{w\log y}=o(1),
+\]
+by an elementary prime-counting upper bound and partial summation.
+Consequently the product truncated at $y$ has the same asymptotic.
+
+Both truncated multiplicative weights are $[0,1]$-valued functions of
+the valuations through $y$. Apply \eqref{eq:ford}, with for example
+$\theta=1/4$ and $A=4$. Its error is $o(w)$, so, averaging over
+$p\in\mathcal P_X$,
+\begin{equation}\label{eq:truncated-mean}
+ \E_p D_w^{(\le y)}(p+2)\sim2C_2w,
+ \qquad
+ \E_p B_w^{(\le y)}(p+2)\sim2C_2w.
+\end{equation}
+
+We justify completing both weights. There are at most
+$\log(2X+2)/\log y=O(\sqrt t)$ distinct prime divisors greater than
+$y$ in any $m\le2X+2$. Hence
+\[
+ 1-O(\sqrt t\,e^{-\sqrt t})
+ \le\prod_{\substack{\ell\mid m\\\ell>y}}(1-\ell^{-w})\le1.
+\]
+For $B_w$ this also suffices unless a prime $\ell>y$ has
+$\ell^2\mid m$. The number of such integers $m\le2X+2$ is
+\[
+ O\left(\sum_{y<\ell\le\sqrt{2X+2}}
+                    (X/\ell^2+1)\right)
+           =O(X/y+\sqrt X).
+\]
+After division by $|\mathcal P_X|\asymp X/L$ this is $o(w)$.
+Thus \eqref{eq:truncated-mean} holds for the full $D_w,B_w$.
+In particular $\E_p(D_w-B_w)(p+2)=o(w)$; this also follows directly
+from \eqref{eq:model-powers} and the same completion.
+
+The physical denominator causes no unproved uniformity assumption.
+Write $w_m=t/\log m$ and $w_-=t/\log(2X+2)$, so
+$w_-\le w_m\le w$ and $w_-/w\to1$. The preceding proof applies to
+$w_-$ with the same $y$, since $w_-\log y\sim\sqrt t$.
+Monotonicity of $D_w$ gives
+\[
+ \E_pD_{w_m}(p+2)\sim2C_2w.
+\]
+For each $m$, the difference
+\[
+ D_s(m)-B_s(m)=D_s(m)
+          \bigl(1-e^{-s\log(m/\rad m)}\bigr)
+\]
+is nonnegative and nondecreasing in $s>0$. Therefore its value at
+$w_m$ is at most its value at $w$, whose mean is $o(w)$.
+We conclude that $\E_p B_{t/\log(p+2)}(p+2)\sim2C_2w$.
+
+It remains to remove the prime-power endpoints from this mean.
+The upper sieve gives $|\{p\in\mathcal P_X:p+2\in\PP\}|\ll X/L^2$
+(also an instance of Lemma~\ref{lem:sieve} with all $g_\ell=0$).
+Proper prime powers in $(X,2X+2]$ number $O(\sqrt X\log X)$.
+Since the summands are at most one, their total is
+$O(X/L^2+\sqrt X\log X)=o(Xt/L^2)$.
+Finally $|\mathcal P_X|\sim X/L$ converts the mean into
+\eqref{eq:interior}.
+\end{proof}
+
+\section{Mellin representation and the critical window}
+For $m$ with at least two distinct prime divisors put
+\begin{equation}\label{eq:signed-B}
+       h_m(t)=\mu(\rad m) B_{t/\log m}(m).
+\end{equation}
+The sign of $h_m(t)$ is independent of $t>0$.
+
+\begin{lemma}\label{lem:mellin}
+For such an $m$ and real $0<\alpha<2$, $\alpha\ne1$,
+\begin{equation}\label{eq:mellin}
+ Q_\alpha(m)=\frac1{\Gamma(-\alpha)}
+                \int_0^\infty h_m(t)\,\frac{dt}{t^{1+\alpha}}.
+\end{equation}
+Consequently
+\[
+ |Q_\alpha(m)|=\frac1{|\Gamma(-\alpha)|}
+                \int_0^\infty B_{t/\log m}(m)\,\frac{dt}{t^{1+\alpha}}.
+\]
+At $\alpha=1$, $Q_1(m)=0$.
+\end{lemma}
+
+\begin{proof}
+Use the usual Mellin integral for $x^\alpha$ on $x\ge0$, subtracting
+$1$ from $e^{-tx}$ when $0<\alpha<1$, and subtracting $1-tx$ when
+$1<\alpha<2$. The constant term disappears after summing $\mu(d)$.
+The linear term also disappears because
+\[
+ \sum_{d\mid m}\mu(d)\log(m/d)=\Lambda(m)=0.
+\]
+The remaining exponential sum factors exactly as
+\begin{align*}
+ \sum_{d\mid m}\mu(d)e^{-t\log(m/d)/\log m}
+ &=m^{-t/\log m}\prod_{\ell\mid m}(1-\ell^{t/\log m})\\
+ &=\mu(\rad m)\left(\frac{\rad m}{m}\right)^{t/\log m}
+                   \prod_{\ell\mid m}(1-\ell^{-t/\log m}).
+\end{align*}
+For this fixed $m$ the last expression is $O_m(t^2)$ at zero and
+bounded at infinity. The integral converges absolutely throughout
+$0<\alpha<2$. Its fixed sign proves the absolute-value formula.
+The assertion at one is the displayed von Mangoldt identity.
+\end{proof}
+
+\begin{proof}[Proof of the first two limits of Theorem~\ref{th:critical}]
+For the non-prime-power endpoints, Tonelli's theorem and
+Lemma~\ref{lem:mellin} identify the normalized error with
+\begin{equation}\label{eq:integrated-error}
+ \frac1{|\Gamma(-\alpha)|}
+         \int_0^\infty A_X(t)t^{-1-\alpha}\,dt.
+\end{equation}
+If $\alpha=1\pm c/H$, then
+$H/|\Gamma(-\alpha)|\to c$.
+By \eqref{eq:envelope}, the portions $0<t<1$ and $t>L$ in
+\eqref{eq:integrated-error} are $O_c(H^{-1})$.
+For example their integrals before the gamma factor are bounded by
+$C/(2-\alpha)$ and $CL^{1-\alpha}/\alpha$, respectively.
+
+In $1\le t\le L$, put $t=L^v$. The middle contribution is
+\[
+ \frac{H}{|\Gamma(-\alpha)|}
+       \int_0^1\frac{A_X(L^v)}{L^v}
+                   e^{-(\alpha-1)Hv}\,dv.
+\]
+The quotient is uniformly bounded and tends to one for each
+$0<v<1$ by Proposition~\ref{prop:interior}. Dominated convergence
+gives $c\int_0^1e^{-cv}\,dv=1-e^{-c}$ above one and
+$c\int_0^1e^{cv}\,dv=e^c-1$ below one.
+
+For $m=\ell^a$ with $a\ge2$, the exact formula is
+$Q_\alpha(m)=1-(1-1/a)^\alpha\in[0,1]$.
+Their $O(\sqrt X\log X)$ occurrences contribute $o(1)$ in
+\eqref{eq:error}, completing the proof with all composite endpoints.
+\end{proof}
+
+\section{Fixed binomial approximants}
+\begin{proof}[Proof of the final assertion of Theorem~\ref{th:critical}]
+For every fixed $k$ and sufficiently large $X$, all orders in
+\eqref{eq:Rk} lie in $(1,2)$. Their prime values are one, and
+$\sum_{j=1}^k(-1)^{j+1}\binom{k}{j}=1$.
+On a non-prime-power $m$ the Mellin formula and $t=L^v$ give the
+middle contribution
+\[
+ \mu(\rad m)\int_0^1
+       \frac{B_{L^v/\log m}(m)}{L^v}K_{k,H}(v)\,dv,
+ \qquad
+ K_{k,H}(v)=H\sum_{j=1}^k
+       \frac{(-1)^{j+1}\binom{k}{j}e^{-jv}}
+            {\Gamma(-1-j/H)}.
+\]
+Uniformly for $v\in[0,1]$,
+\begin{equation}\label{eq:binomial-kernel}
+ K_{k,H}(v)\longrightarrow
+       k e^{-v}(1-e^{-v})^{k-1}=:K_k(v)\ge0.
+\end{equation}
+The two end intervals of each Mellin integral contribute $O_k(H^{-1})$
+in total normalized absolute value, by the estimates already proved.
+For the middle interval, replacing $K_{k,H}$ by $K_k$ changes the
+normalized sum of absolute values by at most
+\[
+ \|K_{k,H}-K_k\|_\infty
+            \int_0^1\frac{A_X(L^v)}{L^v}\,dv=o_k(1).
+\]
+This uses $||z|-|z'||\le|z-z'|$ for each $m$. After replacement the
+integrand is nonnegative apart from the fixed sign $\mu(\rad m)$,
+so its absolute value may be taken inside the integral. Dominated
+convergence now gives
+\[
+ \int_0^1K_k(v)\,dv=(1-e^{-1})^k.
+\]
+Proper prime powers contribute $o_k(1)$, since $|R_{k,X}(\ell^a)|\le2^k-1$.
+\end{proof}
+
+\section{Signed limits and the role of the number of prime factors}
+
+The same envelope also describes the signed information that the
+absolute errors leave undetermined. Extend \eqref{eq:Q} to complex
+$\alpha$ with $\Re\alpha>0$ using real logarithms of positive bases
+and retaining the convention $0^\alpha=0$.
+
+\begin{corollary}
+Along every sequence $X\to\infty$ there is a subsequence, a number
+$\tau\ge0$ and a real $b\in L^\infty(0,1)$ with $|b|\le1$ almost
+everywhere such that, locally uniformly for $z\in\mathbb C$,
+\[
+\Mcal(Q_{1+z/H})\longrightarrow
+\tau+ z\int_0^1 e^{-zv}b(v)\,dv.
+\]
+Here $\tau$ is the subsequential limit of the normalized twin count.
+\end{corollary}
+\begin{proof}
+The upper sieve bounds $\tau_X$ uniformly. Define
+\[
+ b_X(v)=\frac{L^2}{2C_2X L^v}
+ \sum_{p\in\mathcal C_X} h_{p+2}(L^v).
+\]
+Its absolute value is bounded by $A_X(L^v)/L^v$, uniformly bounded
+on $0<v<1$ and tending pointwise to one. Pass to a subsequence with
+$\tau_X\to\tau$ and $b_X\to b$ weak-star in $L^\infty(0,1)$;
+separability of $L^1(0,1)$ gives sequential compactness on bounded
+sets. Testing against any integrable function and using the envelope
+gives $|b|\le1$ almost everywhere. For a fixed $m$ the integral in
+\eqref{eq:mellin} is analytic in $0<\Re\alpha<2$, with the reciprocal
+gamma factor supplying the value at one. Uniformly on compact
+$z$-sets the two tails contribute $O(1/H)$ by
+\eqref{eq:envelope}, and $H/\Gamma(-1-z/H)\to z$.
+The middle term is the stated Laplace integral with $b_X$ in place
+of $b$. Convergence is uniform on compact sets since
+$z\mapsto e^{-zv}$ has compact image there in $L^1(dv)$.
+The proper prime powers give $o(1)$ uniformly on these sets.
+\end{proof}
+
+\begin{corollary}
+Suppose $K_X\ge2$ and $K_X=o(\log\log X)$. For either order
+$\alpha=1\pm c/H$, $c>0$ fixed, the part of $\err(Q_\alpha)$ with
+$2\le\omega(p+2)\le K_X$ tends to zero.
+\end{corollary}
+\begin{proof}
+Let $A_X^{(\le K_X)}$ be \eqref{eq:AX} restricted to these endpoints.
+Fix $0<v<1$, put $t=L^v$ and $w=t/L$. When $\omega(m)\le K_X$,
+\[
+ B_{t/\log m}(m)
+ \le 2^{K_X}\!\!\!\!\prod_{\substack{\ell\mid m\\2<\ell\le X^{1/100}}}
+ \frac{1-\ell^{-w}}2.
+\]
+Use \eqref{eq:random-upper} with these halved local weights.
+By \eqref{eq:harmonic-envelope},
+$A_X^{(\le K_X)}(t)\ll2^{K_X}(t^{1/2}+L^2X^{-1/2})$.
+Since $2^{K_X}=L^{o(1)}$, the restricted envelope divided by $L^v$
+tends to zero. Dominated convergence with the full
+\eqref{eq:envelope}, including the two tails as before, proves the
+claim for both signs. The proof allows repeated prime bases.
+\end{proof}
+
+There is also a precise limitation of fixed positive integer moments.
+For $r$ positive logarithmic shares $x_i$ with sum one, let
+\[
+ q_k(x)=\sum_{S\subseteq\{1,\ldots,r\}}(-1)^{|S|}
+             \left(1-\sum_{i\in S}x_i\right)^k .
+\]
+For integer $k\ge1$, inclusion--exclusion makes this the probability
+of observing all $r$ categories in $k$ independent draws with
+probabilities $x_i$. Write
+\[
+ a_{k,r}=\frac1{r!}\int_{\sum x_i=1,\ x_i>0}
+       q_k(x)\frac{dx_1\cdots dx_{r-1}}{x_1\cdots x_r};
+ \qquad a_{k,1}=1.
+\]
+Expanding the multinomial over compositions $j_1+\cdots+j_r=k$
+with each $j_i\ge1$ and applying the simplex beta integral gives
+$a_{k,r}=(k/r!)\sum_{j_1+\cdots+j_r=k}\prod_i 1/j_i$, with
+positive parts understood. In particular $a_{k,r}=0$ for $r>k$,
+and coefficient extraction gives
+\[
+ \sum_{r=1}^k a_{k,r}z^r
+    = k[u^k]\exp\!\left(z\sum_{j\ge1}u^j/j\right)
+    = \frac{z(z+1)\cdots(z+k-1)}{(k-1)!}.
+\]
+At $z=1,-1$ this shows that multiplying the angular mass at $r$
+by $1+(-1)^r$ preserves its total $k$ for every $k\ge2$ while
+removing all mass at $r=1$. This is an identity for the simplex
+comparison measure. The preceding corollary supplies a separate
+statement on the actual shifted primes.
+
+\section{Scope, attribution and disclosure}
+The upper envelope uses a fixed dimension-two upper sieve; its constants
+are uniform in the local retention probabilities. Ford's total-variation
+theorem supplies the interior limit for a bounded valuation statistic at
+the subpower cutoff $y=\exp(L/\sqrt t)$. The gamma pole and a change of
+variables then select the window $\alpha-1\asymp1/\log\log X$.
+The proof does not evaluate a new signed prime correlation.
+
+The explicit absolute-error laws and finite binomial combinations are the
+proposed contribution. Their underlying distribution estimates are credited
+to the cited sources. A focused source comparison found no exact stated
+match for these moving-order constants, but this draft does not establish
+global priority or publication acceptance. Fixed integer-moment and
+probabilistic variants are not offered as separate papers.
+
+This note was developed from an unpublished research record. ChatGPT and
+AI review agents assisted with extraction, mathematical reconstruction,
+literature comparison and writing. Any AI checks described in the associated
+review record are internal, not external peer review or formal verification.
+DEEPAK KUMAR (\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}) is
+the research coordinator and contact. The original derivation and subsequent checks are preserved in the \href{https://github.com/cosmosgeek0/twin-prime-research-archive}{project archive}.
+
+\begin{thebibliography}{9}\small
+\bibitem{ford-model}
+K. Ford, \emph{Poisson approximation of prime divisors of shifted primes},
+arXiv:2408.03803v4 (2026), Theorem 1.
+\href{https://arxiv.org/html/2408.03803v4}{Readable primary text}.
+
+\bibitem{ford-asymptotic}
+K. Ford, \emph{On Bombieri's asymptotic sieve},
+arXiv:math/0401215.
+\href{https://arxiv.org/abs/math/0401215}{Primary preprint}.
+
+\bibitem{kouk}
+D. Koukoulopoulos, \emph{The Distribution of Prime Numbers},
+American Mathematical Society, 2019, Chapters 18--19.
+\href{https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf}{Author-hosted text}.
+\end{thebibliography}
+\end{document}

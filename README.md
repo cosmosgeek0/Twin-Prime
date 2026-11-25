@@ -15,6 +15,10 @@ This bound controls false positives. Proving that sufficiently many candidates p
 - **A long-divisor sign classification on three-prime products and an upper sieve for their shift by two.** Bounds a contribution where the neighboring integer satisfies specified factorization conditions. [PDF](papers/shift-two-sieve.pdf) · [LaTeX](papers/shift-two-sieve.tex)
 - **The signed contribution of two- and three-prime products to a truncated von Mangoldt convolution.** Computes the signed mean before restrictions on the neighboring integer are applied. [PDF](papers/truncated-divisor-weights.pdf) · [LaTeX](papers/truncated-divisor-weights.tex)
 
+- **Fractional moments for a shifted-prime divisor weight.** For orders tending to one, the normalized absolute composite errors tend to $1-e^{-c}$ and $e^c-1$. The note also treats a signed subsequential limit and fixed factor counts. [PDF](papers/fractional-moments.pdf) · [LaTeX](papers/fractional-moments.tex)
+- **Liouville signs on short differences.** Proves a conditional-on-a-dense-subset implication and gives short-window constructions showing where it fails, including a pair of squarefree composite neighbors. [PDF](papers/short-differences.pdf) · [LaTeX](papers/short-differences.tex)
+- **Prime-factor shapes and Liouville signs on two rough neighbors.** Adapts the Tao–Teräväinen correlation argument to two rough neighbors and gives independent finite shape tests and Liouville signs outside an exceptional set of scales. [PDF](papers/rough-neighbor-shapes.pdf) · [LaTeX](papers/rough-neighbor-shapes.tex)
+
 **Project coordinator and contact:** DEEPAK KUMAR · [admin@cosmosgeek.org](mailto:admin@cosmosgeek.org).
 
 The research and drafting involved ChatGPT and Codex. The coordinator is identified for correspondence. These manuscripts are public research drafts.

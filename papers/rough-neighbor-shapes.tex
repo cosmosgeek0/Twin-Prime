@@ -1,0 +1,674 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,allcolors=blue!45!black]{hyperref}
+\hypersetup{pdftitle={Prime-factor shapes and Liouville signs on two rough neighbors}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\e}{\mathrm e}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\E}{\mathbb E}
+\newcommand{\calL}{\mathcal L}
+\newcommand{\Dcal}{\mathcal D}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\dist}{\mathbb D}
+\allowdisplaybreaks[1]
+\raggedbottom
+\setlength\emergencystretch{1.8em}
+\title{\bfseries Prime-factor shapes and Liouville signs\\on two rough neighbors}
+\author{\normalsize Research coordination: DEEPAK KUMAR\\\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}}
+\date{\small Public research draft for specialist review}
+\begin{document}
+\maketitle
+\begin{abstract}
+We adapt the quantitative correlation argument of Tao and Ter\"av\"ainen
+to a centered difference of two multiplicative functions that agree on
+its carrier primes. The application conditions both integers $n,n+2$
+to have no prime factor below $\exp((\log X)^\gamma)$, with a sufficiently
+small fixed $\gamma>0$ and a cutoff frozen in each outer block.
+Outside a small set of scales, finite prime-factor shape tests have their
+ordinary independent laws, and the two actual Liouville signs are fair
+and independent of these tests. The result includes shrinking windows
+for a genuine near-full prime factor at each site. We prove the centered
+progression estimate, spell out the modified graph and circle reduction,
+and justify sampling at literal powers of two by endpoint stability.
+The result concerns rare rough populations and nonunit residuals; it
+does not give a twin-prime count or a statement at every scale.
+\end{abstract}
+
+\section{Frozen blocks, tests, and statements}
+Fix a large real $X$, put $L=\log X$, and keep
+\[
+ z=\exp(L^\gamma),\qquad R(n)=\one_{P^-(n)>z}
+\]
+fixed throughout the outer block $\sqrt X\le N\le X$.
+Here $R$ is completely multiplicative, with $R(1)=1$, and
+$\lambda(n)=(-1)^{\Omega(n)}$ is the Liouville function, counting
+prime factors with multiplicity. For large $X$, $R$ vanishes on even
+integers. Define the actual reference population
+\[
+ S_z(N)=\sum_{N<n\le2N}R(n)R(n+2),\qquad
+ V_2(z)=\frac12\prod_{2<p\le z}\left(1-\frac2p\right).
+\]
+The fundamental lemma gives, uniformly on this block and for every
+fixed $A>0$,
+\begin{equation}\label{eq:rough-main}
+ S_z(N)=NV_2(z)+O_A(NL^{-A}),\qquad
+ V_2(z)\sim\frac{2C_2e^{-2\gamma_E}}{(\log z)^2},
+\end{equation}
+provided $\gamma$ is a sufficiently small fixed positive number.
+Here $C_2=\prod_{p>2}(1-(p-1)^{-2})$ and $\gamma_E$ is Euler's constant.
+A proof of the uniform error used here is given below.
+
+Fix $\alpha>0$ and an integer $B$. A test $u$ is a step function on
+$[0,\infty)$, with values in $[0,1]$, which is one outside a union of
+at most $B$ intervals in $[\alpha,2]$. Its endpoints and heights may
+depend on $X$, but are prescribed independently of the integers being
+counted. Put
+\[
+ U(p)=u(\log p/L)
+\]
+and extend $U$ completely multiplicatively. Define the finite factorial
+integral
+\begin{equation}\label{eq:D}
+ D_u(t)=1+\sum_{j=1}^{\lfloor t/\alpha\rfloor}\frac1{j!}
+ \int_{\substack{x_i\ge\alpha\ (i\le j)\\x_1+\cdots+x_j\le t}}
+            \prod_{i=1}^j\frac{u(x_i)-1}{x_i}\,dx_i.
+\end{equation}
+Values on interval boundaries do not affect these integrals. We use
+the same notation $v,V,D_v$ for a second test. The functions $D_u$ are
+the ordinary one-integer prime-factor laws, not new distributions.
+
+\begin{theorem}[Frozen tests]\label{th:frozen}
+There are absolute numbers $r>0$ and $\gamma_0>0$ with the following
+property. Let $0<\gamma<\gamma_0$ be fixed, and put $a=r/4$, $b=r/2$.
+For each fixed finite family $\mathcal F$ of pairs of tests as above, there is a set
+$\mathcal E_X\subset[\sqrt X,X]$ of normalized logarithmic measure
+$O_{\alpha,B,|\mathcal F|}(L^{-b})$ such that, outside it, for all tests in the family
+and $\varepsilon,\varepsilon'\in\{-1,1\}$,
+\begin{align}
+ &\sum_{N<n\le2N} R(n)R(n+2)U(n)V(n+2)
+      \one_{\lambda(n)=\varepsilon}\one_{\lambda(n+2)=\varepsilon'}
+       \nonumber\\
+ &\hspace{2cm}=\frac14 D_u(\log N/L)D_v(\log N/L)S_z(N)
+                   +O_{\alpha,B}(NL^{-a}).\label{eq:frozen}
+\end{align}
+The same assertion holds outside a set of $O_{\alpha,B,|\mathcal F|}(L^{1-b})$
+literal powers $N=2^j$ in $[\sqrt X,X]$. The exceptional sets may
+depend on the prescribed test family and on the outer block $X$.
+All estimates are uniform in the endpoints and heights within that family.
+\end{theorem}
+
+Normalized logarithmic measure means $L^{-1}\int dN/N$. In particular
+the discrete conclusion concerns a vanishing fraction of the
+$\asymp L$ powers of two in the block. It is not inferred merely from
+the continuous exceptional measure.
+
+\begin{corollary}[Finite shape cells]\label{cor:shapes}
+Condition $n\in(N,2N]$ on both $n,n+2$ being $z$-rough. Record at each
+site the number of distinct prime factors in any prescribed fixed
+finite list of intervals for $\log p/\log N$, bounded away from zero.
+For all but a vanishing fraction of the powers of two in the outer
+block, their joint law tends to the product of the two ordinary
+one-integer laws described by \eqref{eq:D}. The two Liouville signs
+are independent fair signs, independent of these finite cells.
+The same holds after requiring both sites to be squarefree.
+\end{corollary}
+
+\begin{corollary}[Shrinking giant-prime windows]\label{cor:giants}
+Reduce $r$ if necessary, and choose fixed
+\[
+       0<\gamma,\sigma<r/64,
+\]
+with $\gamma<\gamma_0$. Fix $0<A_i<B_i$ for $i=1,2$.
+At site $n_i=n+2(i-1)$ require a genuine prime divisor $p_i$ with
+\begin{equation}\label{eq:giant-window}
+ \frac{\log(N/p_i)}{\log N}
+       \in[A_i(\log N)^{-\sigma},B_i(\log N)^{-\sigma}].
+\end{equation}
+For all but a vanishing fraction of the powers of two in the block,
+the proportion of the both-rough population satisfying both requirements is
+\[
+ (B_1-A_1)(B_2-A_2)(\log N)^{-2\sigma}(1+o(1)).
+\]
+Each of the four Liouville sign cells has one quarter of this mass,
+with relative error $o(1)$. These prime divisors are unique for large
+$X$, and their residual factors are
+$\exp(\Theta((\log N)^{1-\sigma}))$, not units.
+\end{corollary}
+
+The cutoff $z$ remains frozen in all three statements. No law for an
+ungridded moving cutoff $z(N)$, adaptive postselection of tests, or
+simultaneous uncountable family is asserted.
+
+\section{The centered progression input}
+We first prove the quantitative fact needed in place of the
+equidistribution premise of the printed correlation theorem.
+
+\begin{lemma}\label{lem:one-site}
+Uniformly in the test endpoints, $0\le D_u(t)\le1$ on compact
+subintervals of $(0,2)$, and $D_u$ is Lipschitz there with constants
+depending only on $\alpha,B$. The same Lipschitz control holds for
+changes of the interval endpoints.
+If $0<\gamma<1/25$, $X^{.35}\le M\le2X$, and $q\le L^{.01}$, then
+for every residue $c\pmod q$,
+\begin{equation}\label{eq:center-AP}
+ \sum_{\substack{M<n\le2M\\n\equiv c\pmod q}}
+       R(n)\bigl(U(n)-D_u(\log M/L)\bigr)
+                    =O_{\alpha,B}(ML^{-.35}).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Begin without the gate $R$. Except on integers divisible by a square
+of a prime $\ge X^\alpha$, expand
+\[
+ U(n)=\prod_{p\mid n}\bigl(1+(U(p)-1)\bigr)
+       =\sum_{\substack{d\mid n\\d\text{ squarefree}}}
+                  \prod_{p\mid d}(U(p)-1).
+\]
+There are a bounded number of selected factors, depending on $\alpha$.
+The exceptional square count on the full interval is
+$O(MX^{-\alpha}+\sqrt M)$, with bounded multiplicity, and is negligible
+in the estimates below. The same argument is valid down to $M\ge X^{.34}$.
+All selected primes are coprime to $q$ for large $X$.
+
+Restrict first to $d\le M\exp(-L^{.3})$. The complementary integer in
+the progression has count $M/(qd)+O(1)$. Summing the floor errors costs
+$O_{\alpha,B}(M\exp(-L^{.3}))$. In the complementary range write $n=dk$,
+where $k\le2\exp(L^{.3})$. Isolate one selected prime $p$, and fix $k$
+and the remaining selected product $d'$. On every nonempty interval,
+$M/(kd')\gg X^\alpha$. The prime-counting upper bound is consequently
+$O_\alpha(M/(kd'L))$. Summing $1/k$ gives $O(L^{.3})$, while the
+reciprocal mass of the bounded number of other macro primes is
+$O_\alpha(1)$. The entire tail therefore costs $O_{\alpha,B}(ML^{-.7})$,
+even after discarding the progression restriction.
+
+Prime harmonic partial summation on $[X^\alpha,4X]$ identifies the
+remaining principal with \eqref{eq:D}. The omitted terminal simplex
+strip has width $O(L^{-.7})$ and that same cost: one coordinate can
+be integrated last, and all nonzero coordinates are at least $\alpha$.
+The classical prime number theorem gives smaller errors uniformly at
+the interval endpoints. Thus
+\begin{equation}\label{eq:ordinary-AP}
+ \sum_{\substack{M<n\le2M\\n\equiv c\pmod q}}U(n)
+       =\frac MqD_u(\log M/L)+O_{\alpha,B}(ML^{-.7})
+\end{equation}
+when the progression is primitive to all selected macro primes; the
+latter holds here for every $c$. Formula \eqref{eq:D}, or the ordinary
+count with $q=1$, also shows $0\le D_u\le1$.
+The finite integral has bounded boundary densities on each compact
+$t$-range. Changing $t$ or any of the finitely many interval endpoints
+changes it by at most a constant times the total change. This proves
+the asserted Lipschitz bounds.
+
+Now insert upper and lower fundamental-lemma weights for $R$, supported
+on $e\le D=\exp(L^{.2})$, with $|\lambda_e^\pm|\le1$ and prime
+factors at most $z$; see \cite[Theorem 19.1]{kouk}.
+Since $U\ge0$, the sieve inequalities apply to $RU$ before centering.
+Also $U(e)=1$, so $U(em)=U(m)$ exactly. In a primitive class modulo $q$,
+only $(e,q)=1$ occurs. Apply \eqref{eq:ordinary-AP} at $M/e$; it remains
+at least $X^{.34}$ eventually. The absolute harmonic sum of the sieve
+weights is at most $1+\log D=O(L^{.2})$. Thus the summed count error
+is $O(ML^{-.5})$. Replacing
+$D_u(\log(M/e)/L)$ by $D_u(\log M/L)$ costs at most
+$O(ML^{-.6})$ after that harmonic sum.
+
+The two sieve principals are
+\[
+ \frac{M}{\varphi(q)}D_u(\log M/L)
+       \prod_{p\le z}(1-1/p)
+\]
+up to an error smaller than every fixed inverse power of $L$ times $M$.
+This uses the fundamental-lemma clock
+$\log D/\log z=L^{.2-\gamma}\to\infty$ and the fact that every prime
+dividing $q$ is below $z$. The identical calculation with $U=1$ gives
+the same principal without $D_u$. Subtracting proves
+\eqref{eq:center-AP}, with room in the displayed exponent.
+In a nonprimitive class both rough terms are identically zero.
+\end{proof}
+
+The same fundamental lemma applied to the forbidden classes $0,-2$
+for odd primes and the single class at two proves
+\eqref{eq:rough-main}. For example take level $D=X^{.1}$.
+The CRT remainder is $O(D\log D)$, uniformly for $N\ge\sqrt X$, and
+the clock $.1L^{1-\gamma}$ tends to infinity. The error is smaller than
+$NL^{-A}$ for any fixed $A$. The displayed asymptotic for $V_2(z)$ is
+Mertens' formula and the absolutely convergent twin singular product.
+
+\section{Short exponential sums for the centered difference}
+Set $f_1=RU$, $f_0=R$, and, for a fixed scale $M$,
+\[
+ d_M=D_u(\log M/L),\qquad F_M=f_1-d_M f_0.
+\]
+Both components are real, completely multiplicative and $1$-bounded;
+$F_M$ is $1$-bounded but need not be multiplicative.
+We use the standard distance
+\[
+ \dist(f,g;Y)^2=\sum_{p\le Y}\frac{1-\Re(f(p)\overline{g(p)})}{p}
+\]
+for multiplicative functions bounded by one.
+
+\begin{lemma}\label{lem:short}
+Fix a sufficiently small absolute $d_0\in(0,10^{-3}]$ and let
+$\calL=L^{d_0}$,
+$H_* =\exp(L^{1/10})$,
+$H_0=\exp(L^{(1-\epsilon_1)/10})$, with a sufficiently small fixed
+$\epsilon_1\in(0,1/100)$.
+There exists an absolute $\eta_0>0$ such that, uniformly for
+$X^{.4}\le M\le2X$, $H_0\le h\le H_*$ and $\theta\in\mathbb R$,
+\begin{equation}\label{eq:short}
+ \frac1M\int_M^{2M}
+       \left|\frac1h\sum_{x<n\le x+h}F_M(n)e(\theta n)\right|dx
+                         \ll_{\alpha,B}L^{-\eta_0}.
+\end{equation}
+The estimate remains valid for the slightly shorter lengths
+$h\calL^{-O(1)}$ used below. Here $e(t)=\exp(2\pi it)$.
+\end{lemma}
+
+\begin{proof}
+We give the modification of the short-sum proof in
+\cite[Sections 3.4--3.6]{tt}; its two components must not be treated
+as equidistributed functions on their own. Put
+$Q_0=\calL^{1/10}$ and $Q=h\calL^{-1/10}$.
+
+On the minor arcs, the argument of \cite[Section 3.5]{tt} gives a
+power of $\calL$ saving for the short exponential mean of any real
+$1$-bounded multiplicative function. It uses no progression-mean
+hypothesis. More explicitly, the Ramar\'e expansion uses
+$P_1=\log^{100}h$, $P_2=h^{1/2}$; the omitted integers cost
+$O(h\log P_1/\log P_2)$ and repeated primes cost $O(h/P_1)$.
+On each prime interval $P<p\le P'\le2P$, H\"older reduces the remaining
+mean to its fourth moment. The prime-tuple upper sieve and the
+geometric-sum estimate on these minor arcs give a fixed power saving
+in $\calL$, uniformly in the coefficients of modulus at most one.
+This is exactly the bound before the progression hypothesis is first
+used in \cite[Section 3.6]{tt}. Apply it separately to $f_1$ and $f_0$;
+$|d_M|\le1$ preserves the estimate for their difference.
+
+On a major arc write $\theta=a/q+\xi$ with
+$q\le Q_0$, $(a,q)=1$, and $|\xi|\le1/(qQ)$.
+Divide the short interval into pieces of length
+$\widetilde h=h\calL^{-1/5}$. On each residue modulo $q$ the extra
+phase varies by $O(\calL^{-1/10})$; the resulting mean error has this
+same bound after summing the pieces. It suffices to estimate the
+centered short means in each residue class.
+
+Nonprimitive classes are zero because $R$ removes every prime factor
+of $q$. In a primitive class use Dirichlet characters. For each
+component $f_i\chi$, subtract its own long mean on $(M,2M]$.
+If $\chi$ is real, the uniform Matom\"aki--Radziwi\l\l{} theorem
+\cite[Theorem 1]{mr} gives an $L^1$ short-minus-long bound
+$O(L^{-1/400})$. To check the numerical room, take its exceptional-set
+parameter $\delta=L^{-1/400}$ and use
+$\log\widetilde h\ge L^{.098}$: the exceptional fraction is
+$O(L^{-.015})$ plus an exponentially small term, and its remaining
+error $\log\log\widetilde h/\log\widetilde h$ is smaller.
+
+If $\chi$ is nonreal, the distance argument of
+\cite[Lemma C.1]{mrt}, with the small-modulus uniformity checked in
+\cite[Section 3.6]{tt}, gives
+\[
+ \inf_{|t|\le M}\dist(f_i\chi,n^{it};M)^2
+                         \ge\frac1{100}\log\log H_*.
+\]
+The corrected \cite[Theorem A.1]{mrt} therefore gives an $L^1$ short
+mean $O(L^{-1/2500})$: its squared-mean bound has first term
+$O(L^{-1/1000}\log L)$, with the other two terms smaller.
+Averaging the short means gives the same bound for the long mean,
+up to $O(\widetilde h/M)$, so their difference has that bound as well.
+Character and residue summations cost at most $q^2\le L^{.0002}$;
+a positive absolute saving remains.
+
+Only after these component estimates do we combine the long means.
+Their combination is the long character mean of $F_M$.
+Equation \eqref{eq:center-AP}, summed over residues if necessary,
+bounds it by $O_{\alpha,B}(qL^{-.35})$.
+Thus it is negligible with the same room. Taking the minimum of the
+minor-arc saving, $d_0/20$, and a smaller absolute major-arc saving
+proves \eqref{eq:short}. None of this applies the printed
+equidistribution premise to $f_1$ or $f_0$ separately.
+\end{proof}
+
+\section{The centered correlation adapter}
+\begin{proposition}\label{prop:adapter}
+For some absolute $r_0>0$, uniformly in each prescribed pair of tests,
+\begin{equation}\label{eq:integrated}
+ \frac1L\int_{\sqrt X}^X
+ \left|\frac1N\sum_{N<n\le2N}
+        F_N(n)R(n+2)V(n+2)\right|\frac{dN}{N}
+                          \ll_{\alpha,B}L^{-r_0}.
+\end{equation}
+The reflected orientation has the same estimate.
+\end{proposition}
+
+\begin{proof}
+Write $G=RV$. We reconstruct the marked graph reduction so that
+the nonmultiplicative first input is explicit. Use the scales of
+Lemma~\ref{lem:short}. Choose a small absolute $\kappa>0$ later and put
+\[
+ J=\lfloor\kappa\log\calL\rfloor,\qquad
+ V_*=\frac{\epsilon_1\log\log H_*}{J},\qquad C=\exp(V_*/2).
+\]
+For large $X$, $V_*$ is bounded above and below by constants depending
+on $\kappa,d_0,\epsilon_1$, and can be made as large as needed by
+reducing $\kappa$. Let $\cP_i$ consist of the primes with
+\[
+ C^{2i-2}<\frac{\log p}{\log H_0}<C^{2i-1}\quad(1\le i\le J).
+\]
+These disjoint banks satisfy
+$V_*/3\le v_i:=\sum_{p\in\cP_i}1/p\le V_*$ by Mertens, for large
+$X$. Choose $C\ge10$. For every selection $p_i\in\cP_i$, its product
+$P$ is at most $H_*$, since the geometric sum gives
+\[
+ \sum_i\log p_i\le
+ \frac{\log H_*}{C-C^{-1}}\le\log H_*.
+\]
+Also $J\le\epsilon_1^2\log\log H_*$, as required by the decoupling
+theorem, once $\kappa$ is sufficiently small.
+
+Every carrier prime lies above $z$ and below $X^\alpha$.
+Consequently $f_0(p)=f_1(p)=G(p)=1$, and complete multiplicativity gives
+\begin{equation}\label{eq:carrier}
+           F_N(Pn)=F_N(n),\qquad G(Pn)=G(n).
+\end{equation}
+This uses a unit dilation eigenvalue. It does not assert that
+$F_N(p)=1$; in fact $F_N(p)=1-d_N$ may be zero. All banks remain
+available, so no carrier-selection or small-mean fallback is used.
+Furthermore, uniformly for $P\le H_*$,
+\begin{equation}\label{eq:drift}
+          \|F_N-F_{N/P}\|_\infty
+                \ll_{\alpha,B}\frac{\log P}{L}\ll L^{-.9}.
+\end{equation}
+
+Consider the nonnegative marked quantity
+\[
+ S_{\emptyset}(N)=\sum_{p_i\in\cP_i\ (i\le J)}
+ \left|\frac1N\sum_{N<n\le2N}
+                   F_N(n)G(n+2P)\one_{P\mid n}\right|.
+\]
+Changing $n=Pm$ and using \eqref{eq:carrier} changes its inner sum
+to $P^{-1}$ times the correlation at scale $N/P$, with the center
+changed by \eqref{eq:drift}. Shifting the endpoints of the logarithmic
+$N$ integral by $\log P$ costs $O(L^{-.9})$, since the normalized
+correlation is bounded. Hence, if $\mathcal T$ denotes the left side
+of \eqref{eq:integrated},
+\begin{equation}\label{eq:marked-integral}
+ \frac1L\int_{\sqrt X}^X S_{\emptyset}(N)\frac{dN}{N}
+       =\left(\prod_{i=1}^Jv_i\right)
+                       \bigl(\mathcal T+O_{\alpha,B}(L^{-.9})\bigr).
+\end{equation}
+All scales after dilation remain above $X^{.4}$ for large $X$.
+
+Expand the divisibility product using
+$\one_{p\mid n}=(\one_{p\mid n}-1/p)+1/p$.
+Equivalently solve for the full divisibility term from the product of
+all centered factors. The triangle inequality bounds $S_{\emptyset}$
+by the all-centered term and, for each nonempty $I\subset[J]$, the term
+with factor $1/P_I$ and retained divisibility $P_{I^c}\mid n$.
+The all-centered term is $O(V_*^{.51J})$ by the bounded-input
+decoupling inequality \cite[Theorem 3.3]{tt}. To use its shift $P$,
+split $n$ modulo two; the resulting residues modulo each odd carrier
+prime are fixed, and its two functions are bounded. The interval
+length $\asymp N$ satisfies that theorem's size condition. Neither
+function is required to be multiplicative in this application.
+
+For a nonempty $I$, fix the complementary primes and dilate by
+$P_{I^c}$. Equations \eqref{eq:carrier}--\eqref{eq:drift} leave,
+apart from a harmless center error, a reciprocal-prime average
+\begin{equation}\label{eq:circle-target}
+ \sum_{d\in\Dcal_I}\frac1d
+ \left|\frac1M\sum_{M<m\le2M}F_M(m)G(m+2d)\right|,
+\end{equation}
+where $M=N/P_{I^c}$ and $\Dcal_I=\{\prod_{i\in I}p_i:p_i\in\cP_i\}$.
+We give the quantitative circle estimate for this expression.
+
+For a dyadic part $T/2<d\le T$, attach signs or unit phases $c_d$
+to realize the absolute values, and set
+\[
+ Q_T(\theta)=\sum_{\substack{d\in\Dcal_I\\T/2<d\le T}}
+                     \frac{c_d}{d}e(2d\theta),\qquad
+ v_T=\sum_{\substack{d\in\Dcal_I\\T/2<d\le T}}\frac1d.
+\]
+The carrier-product fourth moment \cite[Lemma C.2]{pilatte} gives
+\begin{equation}\label{eq:Q4}
+ \int_0^1|Q_T(\theta)|^4d\theta
+                  \ll\frac{V_*^{4J}}{T\log^4T},\qquad
+ \|Q_T\|_\infty\le v_T.
+\end{equation}
+The same bound holds with the $c_d$: expand the fourth moment and
+bound each coefficient by one. Replacing $\theta$ by $2\theta$
+preserves its integral. The prime banks above satisfy the separated
+factor condition used in that lemma; earlier factors have total
+logarithm at most a fixed small fraction of the last factor's logarithm.
+
+Average a simultaneous translation of the two bounded functions over
+$1\le t\le T$. Endpoint errors are $O(TV_*^J/M)$ after normalization.
+Fourier inversion expresses the dyadic part as
+$1/(MT)$ times an integral of $Q_T$ times the two short transforms.
+Their $L^2$ norms are $O(\sqrt T)$, the second transform is bounded
+by $O(T)$, and \eqref{eq:short} bounds the mean absolute value of
+the first by $O(MT\delta)$, where $\delta=L^{-\eta_0}$.
+Splitting at $|Q_T|=\epsilon$ and using \eqref{eq:Q4} yields the bound
+\[
+ O\left(\epsilon+
+     \frac{\delta V_*^{4J}v_T}{\epsilon^4\log^4T}
+     +\frac{TV_*^J}{M}\right).
+\]
+Choose $\epsilon=V_*^J\delta^{1/5}/\log T$.
+After summing the dyads, use
+$\sum_Tv_T\le V_*^{|I|}$ and
+$\sum_T1/\log T=O(\log L)$ for $H_0\le T\le H_*$.
+Thus \eqref{eq:circle-target} is at most
+$O(V_*^J L^{-\eta_1})$ for some absolute $\eta_1>0$,
+with exponentially small endpoint errors. This argument used only
+boundedness, the short exponential estimate, and the stated
+carrier-product fourth moment.
+
+Summing the complementary reciprocal weights and all subsets $I$
+therefore gives, for a fixed absolute $C_1$,
+\[
+ S_{\emptyset}(N)\ll V_*^{.51J}
+          +(C_1V_*^2)^J L^{-\eta_1}
+          +C_1^J V_*^J L^{-.9}.
+\]
+Divide \eqref{eq:marked-integral} by
+$\prod v_i\ge(V_*/3)^J$.
+Choose $\kappa$ so small that $3V_*^{-.49}<1$ uniformly for large
+$X$, and that $\kappa d_0\log(3C_1V_*)<\eta_1/2$.
+These choices are compatible because $V_*\asymp1/\kappa$ and
+$\kappa\log(1/\kappa)\to0$. The resulting bound is a negative
+fixed power of $L$. This proves \eqref{eq:integrated} for some
+positive absolute $r_0$, without assigning it an unsupported numerical
+value. The proof for shift $-2$ is identical, and changing a physical
+endpoint by two is negligible.
+\end{proof}
+
+\section{Signed projections and the rough joint mean}
+The actual signs require a second, directly applicable branch of the
+published theorem. Write
+\[
+ M(f;Y,Q)=\inf_{\substack{q\le Q,\ \chi\ ({\rm mod}\ q)\\|t|\le Y}}
+                   \sum_{p\le Y}\frac{1-\Re(f(p)\overline{\chi(p)}p^{-it})}{p}.
+\]
+The Liouville distance lower used in \cite[Remarks 3.2]{tt} gives
+$M(\lambda;X^2,L^{1/125})\ge c_\lambda\log L-O(1)$ for an absolute
+$c_\lambda>0$. Passing to $\lambda RU$ changes this squared distance
+by at most
+\[
+ \sum_{p\le z}\frac1p+\sum_{X^\alpha\le p\le X^2}\frac1p
+                    \le\gamma\log L+O_\alpha(1).
+\]
+Choose $\gamma<c_\lambda/4$ and choose the earlier $d_0$ also below
+$c_\lambda/10$. Then \cite[Theorem 3.1(ii)]{tt} applies to a signed
+axis $\lambda RU$ with the opposite input $RV$ or $\lambda RV$.
+It gives an absolute power-log bound outside a power-log exceptional
+set. Since the functions are bounded, it also gives an integrated
+bound of the form \eqref{eq:integrated}. This use is a direct use of
+the printed nonpretentious theorem, unlike the centered adapter.
+
+For the unsigned mean, Proposition~\ref{prop:adapter} first replaces
+$RU$ by $D_u(\log N/L)R$ against $RV$ at the other site.
+Use its reflected version to replace the latter $RV$ by $D_vR$.
+The two errors are integrated power-log errors because $0\le D_u\le1$.
+We obtain the main $D_uD_v S_z(N)$.
+Expand each sign indicator as $(1+\varepsilon\lambda)/2$; all three
+signed projections have the just-proved integrated bound. Reduce
+$r>0$ below the finitely many resulting exponents, and if necessary
+below $1/100$. We have proved, for the discrepancy $E(N)$ in each
+instance of \eqref{eq:frozen},
+\begin{equation}\label{eq:final-integrated}
+       \frac1L\int_{\sqrt X}^X |E(N)|\frac{dN}{N^2}\ll_{\alpha,B}L^{-r}.
+\end{equation}
+All estimates are uniform in fixed test complexity and endpoints.
+At this point choose $\gamma_0$ smaller than
+$1/25$, $c_\lambda/4$ and $r/64$. The preceding exponents are
+available before this final choice: their unsigned estimates used only
+$\gamma<1/25$, and the signed distance has a fixed margin.
+
+\section{Continuous scales, literal powers of two, and endpoint grids}
+Markov's inequality applied to \eqref{eq:final-integrated} with
+threshold $L^{-a}$, $a=r/4$, gives continuous exceptional measure
+$O(L^{-3r/4})$, which is stronger than the claimed $O(L^{-b})$,
+$b=r/2$.
+
+For the discrete assertion we use more than continuous measure.
+For each frozen test, the normalized discrepancy $C(N)=E(N)/N$
+obeys, when $N'$ is near $N$,
+\begin{equation}\label{eq:endpoint-stability}
+ |C(N')-C(N)|\ll_{\alpha,B}|N'/N-1|+1/N.
+\end{equation}
+The functions being summed are bounded and fixed in the block.
+Changing the interval changes at most $O(|N'-N|+1)$ terms, and the
+centers $D_u(\log N/L)$ and $D_v(\log N/L)$ are Lipschitz.
+The same elementary bound holds for $S_z(N)/N$.
+
+If $|C(2^j)|>L^{-a}$, equation \eqref{eq:endpoint-stability} gives a
+one-sided or two-sided logarithmic neighborhood of length
+$\gg_{\alpha,B}L^{-a}$ on which $|C(N)|\gg L^{-a}$.
+For large $X$ these neighborhoods around different powers of two are
+disjoint. Each contributes $\gg L^{-2a}$ to the unnormalized integral.
+Equation \eqref{eq:final-integrated} therefore bounds their number by
+$O(L^{1-r+2a})=O(L^{1-b})$. A finite union handles all tests and signs.
+This proves Theorem~\ref{th:frozen}; a small continuous exceptional
+set alone would not have justified this conclusion.
+
+We now pass from $\log p/L$ to $\log p/\log N$.
+Take a mesh $L^{-\eta}$ for $t=\log N/L\in[1/2,1]$.
+At each mesh point freeze all the required test endpoints in the
+outer logarithmic coordinate. There are $O(L^\eta)$ such tests,
+not an independent grid for every endpoint. The source bounds above
+are uniform in their endpoints. The exceptional fraction for their
+union is consequently $O(L^{-b+\eta})$.
+
+The discrepancy between a physical test and its frozen version is
+supported where a macro prime lies in one of finitely many endpoint
+strips of width $O(L^{-\eta})$. The ordinary strip mass is
+$O_{\alpha,B}(L^{-\eta})$ by \eqref{eq:D}.
+The unsigned two-site theorem, applied to $1$ minus the corresponding
+forbidden-strip multiplicative test, bounds the actual conditional
+strip mass by
+\begin{equation}\label{eq:grid-error}
+ O_{\alpha,B}(L^{-\eta}+L^{-a+2\gamma}).
+\end{equation}
+Every sign-cell indicator is nonnegative and at most one, so the same
+positive strip bound controls all sign-cell approximation errors.
+
+For finite factor-count cells first refine overlapping intervals into
+disjoint intervals, then use generating functions with step
+heights in $[0,1]$. Their degrees are bounded in terms of $\alpha$,
+since each selected prime has size at least a fixed power of $N$.
+Interpolation at a fixed finite set of distinct heights recovers all
+prescribed count cells. Its coefficients are fixed, so the estimates
+and their grid errors survive. Counts with and without multiplicity
+differ only at macro prime squares, whose ambient count is power-small.
+This proves Corollary~\ref{cor:shapes} when $\eta<b$ and $2\gamma<a$.
+Squarefree removal under the rough gate costs
+$O(N/z+\sqrt N)$, negligible even relative to the smaller populations
+below.
+
+For Corollary~\ref{cor:giants} use $\eta=r/16$ and
+$0<\gamma,\sigma<r/64$. Then
+\begin{equation}\label{eq:hierarchy}
+       2(\gamma+\sigma)<a,\qquad 2\sigma<\eta<b.
+\end{equation}
+In outer coordinates the giant-prime interval endpoints are
+$t-A_i t^{1-\sigma}L^{-\sigma}$ and
+$t-B_i t^{1-\sigma}L^{-\sigma}$; these are uniformly Lipschitz
+functions of $t\in[1/2,1]$. They remain bounded away from zero,
+so the same one-dimensional mesh applies.
+
+There is at most one prime in each giant window at a site. Use
+one minus the no-prime-in-window test and inclusion--exclusion.
+The ordinary one-site probability is exactly
+\[
+ m_i(N)=\int_{1-B_i(\log N)^{-\sigma}}^{1-A_i(\log N)^{-\sigma}}
+                       \frac{dx}{x}
+       \sim(B_i-A_i)(\log N)^{-\sigma};
+\]
+two selected primes cannot fit because both exponents exceed $1/2$.
+The frozen theorem gives product $m_1m_2$, and a quarter of it in
+each sign cell. The arithmetic and positive strip errors
+\eqref{eq:grid-error} are $o((\log N)^{-2\sigma})$ by
+\eqref{eq:hierarchy}, while the exceptional fraction still tends to
+zero. Finally
+$\log(n_i/p_i)=\log(N/p_i)+O(1)$ uniformly on the dyad, proving the
+stated nonunit residual size. This completes the proof of both corollaries.
+
+\section{Prior work and limitations}
+Ter\"av\"ainen \cite[Theorem 1.11]{ter} proves logarithmic independence
+of large-prime counts. Tao--Ter\"av\"ainen \cite[Theorem 1.8]{tt} gives
+quantitative ordinary smooth-neighbor laws outside exceptional scales.
+The ordinary factorial law, the decoupling inequality, the short-interval
+theorems and the carrier-product fourth moment are all prior inputs.
+The present contribution is the centered extension with simultaneous
+rare rough conditioning, actual parity cells and the shrinking-window
+consequence, including the discrete-scale sampling argument.
+
+The cutoff is subpower and chosen after the positive error exponents.
+The conclusions do not allow fixed polynomial roughness, every scale,
+postselected tests, or unit residuals. In particular a near-full prime
+factor times a growing residual is not a prime integer. No strict
+twin-prime lower bound follows from this note.
+
+A focused primary-source comparison did not locate this exact combination
+of relative conditioning and quantitative scopes. This is not a global
+priority claim. ChatGPT and AI review agents assisted with extraction, proof
+reconstruction, literature comparison and writing. Such checks are
+internal, not external peer review or formal verification.
+DEEPAK KUMAR (\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org})
+is the research coordinator and contact.
+
+\begin{thebibliography}{9}\small
+\bibitem{tt} T. Tao and J. Ter\"av\"ainen,
+\emph{Quantitative correlations and some problems on prime factors of consecutive integers},
+arXiv:2512.01739v2 (2026).
+\href{https://arxiv.org/html/2512.01739v2}{Primary text}.
+\bibitem{ter} J. Ter\"av\"ainen,
+\emph{On binary correlations of multiplicative functions},
+Forum Math. Sigma \textbf{6} (2018), e10.
+\href{https://arxiv.org/html/1710.01195v2}{Primary preprint}.
+\bibitem{mr} K. Matom\"aki and M. Radziwi\l\l,
+\emph{Multiplicative functions in short intervals},
+Ann. of Math. \textbf{183} (2016), 1015--1056.
+\href{https://arxiv.org/html/1501.04585v3}{Primary preprint}.
+\bibitem{mrt} K. Matom\"aki, M. Radziwi\l\l{} and T. Tao,
+\emph{An averaged form of Chowla's conjecture},
+Algebra Number Theory \textbf{9} (2015), 2167--2196;
+corrected arXiv version 1503.05121v3 (2022).
+\href{https://arxiv.org/html/1503.05121v3}{Corrected primary text}.
+\bibitem{pilatte} C. Pilatte,
+\emph{Improved bounds for the two-point logarithmic Chowla conjecture},
+arXiv:2310.19357, Appendix C.
+\href{https://arxiv.org/html/2310.19357}{Primary text}.
+\bibitem{kouk} D. Koukoulopoulos,
+\emph{The Distribution of Prime Numbers}, American Mathematical Society, 2019.
+\href{https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf}{Author-hosted text}.
+\end{thebibliography}
+\end{document}
