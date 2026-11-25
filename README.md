@@ -19,6 +19,14 @@ This bound controls false positives. Proving that sufficiently many candidates p
 - **Liouville signs on short differences.** Proves a conditional-on-a-dense-subset implication and gives short-window constructions showing where it fails, including a pair of squarefree composite neighbors. [PDF](papers/short-differences.pdf) · [LaTeX](papers/short-differences.tex)
 - **Prime-factor shapes and Liouville signs on two rough neighbors.** Adapts the Tao–Teräväinen correlation argument to two rough neighbors and gives independent finite shape tests and Liouville signs outside an exceptional set of scales. [PDF](papers/rough-neighbor-shapes.pdf) · [LaTeX](papers/rough-neighbor-shapes.tex)
 
+- **A folded divisor correlation and the weighted twin count.** [PDF](papers/folded-divisor-correlation.pdf) · [LaTeX](papers/folded-divisor-correlation.tex)
+- **A uniform negative bound for a two-form semiprime sieve score.** [PDF](papers/two-form-semiprime-score.pdf) · [LaTeX](papers/two-form-semiprime-score.tex)
+- **Two-site fractional divisor moments outside exceptional scales.** [PDF](papers/two-site-fractional-moments.pdf) · [LaTeX](papers/two-site-fractional-moments.tex)
+- **One- and two-site laws for the last marked prime factor.** [PDF](papers/last-prime-factor.pdf) · [LaTeX](papers/last-prime-factor.tex)
+- **Paired Jacobsthal cleanup and a conditional divergence statement.** [PDF](papers/paired-jacobsthal.pdf) · [LaTeX](papers/paired-jacobsthal.tex)
+
+- **Class-number criteria and Pell–Hurwitz false positives.** Includes the ramified-conductor case and a fixed-midpoint auxiliary-prime density. [PDF](papers/class-number-criteria.pdf) · [LaTeX](papers/class-number-criteria.tex)
+
 **Project coordinator and contact:** DEEPAK KUMAR · [admin@cosmosgeek.org](mailto:admin@cosmosgeek.org).
 
 The research and drafting involved ChatGPT and Codex. The coordinator is identified for correspondence. These manuscripts are public research drafts.
