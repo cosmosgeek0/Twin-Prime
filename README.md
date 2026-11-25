@@ -1,6 +1,6 @@
 # Twin Prime
 
-All twelve working papers are available here as PDFs with editable LaTeX. The [original research records](https://github.com/cosmosgeek0/twin-prime-research-archive) preserve the historical calculations and source chats.
+All twelve working papers are available here as PDFs with editable LaTeX. The [research archive](history/twin-prime-research-history-2026-11-25.tar.xz) and [original chat records](history/hosted-research-responses-2026-11-25.md) are preserved in this repository.
 
 ## Featured manuscript — Large prime divisors of Fermat congruences and semiprime pseudoprimes
 
