@@ -22,7 +22,7 @@ squarefree composites with an even number of factors. Its correlation
 at shift two agrees with the weighted twin-prime count up to $o(X)$
 on a dyadic interval. The proof combines a perturbed Kloosterman
 fraction estimate with a fixed-residue mean-value theorem for primes
-in the range of moduli near $\sqrt X$.
+in the range of moduli near $\sqrt X$. A signed central-divisor window on actual shifted primes has a further explicit main term from composite inputs.
 \end{abstract}
 
 \section{The weights and their correlations}
@@ -251,7 +251,172 @@ $2\prod_{p>2}p(p-2)/(p-1)^2=K$. Convolution with the single
 ramp $U$ gives $2KY+o(X)$, proving \eqref{ap}.
 Expanding $C(n)C(n+2)$ now proves the last assertion of the theorem.
 
+
+\section{A weighted Titchmarsh sum with two short labels}\label{sec:corner}
+There is another way to isolate the prime on the squarefree row. In the following definitions $r$ is odd and squarefree.
+Put \(I'=(X,2X]\),
+\[
+ {\cal I}_X=\int_X^{2X}\frac{dx}{\log x\log(x+2)},\qquad
+ D_0=\tfrac12\prod_{p>2}(1-2/p^2),\qquad
+ w(r)=\prod_{p\mid r}\frac{1-1/p}{1-2/p^2}
+.
+\]
+For odd squarefree \(n>1\), \(g<k\) and \(gk\mid n\), define
+\[
+ W_{g,k}(n)=-\mu(g)\mu(k)\frac{\log(k/g)}{\log n}
+ \sum_{\substack{j\mid n/(gk)\\\sqrt n/k\le j\le\sqrt n/g}}1 .
+\]
+Set this weight to zero in all other cases.
+\begin{theorem}\label{th:corner}
+For fixed \(0<c<1/10\) and any fixed \(M>0\),
+\[
+ \sum_{\substack{n\in I'\\n+2\ {\rm prime}}}\ 
+       \sum_{\substack{g<k\\gk\le X^c}} W_{g,k}(n)
+      =K{\cal I}_X+O_{c,M}(X(\log X)^{-M}).
+\]
+For every odd squarefree \(n>1\), the sum over all \(g<k\) is
+\(\mathbf1_{\{n\ {\rm prime}\}}\). Each prime \(n\in I'\) enters with \(k=n\).
+Thus the evaluated sum is supported on composites, on each of which the omitted
+terms cancel the retained terms exactly.
+\end{theorem}
+The range \(c<1/10\) is the short-modulus range in the fixed-residue
+divisor-switching theorem of Bombieri--Friedlander--Iwaniec and Fouvry
+in the formulation of Fiorilli \cite[Theorems 1.4 and 3.4]{Fiorilli}.
+The calculation below specializes that theorem to a squarefree, moving
+central-divisor window and gives its constant.
+
+\begin{proof}
+For squarefree \(n>1\) put \(S(n)=\sum_{d\mid n,\ d<\sqrt n}\mu(d)\).
+When \(\mu(n)=1\), complementary divisors have the same sign and \(S(n)=0\).
+When \(\mu(n)=-1\), their signs are opposite; the complementary-divisor identity
+in the proof of Theorem~\ref{main} gives \(A(n)=\Lambda(n)\).
+Thus \(-\mu(n)S(n)A(n)/\log n\) equals the prime indicator.
+In its double sum set \(g=(d,e)\), \(d=gj,\ e=gl,\ n=gkjl\).
+These four factors are pairwise coprime. Both cutoffs hold exactly for
+\(\sqrt n/k<j<\sqrt n/g\), with endpoints immaterial since \(n\) is nonsquare.
+The factors \(j,l\) are interchangeable, so the factor
+\(\log(kj/(gl))\) from \(A(n)\) averages to \(\log(k/g)\).
+Finally \(\mu(n)\mu(d)\mu(e)=\mu(g)\mu(k)\).
+This proves the pointwise formula.
+
+We evaluate the truncated sum first in the form
+\[
+ -D_0{\cal I}_X
+ \sum_{\substack{g<k,\ gk\le X^c\\gk\ {\rm odd\ squarefree}}}
+ \frac{\mu(g)\mu(k)w(gk)}{gk}\log^2(k/g)+O_{c,M}(XL^{-M}). \tag{A}
+\]
+Here and below \(L=\log X\).
+Partition \(n,g,k\) into multiplicative intervals of relative width \(L^{-B}\).
+Freezing the two \(j\)-endpoints costs \(O(X^{1/2+c+o(1)}+XL^{-B+O(1)})\).
+Indeed for each \(g,k\), rounding includes only multiples of \(gkj\)
+in collars \(|n-(gj)^2|\ll XL^{-B}\) or the analogous collar with \(kj\).
+Summing the unit endpoint error and the lengths divided by \(gkj\) over
+the relevant dyadic \(j\)-ranges costs
+\(O(\sqrt X/g+\sqrt X/k+XL^{-B}/(gk))\).
+One can apply this bound before opening the squarefree condition. The
+partition has disjoint cells before rounding and bounded overlap on the collars.
+
+Expand \(\mu^2(n)=\sum_{h^2\mid n}\mu(h)\) and truncate at \(h\le L^C\),
+using an arbitrarily large fixed \(C\). At most \(O(XL^{-C}+\sqrt X)\)
+integers have a larger square divisor; their total divisor-weighted contribution
+is \(O_M(XL^{-M})\) by Cauchy--Schwarz and fixed divisor moments.
+Take all labels odd (the prime \(n+2\) is odd), and put \(r=gk\).
+Write \(t=h^2/(r,h^2)\), \(d=(j,t)\), \(j=dj'\). Expand
+\(\mathbf1_{(j',t/d)=1}\) by divisors \(e\mid t/d\), and put \(j'=eu\).
+The exact progression modulus for the free variable \(u\) is
+\([rj,h^2]=rteu\). With \(h,t,d,e\) fixed, \(u\) runs through one interval,
+and the short modulus \(s=rte\) satisfies \(s\le X^{c+o(1)}\).
+The restrictions on \(g,k,r\) do not depend on \(u\).
+
+Apply Fiorilli's Theorem 1.4 with residue \(2\), for which the condition
+\((su,2)=1\) exactly retains the odd \(u\). The theorem sums over \(s\)
+the absolute values of the \emph{signed} sums of progression errors over
+\(u\). Differencing endpoints supplies each rectangular box. Its bounds
+\(s\le X^{c+o(1)},\,u\ll\sqrt X,\ su\ll X^{0.61}\) meet the hypotheses
+with power slack. The total error is \(O_M(XL^{-M})\) even with the
+short-label multiplicities and all logarithmic partitions. To see this,
+let \(E_s\) be the absolute inner discrepancy for a fixed box. The theorem
+gives \(\sum_s E_s\ll_A XL^{-A}\); directly summing the progression
+bound \((X/(su)+1)L\) and the reciprocal-totient main terms gives
+\(E_s\ll XL^{O(1)}\tau(s)^{O(1)}/s\).
+Cauchy--Schwarz with measure \(E_s\), followed by harmonic divisor-moment
+bounds, absorbs any fixed power of \(\tau(s)\) from counting \(g,k\).
+Fiorilli's \(\Lambda(2)\) subtraction costs \(X^{0.61+o(1)}\).
+Prime powers cost \(X^{1/2+o(1)}\) on the physical row. Partial summation
+supplies \(dx/\log(x+2)\) for primes.
+
+In the main term the \(h\)-tail can be restored absolutely: writing
+\(b_0=rj\), one has
+\[\sum_{b_0\le3X}\frac{\tau_3(b_0)}{[h^2,b_0]}\ll \frac{\tau(h)^{O(1)}L^3}{h^2}\]
+by expanding the gcd over divisors of \(h^2\).
+The reciprocal-totient replacement costs \(O(\log\log(3X))\) for \(h\le X\);
+for larger \(h\) use \(d/\varphi(d)\ll_\eta d^\eta\) with \(d=[h^2,b_0]\)
+with \(\eta>0\) small. The reassembled density is at most \(1/\varphi(rj)\);
+the preceding collar argument for its integrated length restores the exact
+window. Smooth logarithmic weights are handled by partial summation or
+freezing to arbitrary inverse-log accuracy.
+
+The exact local density is zero unless \(rj\) is odd and squarefree.
+For \(p\mid rj\), retaining exactly one power of \(p\) in \(n\) gives
+a density \(1/p\) given primality at \(n+2\). For odd \(p\nmid rj\) the
+square exclusion gives \(c_p=1-1/[p(p-1)]\). Hence the density is
+\((rj)^{-1}\prod_{p>2,\ p\nmid rj}c_p\).
+The multiplicative function
+\(b_r(j)=\mu^2(j)\mathbf1_{(j,2r)=1}\prod_{p\mid j}c_p^{-1}\)
+has mean
+\[
+ B_r=\tfrac12\prod_{p\mid r}(1-1/p)
+               \prod_{p>2,\ p\nmid r}(1-1/p)(1+1/(pc_p)).
+\]
+Its partial sums to \(Z\) are \(B_rZ+O_\eta(Z^{3/4}r^\eta)\):
+on dividing its Dirichlet series by \(\zeta(s)\), the Euler factors off
+\(2r\) become \(1+(c_p^{-1}-1)p^{-s}-c_p^{-1}p^{-2s}\), and the
+exceptional factors are \(1-p^{-s}\). The absolute coefficient norm at
+\(3/4\) is \(O_\eta(r^\eta)\). Every window endpoint exceeds \(X^{0.4}\);
+harmonic summation yields \(B_r\log(k/g)\) with a power-saving error.
+Since \((1-1/p)(c_p+1/p)=1-2/p^2\), the resulting local coefficient is
+\(D_0w(r)/r\), proving (A).
+
+It remains to price the short-label sum. Take \(U=X^\beta\) with
+\(0<2\beta<c\). On \(g,k\le U\) the triangular sum is half the square
+by symmetry. The bivariate harmonic series is
+\[
+ \prod_{p>2}(1-w(p)p^{-1-s}-w(p)p^{-1-t})
+   =\frac{G(s,t)}{\zeta(1+s)\zeta(1+t)}.
+\]
+The coefficients of \(G\) are absolutely summable with a positive power
+margin about \((0,0)\). The prime number theorem with the classical
+zero-free-region error gives the harmonic M\"obius moments of degrees zero,
+one and two up to \(U\), with arbitrary inverse-log error. Convolution
+therefore evaluates the centered square moment by
+\((\partial_s-\partial_t)^2\) at zero, giving \(-2G(0,0)\).
+For completeness, truncating both convolution variables at \(U^{1/2}\)
+costs a power saving; for the remaining terms the harmonic M\"obius
+partial sums, including their first two logarithmic derivatives, approach
+their respective limiting moments uniformly to every inverse-log order.
+Local multiplication gives \(D_0G(0,0)=K\).
+
+On the rest of \(g<k,\ gk\le X^c\), the \(k\)-interval lies above \(U\).
+For fixed \(g\) all three harmonic moments of \(\mu(k)w(k)\mathbf1_{(k,2g)=1}\)
+on any such interval are \(O_M(L^{-M})\), uniformly for \(g\le X^c\).
+Indeed divide the ordinary Dirichlet series of this multiplicative
+coefficient by \(1/\zeta(s)\). At \(p\nmid2g\) the correction is
+\((1-w(p)p^{-s})/(1-p^{-s})\), with \(w(p)=1+O(1/p)\).
+At \(p\mid2g\) it is \(1/(1-p^{-s})\).
+At \(\sigma=1-1/\log\log X\) their joint absolute coefficient norm
+is \(L^{O(1)}\): for exceptional \(p\le L^2\) use Mertens' estimate and
+\(p^{1-\sigma}\le e^2\); above \(L^2\) use their number \(O(L)\).
+Rankin's inequality then makes the harmonic correction tail beyond \(U^{1/2}\)
+smaller than every inverse power of \(L\), also with up to two logarithms.
+For shorter correction variables both endpoints in the remaining M\"obius
+sum are polynomially large, and their limiting moments cancel by
+differencing. Summing over \(g\) costs only logarithms. This proves
+Theorem~\ref{th:corner}.
+\end{proof}
+
 \paragraph{Provenance.}
+The final section extracts the squarefree Titchmarsh calculation in the archived November 14 research record, lines 16048--16091, and its original selection review.
+
 ChatGPT and Codex contributed the mathematical derivation and drafting.
 The source is the second archived reply in \emph{Confirm research
 rules}, \href{https://github.com/cosmosgeek0/Twin-Prime/blob/main/history/hosted-research-responses-2026-11-25.md}{hosted research record}.
@@ -273,5 +438,8 @@ triple correlations}, Integers \textbf{3} (2003), A5.
 \bibitem{Vaaler} J.~D.~Vaaler,
 \emph{Some extremal functions in Fourier analysis},
 Bull. Amer. Math. Soc. (N.S.) \textbf{12} (1985), 183--216.
+\bibitem{Fiorilli} D.~Fiorilli,
+\emph{On a theorem of Bombieri, Friedlander, and Iwaniec},
+\href{https://arxiv.org/abs/1108.0439}{arXiv:1108.0439}.
 \end{thebibliography}
 \end{document}
