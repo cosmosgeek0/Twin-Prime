@@ -33,7 +33,7 @@ inequality handle large gcds. We also bound the number of composite
 of \(n-1\) gives a further bound for prime powers common to
 \(n\) and \(a^{n-1}-1\) at any fixed base \(a\ge2\). These estimates quantify
 the composite contribution to two possible counts of twin primes.
-We also estimate false positives in simultaneous multiplicative-order tests and separate three explicit background terms in a shifted logarithmic gcd moment. For two independent random bases, a rank-zero elliptic curve bounds intersections of composite templates, giving a squared passing weight of $O_\epsilon(X^{3/7+\epsilon})$ on the specified rough composite pairs. A lower bound large enough to force infinitely many twin primes remains open.
+We also estimate false positives in simultaneous multiplicative-order tests and separate three explicit background terms in a shifted logarithmic gcd moment. For two independent random bases, a rank-zero elliptic curve bounds intersections of composite templates, giving a squared passing weight of $O_\epsilon(X^{3/7+\epsilon})$ on the specified rough composite pairs. An upper sieve for the mixed prime--semiprime rows gives an untrimmed squared-weight error of $O_\epsilon(\sqrt X/(\log X)^{3-\epsilon})$. A lower bound large enough to force infinitely many twin primes remains open.
 \end{abstract}
 
 \section{Semiprime pseudoprimes}
@@ -543,6 +543,131 @@ semiprime site beside a prime. The first bound requires a lower
 estimate on its retained passing mass to give information on the
 number of twin pairs.
 
+
+\subsection{The untrimmed mixed rows}
+\begin{corollary}\label{cor:mixed}
+On all the rough rows of Theorem~\ref{thm:templates}, with no
+template deletion,
+\[
+    0\le \sum_n\kappa(n)^2-T_X
+       \ll_{\beta,\epsilon} \frac{\sqrt X}{(\log X)^{3-\epsilon}} .
+\]
+\end{corollary}
+\begin{proof}
+The composite/composite and square-site cases were already bounded.
+Consider a remaining mixed row with composite site
+\(m=(ag+1)(bg+1)\), \(a<b\) coprime and \(g\) the even gcd of the
+two prime factors minus one. Put \(t=g/2\), and take \(s=1\) for a
+left composite, \(s=-1\) for a right composite. The prime on the
+other site supplies local passing probability one. Direct reduction
+of \(E_n/g\) modulo \(a,b\) gives
+\[
+ \kappa(n)=\frac{(a,s+bt)(b,s+at)}{ab}.
+\]
+In fact \(m-1=g(gab+a+b)\), and the other factor in \(E_n/g\) is
+\((m+1)/2\) or \((m-3)/2\), according to the orientation. Reduction
+modulo \(a\) gives \(b(s+bt)\), with \(b\) a unit; the other
+calculation is symmetric.
+
+Write \(Z=X^{1/5}\). Outside \(ab\le Z\) the bound
+\(O_\epsilon(X^{3/7+\epsilon})\) for one composite site from the
+second part of Theorem~\ref{thm:templates} still applies.
+For the retained templates sum over \(u,v\ge1\) with weights
+\((uv)^{-2}\) and the necessary conditions
+\[
+ a\mid u(s+bt),\qquad b\mid v(s+at).
+\]
+This dominates the true \(\kappa(n)^2\): take \(u,v\) to be the two
+local indices from the preceding proof. Each pair of conditions
+allows at most one class of \(t\) modulo
+\(Q=(a/(a,u))(b/(b,v))\). The interval has length
+\(O(\sqrt{X/(ab)})\). Its rounding errors summed over \(ab\le Z\)
+and \(u,v\) cost \(O(Z\log(2Z))\). Since
+\[
+ \sum_{u\ge1}(a,u)/u^2
+ =\zeta(2)\sum_{h\mid a}\varphi(h)/h^2
+ \le \zeta(2)\sigma_{-1}(a),
+\]
+the total length term with \(ab>Y=(\log X)^{12}\) is at most
+\[
+ \ll\sqrt X\sum_{ab>Y}(ab)^{-3/2}\sigma_{-1}(a)\sigma_{-1}(b)
+ \ll\sqrt X\,Y^{-1/3}.
+\]
+The last estimate follows by inserting \((ab/Y)^{1/3}\) and
+using the absolutely convergent Dirichlet series of \(\sigma_{-1}\)
+at \(7/6\).
+
+For \(ab\le Y\), consider each admissible class of \(t\).
+Its parameter \(h\) satisfies \(t=t_0+Qh\), \(0\le t_0<Q\le ab\).
+Count only parameters for which both linear polynomials \(2at+1\),
+\(2bt+1\) and the quadratic
+\[
+       (2at+1)(2bt+1)+2s
+\]
+are prime. At the true sizes in our dyad \(t\asymp\sqrt{X/(ab)}\).
+If the quadratic has square discriminant it factors in
+\(\mathbb Z[t]\) up to an integer content. Its two nonconstant factors
+may be taken with coefficients polynomial in \(a,b\) by the rational
+root theorem. Both factors then have magnitude greater than one
+at the true sizes for all large \(X\). A zero discriminant is also
+excluded by \((a-b)^2=8s ab\), which has no positive rational ratio
+\(a/b\). In the remaining case put \(D'=(a-b)^2-8s ab\) and let
+\(\chi\) be the nonprincipal primitive quadratic character of its
+squareclass. Outside the primes dividing \(2abQ(a-b)D'\), the number
+of forbidden residues modulo \(p\) is \(3+\chi(p)\). Indeed the
+two linear roots are distinct and neither annuls the quadratic.
+The substituted discriminant has the same squareclass since \(Q\)
+is invertible. Every excluded prime is bounded by a fixed power
+of \(\log X\).
+
+Fix \(0<\eta<1/10\) and a sufficiently small absolute \(\delta>0\).
+Sieve by primes \(\exp(L^\eta)<p\le X^\delta\), with \(L=\log X\).
+For these primes the root sum satisfies
+\[
+ \sum_p\frac{3+\chi(p)}p=3(1-\eta)\log L+O_\eta(1).
+\]
+Here prime harmonic summation treats the constant, while
+Siegel--Walfisz, with partial summation, applies uniformly to the
+nonprincipal character of conductor \(\ll L^{O(1)}\): throughout
+this interval the conductor is \(\ll(\log p)^{O(1/\eta)}\).
+The ordinary upper-bound sieve in dimension at most four
+\cite[Chapter~19]{Kouk} gives
+\[
+ \ll_\eta \frac{\sqrt X}{\sqrt{ab}\,Q} L^{-3+3\eta}
+             +O(X^{1/8})
+\]
+parameters. For the error take sieve level \(X^{1/10}\), choose
+\(\delta\) small relative to that level, and use the CRT bound
+\(O(4^{\omega(d)})\) for the remainder at each squarefree sieve
+index \(d\). The standard multiplicative upper dimension bound
+follows from the pointwise root bound four and Mertens' estimate.
+The true prime factors all exceed \(X^\delta\) for large \(X\).
+The power errors cost \(O(X^{1/8}Y\log(2Y))\) after summing the
+convergent weights in \(u,v\). The length terms before the sieve
+factor sum to \(O(\sqrt X)\) by the preceding divisor-series argument.
+Take \(3\eta<\epsilon\) to conclude.
+\end{proof}
+
+There is also a high-order selection valid for every fixed \(\beta>0\)
+in the rough range. For odd \(n\) put
+\[
+   \Delta=(n-1)(n+1)-\varphi(n)\varphi(n+2).
+\]
+This is zero exactly when both sites are prime. On any other rough
+row it is positive and \(O_\beta(X^{2-\beta})\): each site has
+\(O_\beta(1)\) factors, and the Euler product for its totient loses at
+most \(O_\beta(X^{-\beta})\) proportionally. Every unit in the
+passing subgroup has order dividing both \(2E_n\) and
+\(\varphi(n(n+2))\), hence also \(\Delta\). Choosing
+\(D=C_\beta X^{2-\beta}\) with sufficient \(C_\beta\) rules out
+every composite row with a passing unit of order greater than \(D\).
+At a twin the full unit group is \(C_2\times C_{E_n}\), since
+\((n-1,n+1)=2\). At most \(2D\tau(E_n)\) elements have order at most
+\(D\), by projection onto the cyclic factor. The fraction discarded
+there is \(O_{\beta,\epsilon}(X^{-\beta+\epsilon})\).
+The existence of arbitrarily large inputs carrying such a
+high-order passing unit is the unresolved part.
+
 \section{A shifted logarithmic gcd moment}
 
 For \(n>1\) put \(G(n)=\log\gcd(n,2^{n-1}-1)\) and
@@ -652,5 +777,8 @@ Mathematika \textbf{12} (1965), 201--225.
 
 \bibitem{E24} The LMFDB collaboration, \emph{Elliptic curve 24.a2
 (Cremona label 24a3)}, \href{https://www.lmfdb.org/EllipticCurve/Q/24/a/2}{curve equation and Mordell--Weil group}.
+\bibitem{Kouk} D. Koukoulopoulos, \emph{The Distribution of Prime
+Numbers}, Graduate Studies in Mathematics \textbf{203}, American
+Mathematical Society, 2019. \href{https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf}{Author's text}.
 \end{thebibliography}
 \end{document}
