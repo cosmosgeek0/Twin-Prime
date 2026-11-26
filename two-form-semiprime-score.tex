@@ -6,7 +6,7 @@
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}
 \newcommand{\ind}{\mathbf{1}}
-\title{A uniform upper bound for a two-form semiprime sieve score}
+\title{A two-form semiprime sieve bound and transfer tests for gap two}
 \author{\small \href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}\qquad \href{mailto:b321014@iiit-bh.ac.in}{b321014@iiit-bh.ac.in}}
 \date{Public research draft}
 \begin{document}
@@ -18,8 +18,10 @@ upper bound of $-0.01265$ times the denominator quadratic form.
 The estimate is uniform in the degree and coefficients of the
 polynomial and in the admissible fixed lower factor cutoff.
 We also show that affine gap-two identities obtained by odd
-positive rescaling form a bipartite graph. These statements give
-two limitations of particular attempts to use semiprime pairs.
+positive rescaling form a bipartite graph. For a geometric construction
+with signed circle curvatures $-p,p+2$, we classify all integral
+Descartes completions of the prescribed pair and compute a gap
+of quadratic size before the next possible prime tangent curvature.
 \end{abstract}
 
 \section{The two-form quadratic form}
@@ -120,9 +122,113 @@ selected pairs by identities of the specified type. A theorem
 giving an unspecified pair from three indices therefore requires
 additional information to force such a rescaled gap.
 
+\section{A signed Apollonian construction for the prescribed gap}
+A second way to enforce a difference of two is to prescribe the
+signed pair of curvatures $-p,p+2$ and apply a theorem on primes
+tangent to the circle of curvature $-p$. For a growing prime anchor
+$p$, this would require a tangent prime below a cutoff depending on
+$p$. We compute that cutoff and the range of the fixed-form estimate.
+A Descartes quadruple is a vector of oriented curvatures satisfying
+\[
+ 2(a^2+b^2+c^2+d^2)=(a+b+c+d)^2 .
+\]
+Its Apollonian packing is obtained by the integral Descartes
+reflections. A circle's tangent curvatures admit a positive-definite
+shifted binary quadratic form parametrization due to Sarnak; we use
+Proposition~1.2 of \cite{FHRS}. In a quadruple $(a,b,c,d)$, primitive
+pairs $(x,y)$ give the tangent curvatures at $a$ as the values of
+\[
+ f_a(x,y)-a=(b+a)x^2+(a+b+d-c)xy+(d+a)y^2-a .
+\]
+
+\begin{proposition}
+Fix a prime $p\ge5$. Write $T=(p+1)^2/2$.
+All ordered integral completions $(-p,p+2,c,d)$ have the form
+\[
+             c=T+2h(h-1),\qquad d=T+2h(h+1),\qquad h\in\mathbb Z .
+\]
+The resulting unshifted tangent forms at $-p$ belong to one proper
+equivalence class of discriminant $-4p^2$. In each case $p+2$ occurs
+as a tangent curvature, and every prime tangent curvature other than
+$p+2$ is at least $2p^2+p+8$.
+If $p\equiv2\bmod3$, every such prime is at least $2p^2+p+72$.
+\end{proposition}
+\begin{proof}
+The Descartes equation rearranges to
+$(a-b)^2+(c-d)^2=2(a+b)(c+d)$.
+For $a=-p,b=p+2$ this becomes
+\[
+              4(p+1)^2+(d-c)^2=4(c+d).
+\]
+Thus $d-c$ is even. Since $c+d$ is then even, reduction modulo eight
+gives $4\mid d-c$. Set $d-c=4h$; substitution and taking half the sum
+and difference gives the stated formulas. Conversely these formulas
+satisfy the equation. The quadruple is primitive since $(p,p+2)=1$,
+and $h=0$ gives $(-p,p+2,T,T)$.
+
+Substitution in the tangent form gives
+\[
+ f_h(x,y)=2x^2+(2+4h)xy+
+ \left((p^2+1)/2+2h(h+1)\right)y^2=f_0(x+hy,y).
+\]
+The change of variables has determinant one and preserves primitivity.
+The form $f_0$ is primitive because $(p^2+1)/2$ is odd, and its
+discriminant is $-4p^2$. It suffices to examine
+\[
+ q_p(x,y)=p+f_0(x,y)=p+\tfrac12\bigl((2x+y)^2+p^2y^2\bigr).
+\]
+If $y=0$ then $x=\pm1$, yielding $p+2$. If $y$ is odd then the
+two squares in parentheses are $1\bmod8$, so $q_p$ is even and
+greater than $2$. Otherwise write $y=2z$, where $z\ne0$ and $x$ is
+odd. Now
+\[
+ q_p(x,2z)=p+2(x+z)^2+2p^2z^2.
+\]
+For $|z|=1$ the integer $x+z$ is even. When $x+z=0$ the value is
+$p(1+2p)$; otherwise $|x+z|\ge2$. For $|z|\ge2$ the value is at
+least $p+8p^2$. This proves the first bound. If $p\equiv2\bmod3$
+and $|z|=1$, the value is $1+2(x+z)^2\bmod3$. A prime in this
+range is greater than three, forcing $3\mid x+z$ and hence
+$|x+z|\ge6$ unless $x+z=0$. For $|z|\ge2$ the preceding bound
+already exceeds $2p^2+p+72$.
+\end{proof}
+
+For each fixed $p$, Theorem~1.3 of \cite{FHRS} gives prime
+curvature counts of order $B/(\log B)^{3/2}$ as $B$ grows.
+In contrast, for $B=Cp^2$ the display for $q_p(x,2z)$ shows
+$|z|\le\sqrt{C/2}$ and $|x+z|\le p\sqrt{C/2}$. There are at
+most $O_C(p)$ pairs and hence that many distinct prime curvatures,
+including the possible value $p+2$. A positive lower constant
+independent of $p$ at this scale would contradict this count.
+Changing the completion $(c,d)$ leaves all represented values unchanged.
+
+\subsection*{Direct congruence restrictions}
+\begin{proposition}
+All odd curvatures in a primitive integral Apollonian packing are
+congruent modulo four. Moreover, if $p,p+2$ are primes with $p>3$,
+no integral Descartes quadruple contains $2p$ and $2(p+2)$.
+\end{proposition}
+\begin{proof}
+The Descartes equation forces an even number of odd coordinates.
+Primitivity excludes zero such coordinates and four odd coordinates
+would require a square equal to $8\bmod16$. Write the two odd
+coordinates as $a,b$. If the even coordinates $c,d$ have different
+residues modulo four, the same equation would require a square equal
+to $12\bmod16$. Thus $c\equiv d\bmod4$ and $a+b\equiv2\bmod4$,
+giving $a\equiv b\bmod4$. Replacing an odd coordinate by twice the
+sum of the others minus that coordinate preserves its residue
+modulo four; the same holds for either even coordinate. All
+reflections therefore preserve the odd residue class.
+
+For $c=2p,d=2(p+2)$ the rearranged equation reads
+$(a-b)^2+16=8(p+1)(a+b)$. The twin-prime condition gives
+$p\equiv2\bmod3$, so the equation requires a square equal to $2$
+modulo three. This is impossible.
+\end{proof}
+
+
 \paragraph{Provenance.}
-The two estimates were developed during the Twin Prime research
-project. The derivation and drafting
+The two-form estimates and the signed Apollonian calculations were developed during the Twin Prime research project. The latter occur in replies 4 and 5 of the archived conversation \emph{Twin prime proof planning}. The derivation and drafting
 involved ChatGPT and Codex. The original account calculation is
 linked in the \href{https://github.com/cosmosgeek0/Twin-Prime/blob/main/history/hosted-research-responses-2026-11-25.md}{public research record}.
 Specialist review and priority assessment remain open.
@@ -133,5 +239,10 @@ Soc. (3) \textbf{98} (2009), 741--774.
 \href{https://doi.org/10.1112/plms/pdn046}{Published paper};
 \href{https://arxiv.org/abs/math/0609615}{authors' preprint}.
 See also the \href{https://doi.org/10.1112/plms/pds053}{2013 corrigendum}.
+\bibitem{FHRS} E.~Fuchs, C.~Hsu, J.~Rickards, D.~Schindler and
+K.~E.~Stange, \emph{Primes represented by shifted quadratic forms:
+on primitivity and congruence classes}, Proposition~1.2 and Theorem~1.3.
+\href{https://arxiv.org/abs/2504.20289}{Authors' paper}.
+
 \end{thebibliography}
 \end{document}

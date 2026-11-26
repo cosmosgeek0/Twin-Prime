@@ -28,7 +28,7 @@ For every fixed pattern without a pair two apart, one set can reproduce the pred
 - **Prime-factor shapes and Liouville signs on two rough neighbors.** Adapts the Tao–Teräväinen correlation argument to two rough neighbors and gives independent finite shape tests and Liouville signs outside an exceptional set of scales. [PDF](rough-neighbor-shapes.pdf) · [LaTeX](rough-neighbor-shapes.tex)
 
 - **A folded divisor correlation and the weighted twin count.** The November 14 calculation now gives the weighted squarefree Titchmarsh formula, its range from Fiorilli’s theorem and the explicit twin-prime-constant term before composite cancellation. [PDF](folded-divisor-correlation.pdf) · [LaTeX](folded-divisor-correlation.tex)
-- **A uniform negative bound for a two-form semiprime sieve score.** [PDF](two-form-semiprime-score.pdf) · [LaTeX](two-form-semiprime-score.tex)
+- **A uniform negative bound for a two-form semiprime sieve score.** The signed Apollonian calculation and the affine rescaling test explain the restrictions on a proposed transfer to a gap of two. [PDF](two-form-semiprime-score.pdf) · [LaTeX](two-form-semiprime-score.tex)
 - **Two-site fractional divisor moments outside exceptional scales.** [PDF](two-site-fractional-moments.pdf) · [LaTeX](two-site-fractional-moments.tex)
 - **One- and two-site laws for the last marked prime factor.** [PDF](last-prime-factor.pdf) · [LaTeX](last-prime-factor.tex)
 - **Paired Jacobsthal cleanup and a conditional divergence statement.** [PDF](paired-jacobsthal.pdf) · [LaTeX](paired-jacobsthal.tex)
