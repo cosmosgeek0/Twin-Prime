@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[hmargin=.98in,top=.83in,bottom=.9in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\linespread{.96}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\SSer}{\mathfrak S}
+\newcommand{\PP}{\mathbb P}
+\newcommand{\EE}{\mathbb E}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\LiK}{\operatorname{Li}}
+\title{\vspace*{-.6in}A sifted set with the Hardy--Littlewood tuple counts\\ outside difference two}
+\author{\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}
+  \qquad\href{mailto:b321014@iiit-bh.ac.in}{b321014@iiit-bh.ac.in}}
+\date{Research draft, November 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We construct a single set of integers containing no pair at distance two.
+For every fixed finite tuple of shifts having no such pair, the counting
+function has the Hardy--Littlewood main term, also when its starting
+point is restricted to any fixed arithmetic progression. In particular
+the set has the prime number theorem density in each reduced residue
+class. These limiting counts are also stable under deleting both
+endpoints of every distance-two pair in a full tuple model.
+Our sampling construction gives the stronger finite statement that
+all joint probabilities of compatible tuples are preserved exactly.
+It uses the fact that the distance-two graph on
+integers coprime to six is a matching. Exclusive choices on the two
+ends of a matching edge preserve every joint inclusion probability
+whose index set does not contain that edge.
+\end{abstract}
+
+\section{The counting statement}
+How much do the prime-tuple predictions at other patterns say about
+the pattern $\{0,2\}$? We allow patterns of every fixed size, also on
+each fixed progression of starting points.
+
+Let $H\subset\mathbb Z$ be a finite nonempty set, $k=|H|$, and let
+$\nu_p(H)$ count its distinct residue classes modulo $p$. For $q\ge1$
+and $a\bmod q$ put
+\begin{align}
+ \SSer(H;q,a)={1\over q}
+ &\prod_{p\mid q}
+ {\one_{\{p\nmid a+h\ \text{for all }h\in H\}}\over(1-1/p)^k}
+ \prod_{p\nmid q}{1-\nu_p(H)/p\over(1-1/p)^k}.       \label{eq:SS}
+\end{align}
+For $q=1$ this is the ordinary prime-tuple singular series $\SSer(H)$.
+Beyond the primes dividing a nonzero difference in $H$, each local
+factor in the second product is $1+O_k(p^{-2})$. Thus the product
+converges and is positive whenever every local factor is positive.
+Write $\LiK_k(x)=\int_2^x(\log t)^{-k}\,dt$.
+
+\begin{theorem}\label{th:main}
+There is a set $A\subset\mathbb N$ with the following properties.
+It contains no $u,v$ with $|u-v|=2$. For every $H$ with
+$2\notin H-H$, every fixed $q\ge1$ and every $a\bmod q$,
+\begin{equation}
+ \#\{1\le n\le x:\ n\equiv a\bmod q,\ n+H\subset A\}
+ =\SSer(H;q,a)\LiK_k(x)+o_{H,q}\bigl(x/(\log x)^k\bigr).
+ \label{eq:theorem}
+\end{equation}
+If a factor of \eqref{eq:SS} vanishes, only finitely many $n$ in that
+progression have $n+H\subset A$.
+\end{theorem}
+
+For instance, $\{0,4,10\}$ has its predicted main term, while $H=\{0\}$
+gives $\LiK_1(x)/\varphi(q)$ in every reduced residue class.
+
+\paragraph{A deletion comparison.}
+Suppose a set $A_0$ satisfies the usual fixed-tuple laws for all
+patterns. Delete every element of $A_0$ that has another element at
+distance two. For $2\notin H-H$, each lost translate of $H$ requires
+a translate in $A_0$ of $H\cup\{h+2\}$ or $H\cup\{h-2\}$ for some
+$h\in H$. Each enlarged pattern has $k+1$ elements, so there are
+$O_H(x/(\log x)^{k+1})$ losses in total. This argument preserves
+the leading counts, also upon restricting the starts to a
+progression. The block construction below preserves the full
+inclusion probability for each individual compatible configuration,
+before any limit or average.
+
+\section{An exclusion that preserves joint probabilities}
+Granville's modification of the independent prime model sifts out
+small divisors before selecting integers \cite{Granville}. The prime-tuple
+statistics of sifted models are discussed by Banks, Ford and Tao
+\cite{BFT}. We use fixed forbidden residues and change the sampling
+law after sifting. A related probabilistic principle is that joint
+occupation probabilities on independent vertex sets determine a
+one-dependent hard-core law \cite{HL}. Here every connected component
+has at most two vertices and the law is explicit.
+
+\begin{lemma}\label{lem:match}
+Let $S$ be any finite subset of the integers coprime to six, and let
+$0\le b\le1/2$. There is a random $A_S\subset S$ such that, for every
+$U\subset S$,
+\[
+ \PP(U\subset A_S)=
+ \begin{cases}
+ b^{|U|}, & 2\notin U-U,\\
+ 0,       & 2\in U-U.
+ \end{cases}
+\]
+Choices on distinct components of the distance-two graph are independent.
+\end{lemma}
+\begin{proof}
+Both $v-2$ and $v+2$ can be neighbors of $v$ only if $v-2,v,v+2$
+all lie in $S$. These three integers meet every residue class modulo
+three. Thus each vertex has degree at most one. On each edge, select
+its left end alone with probability $b$, its right end alone with
+probability $b$, and neither with probability $1-2b$. Select each
+isolated vertex with probability $b$. Make all component choices
+independently. A set meeting each component at most once has the
+claimed product probability. A set containing an edge cannot be selected.
+\end{proof}
+
+\section{Local densities on a block}
+Use dyadic blocks $[Y,2Y)$, $Y=2^j$, starting at a sufficiently large
+$j$. Leave all earlier integers out of $A$. On this block put
+\[
+ w=\max(3,\log\log Y),\qquad W=\prod_{p\le w}p,\qquad
+ b=\frac{W}{\varphi(W)\log Y}.
+\]
+Retain as candidates the integers coprime to $W$, omitting the first
+and last two integers of the block. Apply Lemma~\ref{lem:match} to
+the resulting $S$, independently on successive blocks. The omitted
+endpoints prevent edges across adjacent blocks. For large $Y$ the
+probability is valid, since
+$W/\varphi(W)\le\prod_{2\le i\le\lfloor w\rfloor}i/(i-1)
+=\lfloor w\rfloor$. Also $W\le w^w=Y^{o(1)}$.
+
+Fix $H,q,a$ as in the theorem. In this section assume $Y$ is large
+enough that every prime dividing $q$ is at most $w$. For integer
+$0\le t\le Y$ let $N_j(t)$ count starts $Y\le n<Y+t$ with
+$n\equiv a\bmod q$, requiring all $n+h$ to be selected within this
+block. Allowing patterns to span a block boundary costs
+$O_H(1)$ starts per block. Away from its boundaries the probability
+is $b^k$ if $(\prod_{h\in H}(n+h),W)=1$, and zero otherwise.
+
+Let $\SSer_w(H;q,a)$ denote \eqref{eq:SS} with the second product
+restricted to $p\le w$. The Chinese remainder theorem on a period of
+length $L=\operatorname{lcm}(q,W)$ gives the density of candidate
+starts before the sampling step as
+\[
+ {1\over q}\!
+ \prod_{p\mid q}\one_{\{p\nmid a+h\ \text{for all }h\in H\}}
+ \prod_{\substack{p\mid W\\p\nmid q}}(1-\nu_p(H)/p).
+\]
+Indeed, modulo $q$ the start has one prescribed class. Each prime of
+$W$ outside $q$ removes exactly $\nu_p(H)$ classes independently.
+Counting complete periods, bounding the last partial period by $L$,
+and multiplying by $b^k$ gives, uniformly in $t$,
+\begin{equation}
+ \EE N_j(t)=\frac{t}{(\log Y)^k}\SSer_w(H;q,a)+O_{H,q}(W+1).
+ \label{eq:expect}
+\end{equation}
+
+\section{One set realizing all the counts}
+Two translate indicators in $N_j(t)$ are independent whenever they
+use disjoint component choices. A nonzero covariance therefore
+requires the two starts to differ by an element of
+$(H-H)+\{0,2,-2\}$. There are at most $3k^2$ such differences, and
+each covariance has absolute value at most one. Consequently
+$\operatorname{Var}N_j(t)\ll_k Y$, uniformly in $t$.
+
+For this fixed pattern choose $B=k+2$ and divide $[0,Y]$ into
+$\lceil j^B\rceil$ intervals of nearly equal integer length.
+By Chebyshev's inequality and the union bound, the probability that
+$|N_j(t)-\EE N_j(t)|>Y/j^{k+1}$ at some grid endpoint is
+$O_k(j^{B+2k+2}/2^j)$. The series over $j$ converges. By
+Borel--Cantelli the bound holds at every grid endpoint for all
+sufficiently large $j$, almost surely. Between endpoints, each
+additional integer contributes at most one to either the count or
+its expectation. The mesh is $O(Y/j^B+1)$, so
+\[
+ \sup_{0\le t\le Y}|N_j(t)-\EE N_j(t)|
+       =o_{H,q}\bigl(Y/(\log Y)^k\bigr)\quad\text{almost surely}.
+\]
+There are countably many choices of $H,q,a$. We can therefore fix
+one realization for which this conclusion holds for every choice.
+
+For each fixed choice, $\SSer_w(H;q,a)\to\SSer(H;q,a)$. On $[Y,2Y]$,
+replacing $(\log Y)^{-k}$ by $(\log t)^{-k}$ in the main-term
+integral costs $O_k(Y/(\log Y)^{k+1})$ by the mean value theorem.
+Equation~\eqref{eq:expect} now gives the desired estimate on full
+blocks and arbitrary final partial blocks. Summing the little-oh
+errors preserves their order because
+$\sum_{j\le J}2^j/j^k=O_k(2^J/J^k)$ after omitting $j=0$.
+This proves \eqref{eq:theorem}. If a local factor vanishes at $p$,
+all sufficiently large members of $A$ are coprime to $p$, while at
+least one entry of every relevant translate is divisible by $p$.
+This proves the finite-occurrence assertion, including across block
+boundaries.
+
+\paragraph{Scope and provenance.}
+The construction concerns sets of integers with the stated counting
+laws. Infinitude of ordinary twin primes requires further arithmetic
+information about primality. The original Twin Prime project ChatGPT
+researcher derived the matching construction, the fixed-shift
+marginals and the dyadic variance argument. Codex developed the
+simultaneous fixed-tuple and progression statement from those choices
+and prepared the exposition. We make no claim of priority.
+
+\begin{thebibliography}{9}
+\bibitem{Granville}
+A. Granville, \emph{Harald Cram\'er and the distribution of prime
+numbers}, Scand. Actuar. J. (1995), suppl.~1, 12--28.
+\href{https://doi.org/10.1080/03461238.1995.10413946}{doi:10.1080/03461238.1995.10413946}.
+\bibitem{BFT}
+W. Banks, K. Ford and T. Tao, \emph{Large prime gaps and probabilistic
+models}, Invent. Math. \textbf{233} (2023), 1471--1518.
+\href{https://doi.org/10.1007/s00222-023-01199-0}{doi:10.1007/s00222-023-01199-0}.
+\bibitem{HL}
+A. E. Holroyd and T. M. Liggett, \emph{Finitely dependent coloring},
+Forum Math. Pi \textbf{4} (2016), e9.
+\href{https://arxiv.org/abs/1403.2448}{arXiv:1403.2448}.
+\end{thebibliography}
+\end{document}
