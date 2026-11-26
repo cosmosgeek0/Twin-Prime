@@ -33,7 +33,7 @@ inequality handle large gcds. We also bound the number of composite
 of \(n-1\) gives a further bound for prime powers common to
 \(n\) and \(a^{n-1}-1\) at any fixed base \(a\ge2\). These estimates quantify
 the composite contribution to two possible counts of twin primes.
-A lower bound large enough to force infinitely many twin primes remains open.
+We also estimate the false positives of a simultaneous multiplicative-order test and separate three explicit background terms in a shifted logarithmic gcd moment. A lower bound large enough to force infinitely many twin primes remains open.
 \end{abstract}
 
 \section{Semiprime pseudoprimes}
@@ -330,6 +330,148 @@ for infinitude. The divisor identity counts the exceptions when a
 smaller cutoff is used. Proving the existence of qualifying divisors
 at the logarithmic cutoff remains the missing step.
 
+
+\setlength\emergencystretch{1.5em}
+\section{A simultaneous order test}
+
+Write \(L=\log X\) and \(z=\exp(\sqrt L)\). Define
+\(E_n=(n^2-1)/2\) for odd \(n\).
+\begin{theorem}\label{thm:simultaneous}
+Among \(X<n\le2X\) with \(n\equiv5\bmod6\), the count satisfying
+\(2^{E_n}\equiv1\bmod n(n+2)\) differs from the twin-prime count by
+\(O(X\exp(-c\sqrt{\log X}))\), for an absolute \(c>0\).
+If \(0<\beta<1/2\) is fixed and both sites have no prime factor
+at most \(X^\beta\), the error is \(O_{\beta,\epsilon}(X^{1-\beta/3+\epsilon})\).
+\end{theorem}
+\begin{proof}
+If both sites are prime then \(n-1,n+1\mid E_n\), so the congruence
+holds. For a composite site \(pr\) with \(p\) prime and \(r>1\),
+put \(k_p=\operatorname{ord}_p(2)\), so \(p\equiv1\bmod k_p\).
+On the left \(k_p\mid r^2-1\) and on the right
+\(k_p\mid(r-2)^2-1\). Either congruence has at most
+\(4\cdot2^{\omega(k_p)}\) solutions modulo \(k_p\) by the
+prime-power count for \(x^2=1\) and the Chinese remainder theorem.
+
+For \(y\ge 3\) the number of \(p\ge y\) with \(k_p\le y^{1/3}\)
+is \(O(y^{2/3}/\log y)\): all divide
+\(\prod_{i\le y^{1/3}}(2^i-1)\). Their multiples up to \(3X\)
+cost \(O(Xy^{-1/3}+y^{2/3})\) for \(y\le\sqrt{3X}\).
+For the rough estimate use \(y=X^\beta\) and choose the smallest
+prime factor of the composite site, at most \(\sqrt{3X}\).
+For the remaining primes the count is
+\[
+ \ll_\epsilon\sum_{y<p\le\sqrt{3X}}k_p^\epsilon
+               \left(\frac{X}{pk_p}+1\right)
+ \ll_{\beta,\epsilon} X^{1-\beta/3+\epsilon},
+\]
+after harmlessly decreasing the exponent in the divisor bound.
+
+For the unrestricted estimate, sites having only factors \(\le z\)
+contribute \(O(Xe^{-c\sqrt L})\). Indeed Rankin's upper bound with
+\(\sigma=1-1/(2\log z)\) is
+\((3X)^\sigma\prod_{p\le z}(1-p^{-\sigma})^{-1}\); the product
+is \(O((\log z)^C)\) by the prime harmonic estimate.
+Choose any prime factor \(p>z\) and use the small-order estimate
+with \(y=z\). For \(p\le X^{3/4}\) and \(k_p>z^{1/3}\), bound the
+number of root classes by \(O(\sqrt{k_p})\) in the main term and by
+\(O_\epsilon(X^\epsilon)\) in the rounding error. This costs
+\(O(Xz^{-1/6}\log\log X+X^{3/4+\epsilon})\).
+For \(p>X^{3/4}\) we have \(r\le3X^{1/4}\), and \(p\) divides
+\(2^{|B(r)|}-1\) for \(B(r)=r^2-1\) or \((r-2)^2-1\).
+The only positive roots are \(1\), and on the right also \(3\);
+the right site is \(1\bmod6\), so \(r\ne3\). For each \(r\) the
+nonzero integer has \(O(r^2+1)\) distinct prime factors. Summing
+gives \(O(X^{3/4})\).
+\end{proof}
+
+\section{A shifted logarithmic gcd moment}
+
+For \(n>1\) put \(G(n)=\log\gcd(n,2^{n-1}-1)\) and
+\(\vartheta(n)=\mathbf1_{\{n\ \mathrm{prime}\}}\log n\).
+Define a label \((p,u)\) by \(p\) odd prime and
+\(1\le u\le v_p(2^{p-1}-1)\). Write \(A=p^uk_p\) and
+\(w_A=\log p\), with \(k_p\) as in the preceding section.
+For a second label \((q,v)\), put \(B=q^v k_q\).
+Set
+\[
+ C_+=\sum_A\frac{w_A}{\varphi(A)},\qquad
+ C_-=\sum_{3\nmid k_p}\frac{w_A}{\varphi(A)},\qquad
+ C_0=\sum_{A,B}^{*}\frac{w_Aw_B}{\operatorname{lcm}(A,B)} .
+\]
+The star restricts the two labels by
+\[
+ p\ne q,\quad (p^u,k_q)=1,\quad(k_p,q^v)\mid3,\quad(k_p,k_q)\mid2.
+\]
+\begin{theorem}\label{thm:gcdmoment}
+The three series converge absolutely. For every fixed \(J>0\),
+\[
+ \sum_{X<n\le2X}G(n)G(n+2)
+ =
+ \sum_{X<n\le2X}\vartheta(n)\vartheta(n+2)
+ + X(C_0+C_++C_-)+O_J(X/(\log X)^J).
+\]
+\end{theorem}
+\begin{proof}
+For \(p\mid n\), \(p\ne2\), lifting the exponent gives
+\(v_p(2^{n-1}-1)=v_p(2^{p-1}-1)\) if \(k_p\mid n-1\);
+otherwise the valuation is zero. Here \(p\nmid n-1\) and
+\(k_p\mid p-1\). Thus \(G(n)\) is the sum of \(w_A\) over the
+conditions \(p^u\mid n,\ n\equiv1\bmod k_p\). Denote the part with
+\(p^u\le z=\exp(\sqrt{\log X})\) by \(S_z(n)\).
+
+Apart from \(O(Xe^{-c\sqrt L})\) exceptions in \(X<n\le2X+2\),
+\(G(n)=S_z(n)+\vartheta(n)\). A composite with a contributing
+\(p>z\) satisfies \(n=pr,\ k_p\mid r-1,\ r>1\).
+The small-order product bound from Theorem~\ref{thm:simultaneous}
+and the resulting single-class estimate for \(z<p\le X^{3/4}\)
+give \(O(Xz^{-1/3}\log\log X+X^{3/4}+z^{2/3})\) such \(n\).
+For \(p>X^{3/4}\), the integer \(2^{r-1}-1\ne0\) has \(O(r)\)
+prime divisors and \(r\le3X^{1/4}\). Finally, sites with some
+\(p^u>z,\ u\ge2,\ p^u\mid n\) cost
+\[
+ 3X\sum_{p^u>z,\ u\ge2}p^{-u}
+ \ll X z^{-1/4}\sum_{p,\,u\ge2}p^{-3u/4}\ll X z^{-1/4}.
+\]
+All the individual functions are \(O(L)\), which absorbs the
+exceptional set into the stated error.
+
+The constant tails are also small. For \(p\in[Y,2Y]\), the
+small-order bound supplies \(O(Y^{2/3}/\log Y)\) primes with
+\(k_p\le Y^{1/3}\); the rest have \(1/k_p\le Y^{-1/3}\).
+Using \(A/\varphi(A)\ll\log\log(3A)\), the first-power sum
+\(\sum_{Y<p\le2Y}(\log p)/\varphi(pk_p)\) is
+\(O(Y^{-1/3}\log^2(2Y))\).
+For higher powers \(\sum_{p^u>z,\,u\ge2}w_A/\varphi(A)
+\ll z^{-1/8}\), by the same convergent prime-power bound with
+logarithms absorbed (use \(k_p\le p\)).
+In the starred sum \((A,B)\le6\) by its displayed conditions.
+These estimates prove convergence and permit replacing each
+truncated sum by its full value with all-logarithmic precision.
+
+Expand the product of the two short sums. The simultaneous
+congruences on \(n\) are \(0,1,-2,-1\) modulo \(p^u,k_p,q^v,k_q\),
+respectively. Their compatibility is exactly the starred condition.
+The Chinese remainder theorem then gives
+\(X/\operatorname{lcm}(A,B)+O(1)\) occurrences.
+There are at most \(z^2\) ordered pairs of retained labels, and their
+rounding errors are negligible. For
+\(\vartheta(n)S_z(n+2)\) the prime is in the class \(-2\bmod p^u\),
+\(-1\bmod k_p\), always primitive. For
+\(S_z(n)\vartheta(n+2)\) the prime \(n+2\) has residues \(2,3\)
+respectively, giving a primitive class exactly if \(3\nmid k_p\).
+All moduli \(A\le z^2\) are distinct: the largest prime factor
+of \(A\) is \(p\), with exponent \(u\). Bombieri--Vinogradov
+\cite{BV} for the log-weighted prime sums, with partial summation
+or the maximal-interval form at the shifted endpoints, yields
+\(X C_+\) and \(X C_-\) up to the stated error. Replacing the
+von Mangoldt weights in this theorem by primes costs at most
+\(O(X^{1/2+o(1)}z^2)\) on the short list of moduli.
+\end{proof}
+
+The three constants isolate the composite and mixed terms in this
+logarithmic statistic. A lower bound exceeding their contribution
+would still have to come from the correlation at the actual shift.
+
 \section*{Acknowledgments}
 ChatGPT and Codex contributed to the mathematical derivations,
 drafting and proof checks.
@@ -345,5 +487,9 @@ F.~Luca, D.~Ralaivaosaona and J.~Jim\'enez Urroz,
 H.~L.~Montgomery and R.~C.~Vaughan,
 \emph{The large sieve}, Mathematika \textbf{20} (1973), 119--134.
 \href{https://doi.org/10.1112/S0025579300004708}{doi:10.1112/S0025579300004708}.
+\bibitem{BV} E. Bombieri, \emph{On the large sieve},
+Mathematika \textbf{12} (1965), 201--225.
+\href{https://doi.org/10.1112/S0025579300005313}{Author's paper}.
+
 \end{thebibliography}
 \end{document}

@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage[hidelinks]{hyperref}
+\DeclareMathSizes{10}{10}{7}{7}
+\DeclareMathSizes{10.95}{10.95}{8}{7}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\leg}[2]{\left(\frac{#1}{#2}\right)}
+\title{A real quadratic first moment on squarefree midpoint discriminants}
+\author{\small\href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}\qquad
+\href{mailto:b321014@iiit-bh.ac.in}{b321014@iiit-bh.ac.in}}
+\date{Public research draft}
+\begin{document}
+\maketitle
+\begin{abstract}
+For even $m$ in a fixed arithmetic progression we evaluate the first
+moment of $L(1,\chi_{4(m^2-1)})$ subject to $m^2-1$ squarefree.
+The main term has an explicit local product and the error is
+$O_Q(M^{99/100})$ on a dyadic interval of length $M$. Partial summation
+gives the corresponding narrow class-number and regulator mean.
+On two residue classes modulo eight the narrow class number is four
+modulo eight exactly when both $m-1$ and $m+1$ are prime. Removing all
+such prime pairs leaves the leading term of the mean unchanged.
+\end{abstract}
+
+\section{The primitive-character average}
+Let $Q$ be a fixed positive even integer. Take an even residue $a$
+modulo $Q$ such that $(a^2-1,Q)=1$. For $m>2$ even set $d_m=m^2-1$.
+If $d_m$ is squarefree, $d_m\equiv3\pmod4$, so $D_m=4d_m$
+is the fundamental discriminant of $\mathbb Q(\sqrt{d_m})$.
+Let $\chi_D$ be the Kronecker character of a fundamental discriminant
+$D$. Define
+\[
+\mathfrak A_{Q,a}=
+\prod_{\substack{p\mid Q\\ p>2}}
+ \left(1-p^{-1}\leg{a^2-1}{p}\right)^{-1}
+\prod_{\substack{p\nmid Q\\p>2}}
+ \left(1-\frac{2}{p^2}-\frac{2}{p(p^2-1)}\right).
+\]
+All the factors are positive, and the latter product converges
+absolutely.
+\begin{theorem}\label{mean}
+Uniformly for $M\le T\le2M$,
+\[
+ \sum_{\substack{M<m\le T,\ m\equiv a\ (Q)\\ d_m\ {\rm squarefree}}}
+ L(1,\chi_{D_m})
+ =\frac{T-M}{Q}\mathfrak A_{Q,a}+O_Q(M^{99/100}).
+\]
+\end{theorem}
+Related Euler-product models for class numbers and special values in
+families of real quadratic fields were developed by Dahl--Lamzouri
+and Dahl--Kala \cite{DL,DK}. We give a direct first-moment calculation
+in the midpoint progression, including the squarefree restriction and
+the local factors of the progression.
+
+\begin{proof}
+Let $Y=M^{4/5}$ and $A=M^{1/20}$. The Burgess estimate with parameter
+two for a primitive quadratic character gives
+$\sum_{n\le u}\chi_D(n)\ll_\epsilon u^{1/2}D^{3/16+\epsilon}$
+\cite[(1)]{HB}. Partial summation therefore gives, uniformly on the
+squarefree support, the truncation
+\[
+ L(1,\chi_{D_m})=\sum_{n\le Y}\frac{\chi_{D_m}(n)}n+
+ O_\epsilon(M^{-1/40+\epsilon}).
+\]
+Here $D_m\ll M^2$. Apply this estimate before relaxing squarefreeness.
+For odd $n$ the remaining character value is the Jacobi symbol
+$\leg{m^2-1}{n}$, an expression also defined off the original
+squarefree support. The even terms vanish.
+
+Since $m-1$ and $m+1$ are coprime, their squarefree indicators may
+be expanded as $\sum_{r^2\mid m-1}\mu(r)$ and
+$\sum_{s^2\mid m+1}\mu(s)$. Truncate both at $A$. The number of
+affected integers is $O(M/A+\sqrt M)$, by summing $O(M/r^2+1)$
+over $A<r\le\sqrt{2M+1}$ for each neighbor. The truncated divisor
+multiplicities are $O_\epsilon(M^\epsilon)$ and the short character
+sum with weights $1/n$ is $O(\log Y)$. The total error in the
+truncation of these indicators is $O_\epsilon(M^{19/20+\epsilon})$.
+
+Compatible square conditions have $r,s$ odd and $(r,s)=(rs,Q)=1$.
+Fix such $r,s$. They define one residue class in the original
+progression modulo $Qr^2s^2$. For odd $n$ sharing a prime with
+$rs$ the Jacobi symbol is zero. Otherwise the average of the
+symbol along this progression, over one period in its running
+index, is multiplicative in $n$. At $p\mid Q$, its value at $p^j$
+is $\leg{a^2-1}{p}^j$. At $p\nmid Qrs$, it equals
+\[
+ \kappa(p^j)=
+ \begin{cases}
+  -1/p,&j\ {\rm odd},\\
+  1-2/p,&j>0\ {\rm even}.
+ \end{cases}
+\]
+For even exponent only $m=\pm1\bmod p$ are excluded. For odd
+exponent use $\sum_{u\bmod p}\leg{u^2-1}{p}=-1$: the equation
+$v^2=u^2-1$ has $p-1$ solutions, by factoring $(u-v)(u+v)=1$.
+The period in the running index divides $n$. Replacing the actual
+sum by its period mean times $(T-M)/(Qr^2s^2)$ costs $O(n)$,
+uniformly in $T$. The aggregate error is $O(A^2Y)$.
+
+For clarity, the resulting main series converges absolutely after
+these period means have been taken. With weights $n^{-3/4}$,
+its absolute local contributions away from $Q$ are bounded by
+$1+2p^{-2}+O(p^{-7/4}+p^{-3/2})$. At the fixed primes dividing
+$Q$ the geometric series converge. This gives a truncation error
+$O_Q(Y^{-1/4})$ for the main series with its original $n^{-1}$
+weight. The restrictions $r,s\le A$ can be dropped at cost
+$O_Q(1/A)$ there: for any fixed compatible $r,s$ the absolute
+$n$-series is bounded uniformly, and
+$\sum_{r>A,\ s\ge1}(rs)^{-2}\ll 1/A$.
+The local factor for an odd prime $p\nmid Q$ in this full series is
+\[
+ 1-\frac{2}{p^2}
+ +\sum_{j\ge1}\frac{\kappa(p^j)}{p^j}
+ =1-\frac{2}{p^2}-\frac{2}{p(p^2-1)}.
+\]
+The two negative square-divisor contributions occur only when
+$p\nmid n$. The factor at $2$ is one, and the remaining factors
+at primes dividing $Q$ give the first product in $\mathfrak A_{Q,a}$.
+The errors are
+$O_\epsilon(M^{39/40+\epsilon}+M^{19/20+\epsilon}+A^2Y
+ +M Y^{-1/4}+M/A)$, yielding the stated bound.
+\end{proof}
+
+\section{Trace weights and a divisibility test}
+Let $h^+(D)$ denote the narrow class number, and let
+$\epsilon_m=m+\sqrt{m^2-1}$. For squarefree $d_m$ the ring of integers
+is $\mathbb Z[\sqrt{d_m}]$. The integer solution $(m,1)$ of
+$x^2-d_m y^2=1$ gives the smallest totally positive unit greater than
+one. Since $d_m\equiv3\bmod4$ has a prime factor congruent to $3$
+modulo $4$, the negative Pell equation has no solution. The real
+quadratic class-number formula consequently gives
+\[
+ G(m):=2h^+(D_m)\log\epsilon_m
+     =4\sqrt{m^2-1}\, L(1,\chi_{D_m}).
+\]
+Uniform partial summation in Theorem~\ref{mean} gives
+\[
+ \sum_{\substack{M<m\le2M,\ m\equiv a\ (Q)\\d_m\ {\rm squarefree}}}
+ G(m)=6\mathfrak A_{Q,a}M^2/Q+O_Q(M^{199/100}).
+\]
+As a check on what the mean can detect, the upper-bound sieve for
+the pair $m-1,m+1$ gives $O(M/\log^2 M)$ twin centers in this
+interval. The elementary bound $L(1,\chi_{D_m})\ll\log M$ follows
+by summing to the conductor and bounding the tail by periodicity.
+Hence all twin centers contribute only $O(M^2/\log M)$ to the
+displayed mean. Its leading coefficient persists upon deleting them.
+
+\begin{corollary}
+Suppose $d_m$ is squarefree and $m\equiv4$ or $6\bmod8$. Then
+\[
+ h^+(D_m)\equiv4\pmod8\quad\Longleftrightarrow\quad
+ m-1,\ m+1\ \text{are prime}.
+\]
+\end{corollary}
+\begin{proof}
+Gauss genus theory gives the $2$-rank of the narrow class group as
+$\omega(D_m)-1=\omega(d_m)$. Coprimality of $m-1$ and $m+1$ gives
+rank at least three if either is composite. Now put $p=m-1$,
+$q=m+1$ and assume both are primes. The narrow $2$-rank is two.
+Use the R\'edei matrix in the convention of \cite[Thm.~2.2]{KPS},
+with rows $2,p,q$, columns $-4,p^*,q^*$ and
+$t^*=(-1)^{(t-1)/2}t$. Off-diagonal entries are the additive
+quadratic symbols of the column discriminant at the row prime, and
+each diagonal entry makes its row sum zero. Quadratic reciprocity,
+$q=p+2$, and the supplementary law at $2$ give, respectively,
+\[
+ m\equiv4:\quad
+ \begin{pmatrix}0&1&1\\1&0&1\\0&1&1\end{pmatrix},
+ \qquad
+ m\equiv6:\quad
+ \begin{pmatrix}1&1&0\\0&1&1\\1&1&0\end{pmatrix}.
+\]
+For instance when $m\equiv6$, $p^*=p\equiv5$ and
+$q^*=-q\equiv1\bmod8$; $\leg{q^*}{p}=\leg{-2}{p}=-1$
+and $\leg{p^*}{q}=\leg{-2}{q}=-1$.
+Each matrix has rank two. The R\'edei formula makes the narrow
+$4$-rank zero, giving a $2$-primary subgroup $(\mathbb Z/2)^2$.
+\end{proof}
+
+\paragraph{Research record.}
+The derivation is preserved in the original project conversation
+\emph{Proof readiness confirmation}, recovered response 3 in the
+\href{https://github.com/cosmosgeek0/Twin-Prime/blob/main/history/hosted-research-responses-2026-11-25.md}{research archive}.
+ChatGPT and Codex contributed to the derivation and drafting.
+Specialist review and the priority of the particular progression
+estimate remain open.
+
+\begin{thebibliography}{9}
+\bibitem{HB} D.~R.~Heath-Brown, \emph{Burgess's bounds for character sums},
+\href{https://arxiv.org/abs/1203.5219}{arXiv:1203.5219}.
+\bibitem{DL} A.~Dahl and Y.~Lamzouri, \emph{The distribution of class
+numbers in a special family of real quadratic fields},
+\href{https://arxiv.org/abs/1603.00889}{arXiv:1603.00889}.
+\bibitem{DK} A.~Dahl and V.~Kala, \emph{Distribution of class numbers in
+continued fraction families of real quadratic fields},
+\href{https://arxiv.org/abs/1611.02424}{arXiv:1611.02424}.
+\bibitem{KPS} P.~Koymans, C.~Pagano and E.~Sofos,
+\emph{Elliptic fibrations and $3\cdot2^k$-torsion class groups},
+\href{https://arxiv.org/abs/2409.02080}{arXiv:2409.02080}.
+\end{thebibliography}
+\end{document}

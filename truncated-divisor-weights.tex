@@ -32,8 +32,10 @@ also with a lower cutoff \(r>X^\delta\). Without the lower cutoff the
 mass is \((\pi^2/12+o(1))X\), independently of \(t\). Even after
 discarding all the negative three-prime contributions, the two-prime
 terms outweigh the positive three-prime terms by an absolute multiple
-of \(X\) for every fixed \(0\le\delta\le t\). The estimates concern
-averages over the integers and over fixed reduced residue classes.
+of \(X\) for every fixed \(0\le\delta\le t\). On shifted primes we also prove that inserting an auxiliary weight
+supported on prescribed subpower prime bands cancels the short-divisor
+main term. Under the finite-twin hypothesis its removal from the long
+tail incurs an absolute error of order at least $X$.
 \end{abstract}
 
 \section{The divisor weight and its signs}
@@ -288,6 +290,146 @@ prime requires estimates uniform in growing arithmetic restrictions
 or a direct estimate for the two integers together. A fixed-modulus
 mean leaves that correlation undetermined.
 
+
+\section{A short-divisor test on genuine shifted primes}
+
+For this section take \(D=X^\alpha\) with \(0<\alpha<1/2\), and let
+\[
+ A_D(m)=\sum_{\substack{d\mid m\\d\le D}}\mu(d)\log(m/d),
+ \qquad R_D(m)=\Lambda(m)-A_D(m).
+\]
+Fix \(K\ge1,\ 0<\rho<1,\ 1/10<a_1<\cdots<a_K<1/5\),
+put \(L=\log X\), and form the disjoint prime bands
+\[
+ \mathcal P_i=\{q:\exp(L^{a_i})<q\le\exp(2L^{a_i})\},
+ \qquad V_i=\sum_{q\in\mathcal P_i}q^{-1}=\log2+o(1).
+\]
+Define \(\omega_i(m)=\#\{q\in\mathcal P_i:q\mid m\}\) and the
+bounded nonnegative weight
+\[
+ W(m)=\prod_{i=1}^K\frac{\omega_i(m)\rho^{\omega_i(m)-1}}{V_i},
+\]
+where each factor at \(\omega_i=0\) is zero. This is the weight in
+L\"u, Wang and Wu \cite[eqs.~(2.12)--(2.13)]{LWW}.
+Write \(\mathfrak S(2)=2\prod_{q>2}(1-1/(q-1)^2)\).
+
+\begin{theorem}\label{thm:band-cancel}
+As \(X\to\infty\), writing \(m=p+2\), each of the sums
+\[
+ \sum_{X<p\le2X}(\log p)W(m)A_D(m),\qquad
+ \sum_{X<p\le2X}(\log p)W(m)R_D(m)
+\]
+is \(o(X)\). Without \(W\), the first sum is
+\((\mathfrak S(2)+o(1))X\).
+If there are only finitely many twin primes, the absolute error in
+removing \(W\) from the second sum satisfies
+\[
+ \sum_{X<p\le 2X}(\log p)|1-W(m)|\,|R_D(m)|\gg X .
+\]
+The same lower bound holds for any fixed average of normalized
+weights of this kind with fixed positive normalizing constants
+bounded away from zero.
+\end{theorem}
+\begin{proof}
+Use \(j\rho^{j-1}=\sum_{h=1}^j h(\rho-1)^{h-1}\binom{j}{h}\)
+in each band, truncating at \(H=\lceil C\log\log X\rceil\).
+The truncated function is
+\(W_H(m)=\sum_{a\mid m}c_a\). All \(a\) are odd, squarefree,
+larger than one, and have at most \(KH\) band primes. Thus
+\(a=X^{o(1)}\), \(\max |c_a|\ll_K H^K\), and
+\(\sum_a |c_a|/\varphi(a)\ll_{K,\rho}1\).
+For the last estimate the order-\(h\) subsets in one band have
+total weight at most
+\[
+ h(1-\rho)^{h-1}\left(\sum_{q\in\mathcal P_i}1/(q-1)\right)^h/(h! V_i).
+\]
+If \(J(m)=\sum_i\omega_i(m)\), the truncation error is bounded by
+\(C_0^{J(m)}\mathbf1_{\{J(m)>H\}}\), for a constant \(C_0\).
+For fixed \(t\ge1\), expanding
+\(t^{J(m)}=\prod_{q\in\cup_i\mathcal P_i}(1+(t-1)\mathbf1_{q\mid m})\)
+and counting multiples gives
+\(\sum_{m\le3X}t^{J(m)}\le3X\prod_q(1+(t-1)/q)\ll_t X\),
+with the product confined to the bands. Taking \(t=2C_0^2\)
+shows that the square of the error sums to \(O(X2^{-H})\).
+Since \(|A_D(m)|\ll\tau(m)L\), Cauchy--Schwarz and
+\(\sum_{m\le3X}\tau(m)^2\ll X L^3\) give an \(o(X)\) replacement
+error on taking \(C\) sufficiently large.
+
+The resulting sum opens the conditions \(a,d\mid p+2\).
+The modulus \(q=[a,d]\le X^{\alpha+o(1)}\) is odd and the residue
+\(-2\) is reduced. Apply the maximal-interval Bombieri--Vinogradov
+theorem \cite{BV} to replace the log-weighted primes by
+\(dy/\varphi([a,d])\) on \(X<y\le2X\), retaining the factor
+\(\log((y+2)/d)\). Its supremum and variation cost \(O(L)\).
+The number of pairs giving \(q\) is at most \(\tau(q)^2\).
+For completeness, writing \(E_q\) for the maximal progression
+error on this range, Cauchy--Schwarz bounds
+\(\sum \tau(q)^2E_q\) by
+\((\sum E_q)^{1/2}(\sum\tau(q)^4 E_q)^{1/2}\).
+The first sum has arbitrary log saving, and the second is
+\(O(X L^{C_1})\) by the trivial \(E_q\ll X L^2/q\) and the
+divisor moment bound. The total error is \(o(X)\).
+
+For fixed \(a\), write a squarefree odd \(d=bj\) with
+\(b\mid a\) and \((j,2a)=1\). The resulting density is
+\[
+ \frac1{\varphi(a)}
+ \sum_{b\mid a}\mu(b)
+ \sum_{\substack{j\le D/b\\(j,2a)=1}}
+  \frac{\mu(j)}{\varphi(j)}\log\!\left(\frac{y+2}{bj}\right).
+\]
+The inner sum equals \(G_a(0)+O_A(L^{-A})\), uniformly in the
+retained \(a,b,y\), where
+\[
+ G_a(s)=\zeta(1+s)
+         \prod_{p\nmid 2a}\left(1-\frac{1}{(p-1)p^s}\right).
+\]
+To see the uniformity, expand \(G_a(s)=\sum g_a(h)h^{-s}\).
+At an included prime the higher coefficients come from
+\((1-p^{-1-s})^{-1}(1-p^{-s}/(p-1))\), whose nonconstant absolute
+mass weighted by \(h^{1/4}\) is \(O(p^{-7/4})\). At primes
+dividing \(2a\) the full geometric factor remains. Except at two,
+these primes exceed \(\exp(L^{1/10})\) and number at most \(KH\).
+Thus \(\sum_h |g_a(h)|h^{1/4}\ll1\) uniformly. Convolve with
+\(\mu(n)/n\) from \(1/\zeta(1+s)\). Terms with
+\(h>(D/b)^{1/2}\) are negligible by this moment bound and
+\(D/b\ge X^{\alpha/2}\). For smaller \(h\), the prime number theorem
+with its classical zero-free-region error and partial summation give
+\[
+ \sum_{n\le D/(bh)}\frac{\mu(n)}n=O_A(L^{-A}),\qquad
+ \sum_{n\le D/(bh)}\frac{\mu(n)\log n}{n}=-1+O_A(L^{-A}).
+\]
+The log moment constant follows by differentiating
+\(1/\zeta(1+s)=s+O(s^2)\) at \(s=0\) after this convergence estimate.
+The inner estimate follows. Every \(a>1\) now contributes zero
+at main order since \(\sum_{b\mid a}\mu(b)=0\).
+The errors sum to \(o(1)\), since \(\tau(a)\le 2^{KH}\) and
+\(\sum |c_a|/\varphi(a)\ll1\).
+For the unweighted problem only \(a=1\) occurs, giving
+\(G_1(0)=\mathfrak S(2)\). Finally \(W(m)\) vanishes on all primes
+in the range; proper prime powers contribute
+\(O(X^{1/2} L^3)\) to the weighted \(\Lambda\)-sum. Subtraction
+gives the second assertion.
+
+For the absolute lower bound use the quantitative Chen theorem
+as stated in Green--Tao \cite[Theorem 6.1]{ChenGT}. There are
+\(\gg X/L^2\) primes in the dyad for which \(m\) is prime or the
+product of two primes \(>p^{3/11}\). Under the finite-twin hypothesis
+the first alternative is empty for large \(X\); discard at most
+\(O(\sqrt X)\) squares. Writing \(m=uv,\ u<v\), the term \(d=v>D\)
+in \(R_D(m)\) is \(-\log u\). The only possible further
+nonzero term is \(-\log v\). All band weights vanish on these
+semiprimes, and \(\log u>(3/11)\log p\). Their total contribution
+therefore gives the lower bound for \(W\) and for the stated
+normalized averages.
+\end{proof}
+
+The calculation concerns the transfer of a band weight to this
+particular truncated convolution. Its proof uses the explicit
+weight formula from \cite{LWW} and classical distribution of
+primes below the half-level. The absolute-error estimate leaves
+the signed unweighted tail open.
+
 \begin{thebibliography}{9}
 \bibitem{GY} D.~A. Goldston and C.~Y. Y{\i}ld{\i}r{\i}m,
   \emph{Higher correlations of divisor sums related to primes I:
@@ -296,5 +438,15 @@ mean leaves that correlation undetermined.
 \bibitem{Tao} T.~Tao, \emph{The prime number theorem in arithmetic
   progressions, and dueling conspiracies}, 24 September 2009.
   \href{https://terrytao.wordpress.com/2009/09/24/the-prime-number-theorem-in-arithmetic-progressions-and-dueling-conspiracies/}{Author's notes}.
+\bibitem{LWW} G. L\"u, Z. Wang and J. Wu, \emph{On the
+Hardy--Littlewood--Chowla conjecture}, preprint, version 2 (2026).
+\href{https://arxiv.org/abs/2610.20242v2}{arXiv:2610.20242v2}.
+\bibitem{BV} E. Bombieri, \emph{On the large sieve},
+Mathematika \textbf{12} (1965), 201--225.
+\href{https://doi.org/10.1112/S0025579300005313}{Author's paper}.
+\bibitem{ChenGT} B. Green and T. Tao, \emph{Restriction theory of
+the Selberg sieve, with applications}, J. Th\'eor. Nombres Bordeaux
+\textbf{18} (2006), 147--182.
+\href{https://www.numdam.org/article/JTNB_2006__18_1_147_0.pdf}{Author's paper}.
 \end{thebibliography}
 \end{document}

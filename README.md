@@ -8,7 +8,7 @@ How many composite numbers built from exactly two primes can pass the base-2 Fer
 
 $$Q_2(X)\ll \frac{X^{3/4}}{(\log X)^{5/4}}.$$
 
-For the same count with unrestricted factor sizes, Theorem 3.1 of Luca, Ralaivaosaona and Jiménez Urroz gives $O(X^{4/5}/(\log X)^{2/5})$. The improvement comes from counting possible prime factors separately at each small value of $\gcd(r-1,s-1)$ and retaining both primality conditions for large values. [Published comparison (2025)](https://doi.org/10.1007/s13370-025-01338-1) · [Read the paper](fermat-divisors.pdf) · [Editable proof](fermat-divisors.tex)
+For the same count with unrestricted factor sizes, Theorem 3.1 of Luca, Ralaivaosaona and Jiménez Urroz gives $O(X^{4/5}/(\log X)^{2/5})$. The improvement comes from counting possible prime factors separately at each small value of $\gcd(r-1,s-1)$ and retaining both primality conditions for large values. [Published comparison (2025)](https://doi.org/10.1007/s13370-025-01338-1) · The revision adds simultaneous order conditions at base two and the shifted log-gcd correlation. [Read the paper](fermat-divisors.pdf) · [Editable proof](fermat-divisors.tex)
 
 This bound controls false positives. Proving that sufficiently many candidates pass the test remains open. The Twin Prime Conjecture is unresolved in this work. The comparison above concerns the cited theorem. Literature priority and independent specialist review remain open.
 
@@ -18,8 +18,10 @@ For every fixed pattern without a pair two apart, one set can reproduce the pred
 
 ## Supporting sieve notes
 
+- **Real quadratic midpoint discriminants.** A first moment for positive fundamental discriminants in fixed progressions yields an explicit Euler product, a power-saving error and a weighted geodesic mean. [PDF](real-quadratic-midpoints.pdf) · [LaTeX](real-quadratic-midpoints.tex)
+
 - **A long-divisor sign classification on three-prime products and an upper sieve for their shift by two.** Bounds a contribution where the neighboring integer satisfies specified factorization conditions. [PDF](shift-two-sieve.pdf) · [LaTeX](shift-two-sieve.tex)
-- **The signed contribution of two- and three-prime products to a truncated von Mangoldt convolution.** Computes the signed mean before restrictions on the neighboring integer are applied. [PDF](truncated-divisor-weights.pdf) · [LaTeX](truncated-divisor-weights.tex)
+- **The signed contribution of two- and three-prime products to a truncated von Mangoldt convolution.** Computes the signed mean before restrictions on the neighboring integer are applied. The auxiliary-weight calculation identifies a main term lost by truncation and quantifies the cost of removing the omitted range. [PDF](truncated-divisor-weights.pdf) · [LaTeX](truncated-divisor-weights.tex)
 
 - **Fractional moments for a shifted-prime divisor weight.** For orders tending to one, the normalized absolute composite errors tend to $1-e^{-c}$ and $e^c-1$. The note also treats a signed subsequential limit and fixed factor counts. [PDF](fractional-moments.pdf) · [LaTeX](fractional-moments.tex)
 - **Liouville signs on short differences.** Proves a conditional-on-a-dense-subset implication and gives short-window constructions showing where it fails, including a pair of squarefree composite neighbors. [PDF](short-differences.pdf) · [LaTeX](short-differences.tex)
