@@ -203,6 +203,54 @@ marginals and the dyadic variance argument. Codex developed the
 simultaneous fixed-tuple and progression statement from those choices
 and prepared the exposition. We make no claim of priority.
 
+
+\section{An actual-prime comparison in ordered residue classes}
+The absence of a prescribed small gap is compatible with substantial
+recurrence information for \emph{consecutive} primes. The following
+corollary of the bounded-gap and consecutive-tuple theorems makes the
+difference precise.
+
+\paragraph{Corollary.}
+There is a set of at most five odd primes \(\mathcal E\) with the
+following property. For every odd prime \(q\notin\mathcal E\), distinct
+\(a,b\in(\mathbb Z/q\mathbb Z)^\times\), and \(G>0\), there exists a
+fixed integer \(h>G\) such that infinitely many \emph{consecutive}
+primes \(p,p+h\) satisfy \(p\equiv a,\ p+h\equiv b\pmod q\).
+
+\begin{proof}
+First hold \(G\) fixed. If six distinct odd primes \(q_i\) were exceptional
+at this threshold, choose for each one an ordered pair \(a_i,b_i\) lacking
+the conclusion and put \(Q=\prod_{i=1}^6q_i\).
+Take fifty distinct six-bit words in increasing binary order. Assign
+to each word a residue modulo \(Q\) using \(a_i\) for the bit zero and
+\(b_i\) for the bit one at coordinate \(i\). For two words in increasing
+order, their most significant differing bit changes from zero to one.
+
+By the Chinese remainder theorem choose integer representatives
+\(s_1<\cdots<s_{50}\) spaced more than \(G\) apart, all zero modulo
+every prime at most fifty outside \(Q\). The tuple \(x+s_j\) is
+admissible. At a prime dividing \(Q\), none of the \(s_j\) is zero;
+at the other small primes all shifts coincide; a prime above fifty
+cannot be covered by fifty shifts. Also \((Q,\prod_js_j)=1\).
+Banks--Freiberg--Turnage-Butterbaugh's Theorem~1 \cite{BFTB}, with the
+50-form two-prime input \cite{Polymath}, gives a fixed pair \(j<k\)
+for which \(Qn+s_j,Qn+s_k\) are consecutive primes infinitely often.
+Their gap \(s_k-s_j>G\) and at their first differing bit the pair realizes
+the missing residues, a contradiction. Hence at most five primes are
+exceptional for each fixed threshold. The exceptional sets for positive
+integer thresholds \(G\) are increasing and each has at most five
+elements, so their union has size at most five.
+\end{proof}
+
+For the version without the lower threshold on \(h\), the archive
+also derives recurrence directly from Lau's ordered-pattern theorem
+\cite[Definition 1.4 and Theorem 1.5, v2]{Lau}. For \(m=r=2\) its input
+requires \(64\) labels. Use all six-bit words in order. The theorem
+returns an increasing pair of indices occurring infinitely often, and
+the same first-differing-bit argument applies. The fixed-gap version
+above shows why recurrence of the transition \(a\mapsto a+2\bmod q\)
+does not by itself require the actual gap to equal two.
+
 \begin{thebibliography}{9}
 \bibitem{Granville}
 A. Granville, \emph{Harald Cram\'er and the distribution of prime
@@ -216,5 +264,13 @@ models}, Invent. Math. \textbf{233} (2023), 1471--1518.
 A. E. Holroyd and T. M. Liggett, \emph{Finitely dependent coloring},
 Forum Math. Pi \textbf{4} (2016), e9.
 \href{https://arxiv.org/abs/1403.2448}{arXiv:1403.2448}.
+\bibitem{BFTB} W. Banks, T. Freiberg, C. Turnage-Butterbaugh,
+\emph{Consecutive primes in tuples}, Theorem~1,
+\href{https://arxiv.org/abs/1311.7003}{arXiv:1311.7003}.
+\bibitem{Polymath} D. H. J. Polymath, \emph{Variants of the Selberg
+sieve, and bounded intervals containing many primes},
+\href{https://arxiv.org/abs/1407.4897}{arXiv:1407.4897}.
+\bibitem{Lau} C. F. Lau, \emph{Residue class patterns of consecutive primes},
+\href{https://arxiv.org/html/2409.12819v2}{arXiv:2409.12819v2}.
 \end{thebibliography}
 \end{document}

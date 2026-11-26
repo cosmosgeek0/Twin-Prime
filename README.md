@@ -14,7 +14,7 @@ This bound controls false positives. Proving that sufficiently many candidates p
 
 ## A model for prime-tuple counts
 
-For every fixed pattern without a pair two apart, one set can reproduce the predicted Hardy–Littlewood counts in every fixed progression and still contain no pair two apart. The construction identifies which pattern information is insufficient to force twins. [PDF](prime-tuple-model.pdf) · [LaTeX](prime-tuple-model.tex)
+For every fixed pattern without a pair two apart, one set can reproduce the predicted Hardy–Littlewood counts in every fixed progression and still contain no pair two apart. The construction identifies which pattern information is insufficient to force twins. The paper also gives a consequence for recurring ordered residue classes among actual consecutive primes, with an arbitrary prescribed lower bound on the gap. [PDF](prime-tuple-model.pdf) · [LaTeX](prime-tuple-model.tex)
 
 ## Supporting sieve notes
 
