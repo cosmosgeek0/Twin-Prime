@@ -1,6 +1,6 @@
 # Twin Prime
 
-All thirteen working papers are available here as PDFs with editable LaTeX. The [research archive](history/twin-prime-research-history-2026-11-25.tar.xz) and [original chat records](history/hosted-research-responses-2026-11-25.md) are preserved in this repository.
+All thirteen working papers are available here as PDFs with editable LaTeX. The [research archive](history/twin-prime-research-history-2026-11-25.tar.xz) and [original chat records](history/hosted-research-responses-2026-11-25.md) are preserved in this repository. A [source supplement](history/hosted-proofs-supplement.md) preserves two later mathematical replies on primitive three-square counts and the parity of divisor cutoffs, together with their verification status.
 
 ## Featured manuscript — Large prime divisors of Fermat congruences and semiprime pseudoprimes
 
