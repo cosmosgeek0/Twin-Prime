@@ -31,9 +31,9 @@ For every fixed pattern without a pair two apart, one set can reproduce the pred
 - **A uniform negative bound for a two-form semiprime sieve score.** The signed Apollonian calculation and the affine rescaling test explain the restrictions on a proposed transfer to a gap of two. [PDF](two-form-semiprime-score.pdf) · [LaTeX](two-form-semiprime-score.tex)
 - **Two-site fractional divisor moments outside exceptional scales.** [PDF](two-site-fractional-moments.pdf) · [LaTeX](two-site-fractional-moments.tex)
 - **One- and two-site laws for the last marked prime factor.** [PDF](last-prime-factor.pdf) · [LaTeX](last-prime-factor.tex)
-- **Paired Jacobsthal cleanup and a conditional divergence statement.** [PDF](paired-jacobsthal.pdf) · [LaTeX](paired-jacobsthal.tex)
+- **Paired Jacobsthal cleanup and a conditional divergence statement.** For every fixed cutoff there are arbitrarily high disjoint intervals where the truncated formula gives odd parity although all candidate endpoints are composite. [PDF](paired-jacobsthal.pdf) · [LaTeX](paired-jacobsthal.tex)
 
-- **Class-number criteria and Pell–Hurwitz false positives.** Includes the ramified-conductor case and a fixed-midpoint auxiliary-prime density. [PDF](class-number-criteria.pdf) · [LaTeX](class-number-criteria.tex)
+- **Class-number criteria and Pell–Hurwitz false positives.** Includes the ramified-conductor case and a fixed-midpoint auxiliary-prime density. The new proof gives a primitive three-square congruence on a specified progression of prime centres, and a composite counterexample to the uncorrected mock-theta test on that same progression. [PDF](class-number-criteria.pdf) · [LaTeX](class-number-criteria.tex)
 
 [admin@cosmosgeek.org](mailto:admin@cosmosgeek.org) · [b321014@iiit-bh.ac.in](mailto:b321014@iiit-bh.ac.in)
 

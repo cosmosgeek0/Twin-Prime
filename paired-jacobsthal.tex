@@ -3,12 +3,19 @@
 \usepackage[margin=1in]{geometry}\usepackage[hidelinks]{hyperref}
 \setlength\emergencystretch{1.5em}
 \newtheorem{theorem}{Theorem}
-\title{Omitted branches in a paired Jacobsthal lower sieve}
+\newtheorem{proposition}[theorem]{Proposition}
+\title{Omitted branches in a paired Jacobsthal lower sieve\\
+and finite divisor tests on translated intervals}
 \author{\small \href{mailto:admin@cosmosgeek.org}{admin@cosmosgeek.org}\qquad \href{mailto:b321014@iiit-bh.ac.in}{b321014@iiit-bh.ac.in}}
 \date{Public working paper for specialist review}
 \begin{document}\maketitle
 \begin{abstract}
-Let $L=\log z$. Sieving $n,n+2$ on $(z,z^2-2]$ through $z/L^A$ leaves $O_A(z^2\log L/L^3)$ composite exceptions in addition to ordinary twin pairs. We examine the signed lower tree obtained by applying the admission rule of the OpenAI Jacobsthal preprint to two forbidden classes. Using its compact prime-path occupation estimate, we prove that the omitted-node count exceeds every fixed multiple of $z^2/\log^2 z$ for all sufficiently large $z$. This obstruction persists under exact stops confined to a fixed exponent window.
+Let $L=\log z$. Sieving $n,n+2$ on $(z,z^2-2]$ through $z/L^A$ leaves $O_A(z^2\log L/L^3)$ composite exceptions in addition to ordinary twin pairs. We examine the signed lower tree obtained by applying the admission rule of the OpenAI Jacobsthal preprint to two forbidden classes. Under the compact prime-path occupation hypothesis stated below, we prove that the omitted-node count exceeds every fixed multiple of $z^2/\log^2 z$ for all sufficiently large $z$. This obstruction persists under exact stops confined to a fixed exponent window.
+Separately, an exact divisor expansion gives the parity of the twin count
+on any interval of even midpoints. For every finite cutoff in this
+expansion we construct arbitrarily high intervals on which the truncated
+count is odd and every candidate endpoint is composite. This statement
+uses elementary congruences alone.
 \end{abstract}
 \section{Composite exceptions}
 Write $P^-(m)$ for the least prime factor of $m>1$, $L=\log z$, $I_z=(z,z^2-2]\cap\mathbb Z$ and $H=|I_z|$. Fix $A>0$ and put $z_0=z/L^A$. Define
@@ -79,10 +86,166 @@ By (4) and the prime number theorem the inner prime count in (5) is $(1+o_b(1))H
 for the selected omissions in this band. The lower bound is independent of $b$. Take $M$ disjoint bands $b_j=20\cdot2^j$, keeping $M$ fixed while taking the lower limit. Nonnegativity in (2) permits their contributions to be added, and $M$ is arbitrary. The ordinary upper-bound sieve through a small fixed power of $z$ yields $S(z_0)\ll H/L^2$, proving both limits. For stops with bounded terminal exponent take all $b_j$ above that bound plus one. All ancestors of each selected rejected child remain above the stop window, so its omission persists after exact substitution.
 \end{proof}
 
-\paragraph{Provenance.} The original Twin Prime Research chats supplied the paired-tree adaptation and its independent arithmetic check. Theorem~\ref{main} addresses the specified signed lower tree. The existence of survivors at arbitrarily large cutoffs and the priority of this adaptation remain open.
+\setcounter{equation}{6}
+\section{An exact parity formula on translated intervals}
+The preceding estimate weighs the branches omitted by a particular
+lower sieve on the anchored interval $I_z$. A different approach to
+the twin count groups reciprocal divisor conditions and works modulo
+two. We derive the expansion and determine exactly what every fixed
+cutoff can miss. The positions of the intervals in the counterexample
+below are free to vary.
+
+For integers $2\le U\le V$ define
+\[
+ \mathcal T(U,V)=\#\{U\le j\le V:2j-1,\,2j+1\text{ are prime}\}.
+\]
+Let $\mathbf p(n)$ be the primality indicator, $\omega(n)$ the number of
+distinct prime divisors, and $\mu$ the M\"obius function. One derivation
+starts with the square roots of one modulo $m^2-1$ for $m=2j$.
+An odd prime divides at most one of $u-1,u+1$. Thus $u^2=1$
+modulo an odd prime power has exactly two solutions, the two signs.
+The Chinese remainder theorem gives $2^{\omega(m-1)+\omega(m+1)}$
+roots modulo $m^2-1$, since the neighbors are odd and coprime.
+The four distinct multipliers $1,-1,m,-m$ form a subgroup of the
+roots and act freely. Signs may be exchanged independently on the two
+endpoints, since $m\equiv1\bmod(m-1)$ and $m\equiv-1\bmod(m+1)$.
+The orbit count is odd precisely when both neighbors are prime powers.
+Multiplication by the two squarefree indicators then selects ordinary
+primes. For a different root-based criterion using the product of
+invertible quadratic residues, see Aebi--Cairns \cite[Theorem 2]{AC}.
+
+For a squarefree odd $n>1$, there are $2^{\omega(n)-1}$ unordered
+factor pairs, with one member smaller than $\sqrt n$.
+Their number is odd exactly when $n$ is prime. Hence
+\begin{equation}\label{eq:divpar}
+ \mathcal T(U,V)\equiv\sum_{j=U}^V\mu^2(2j-1)\mu^2(2j+1)
+ \sum_{\substack{a\mid 2j-1\\a^2<2j}}1
+ \sum_{\substack{c\mid 2j+1\\c^2<2j}}1 \pmod2 .
+\end{equation}
+The strict bound $2j$ works on both sides. For nonsquare endpoints it
+selects precisely the smaller divisors, since an odd square cannot
+equal $2j$. A square endpoint is killed by its squarefree indicator.
+
+Expand $\mu^2(n)=\sum_{e^2\mid n}\mu(e)$. Modulo two the only terms
+are squarefree $e$, each with coefficient one. Call an ordered choice
+$(a,e;c,f)$ a row, with $a,c$ odd positive and $e,f$ odd squarefree
+positive; all four parameters may be restricted to
+$\lfloor\sqrt{2V+1}\rfloor$. Define
+\[
+ A=\operatorname{lcm}(a,e^2),\quad C=\operatorname{lcm}(c,f^2),
+ \quad P=AC,\quad K=\max\{U,(\max(a^2,c^2)+1)/2\}.
+\]
+The row counts $K\le j\le V$ with $A\mid 2j-1$ and $C\mid2j+1$.
+If $\gcd(A,C)>1$ the count is zero, since an odd common prime would
+divide two. Otherwise the count is in one residue $r\bmod P$:
+\begin{equation}\label{eq:rowcrt}
+   2r\equiv1\pmod A,\qquad 2r\equiv-1\pmod C.
+\end{equation}
+Swapping $(a,e)$ with $(c,f)$ preserves $P,K$ and sends $r$ to
+$-r$. The only fixed compatible row has $a=c=e=f=1$. For every
+other compatible row $P>1$ is odd and $\gcd(r,P)=1$, so its two
+orientations have distinct residues.
+
+For $1\le r<P$ define
+\[
+ B_P(t;r)=\mathbf1_{\{\min(r,P-r)\le (t\bmod P)<\max(r,P-r)\}},
+\]
+using the least nonnegative remainder. Every complete period contains
+both residues once. In a partial period from $0$ to $t\bmod P$ the
+number of hits is odd exactly when $B_P(t;r)=1$. Thus a reciprocal
+pair of rows contributes $B_P(V;r)+B_P(K-1;r)\bmod2$ when $K\le V$.
+Distinct choices having the same $A,C$ retain their multiplicities.
+
+\begin{proposition}\label{prop:mixed}
+Let $\mathcal M(U,V)$ be the sum modulo two of these boundary terms,
+once per unordered compatible reciprocal pair with $A,C>1$ and
+$K\le V$. Then
+\[
+ \mathcal T(U,V)\equiv V-U+1+
+ \mathbf p(2U-1)+\mathbf p(2V+1)+\mathcal M(U,V)\pmod2 .
+\]
+\end{proposition}
+\begin{proof}
+The trivial row contributes $V-U+1$. At a fixed $j$, the full
+single-endpoint expansion in \eqref{eq:divpar} equals the primality
+indicator modulo two. Removing its trivial term leaves
+$\mathbf p(2j-1)+1$ on the left and $\mathbf p(2j+1)+1$ on the right.
+These give all the one-sided rows. On summing, each interior primality
+indicator occurs twice, leaving exactly the displayed endpoint terms.
+The reciprocal pairing evaluates the remaining mixed rows.
+\end{proof}
+
+\section{Intervals on which the finite divisor test fails}
+For an integer $R\ge1$ let $\mathcal T_R(U,V)$ be the sum of the
+row counts in the expanded right side of \eqref{eq:divpar} modulo
+two, restricted to $a,c,e,f\le R$. The squarefree inversion is part
+of this truncation. Set
+\[
+       L_R=\operatorname{lcm}\{i^2:1\le i\le R,\ i\text{ odd}\}.
+\]
+\begin{theorem}\label{th:period}
+For every $U>R^2$ with $U\ge2$ one has
+$\mathcal T_R(U,U+L_R-1)\equiv1\bmod2$. For every $b\bmod L_R$ there
+are arbitrarily high pairwise disjoint intervals of this length,
+with $U\equiv b\bmod L_R$, on which all $L_R+1$ possible odd
+endpoints have at least two distinct prime factors. On each such
+interval the full twin count is zero and $\mathcal M=1\bmod2$.
+\end{theorem}
+\begin{proof}
+Every retained row has $K=U$. Both $A$ and $C$ divide $L_R$,
+because each allowed $a,e^2,c,f^2$ divides it. Their coprimality
+on a compatible row gives $P=AC\mid L_R$. A nontrivial reciprocal
+pair therefore has $2L_R/P$ hits, an even number. The trivial row
+contributes the odd length $L_R$. This proves the first assertion.
+
+For each $0\le i\le L_R$ choose two odd primes $p_i,q_i>R$,
+all $2(L_R+1)$ primes distinct. Prescribe
+\[
+    2U\equiv1-2i\pmod{p_iq_i}\quad(0\le i\le L_R),\qquad
+    U\equiv b\pmod{L_R}.
+\]
+All the moduli are pairwise coprime. The Chinese remainder theorem
+gives an unbounded progression of solutions. Choose $U>R^2$ in it
+and pass successively to starts beyond the preceding interval.
+Every endpoint $2(U+i)-1$ is divisible by $p_iq_i$, proving the
+second assertion. Both outer primality indicators in
+Proposition~\ref{prop:mixed} vanish, so its formula gives
+$\mathcal M=1\bmod2$ on these intervals.
+\end{proof}
+
+For example $R=3$ gives $L_R=9$. The interval $566\le j\le574$
+has ten possible odd endpoints from $1131$ through $1149$. In
+increasing order they have the proper divisors
+\[
+ 3,\ 11,\ 5,\ 3,\ 17,\ 7,\ 3,\ 5,\ 31,\ 3 .
+\]
+Thus $\mathcal T=0$ on this interval whereas $\mathcal T_3=1\bmod2$.
+
+The omitted rows can reverse the truncated answer even after every
+retained modulus has completed a whole number of periods. The
+conclusion also holds along a sequence of increasing cutoffs by
+choosing each new interval beyond the last. The construction concerns
+translated intervals. Prescribing a relation between their height
+and the cutoff would require a separate argument. For each \emph{fixed}
+$[U,V]$, taking $R\ge\lfloor\sqrt{2V+1}\rfloor$ recovers the
+full expansion in \eqref{eq:divpar}. No prime-path
+occupation estimate enters Theorem~\ref{th:period}.
+
+\paragraph{Provenance.} The original Twin Prime Research chats supplied
+the paired-tree adaptation, the squarefree reciprocal expansion and the
+translated-interval construction. Codex checked and edited the proofs.
+Theorem~\ref{main} addresses the specified signed lower tree, and
+Theorem~\ref{th:period} addresses a separate finite congruence test.
+The existence of twin pairs at arbitrarily large cutoffs and the
+priority of these specializations remain open in this work.
+The original modular calculation is preserved in the
+\href{https://github.com/cosmosgeek0/Twin-Prime/blob/main/history/hosted-proofs-supplement.md}{project source supplement, part 2}.
 \begin{thebibliography}{9}
 \bibitem{OAI}OpenAI, \emph{A quadratic bound for Jacobsthal's function} (2026). \href{https://github.com/openai/math/blob/main/preprints/A-quadratic-bound-for-Jacobsthals-function-September-25-2026/build/sections/prime-paths.tex}{Prime-path occupation proposition}.
 \bibitem{IK}H. Iwaniec and E. Kowalski, \emph{Analytic Number Theory}, AMS, 2004.
+\bibitem{AC}C. Aebi and G. Cairns, \emph{A property of twin primes},
+Integers 12 (2012), A7.
+\href{https://math.colgate.edu/~integers/m7/m7.pdf}{Published article}.
 \bibitem{record}\href{https://github.com/cosmosgeek0/Twin-Prime/blob/main/history/hosted-research-responses-2026-11-25.md}{Original project research and independent check}, section on the paired Jacobsthal lower sieve.
 \end{thebibliography}
 \end{document}

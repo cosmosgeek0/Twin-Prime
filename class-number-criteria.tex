@@ -24,6 +24,13 @@ infinitely many even midpoints with both neighbors composite and
 Hurwitz class number $H(\ell(m^2-1))\equiv4\bmod8$.
 A second calculation gives the asymptotic count of fundamental
 discriminants passing the test when the auxiliary prime varies.
+For primes $\ell\equiv37\pmod {140}$ we also prove that
+$6\ell-1,6\ell+1$ are both prime exactly when the number of primitive
+ordered, signed three-square representations of $36\ell^2-1$ is
+$48\bmod96$. We give an infinite family of composite neighbors for
+which a square-index mock-theta coefficient takes the twin residue.
+A second family shows that a nonzero class-number trace at the
+correct square index can come entirely from other trace coordinates.
 \end{abstract}
 
 \section{The two order class numbers}
@@ -237,6 +244,265 @@ congruences fix their allocation). Both are composite for $m>8$.
 Since $(13/5)=(13/7)=-1$, both Jacobi gates hold.
 \end{proof}
 
+\section{A primitive three-square criterion}
+For $D>0$, let $r_3(D)$ count all ordered triples of integers
+$(x,y,z)$ satisfying $x^2+y^2+z^2=D$, with every choice of signs
+counted. Let $r_3^*(D)$ count those with $\gcd(x,y,z)=1$. In this
+section $m>2$ and $m\equiv6\bmod8$. Write
+\[
+ D=m^2-1=(m-1)(m+1)=d f^2,\qquad d\ \text{squarefree}.
+\]
+The neighbors are coprime and have residues $5,7\bmod8$. Neither is
+a square, so each contributes a different prime to $d$. In particular
+$d>3$, $d\equiv3\bmod8$, and $-d$ is fundamental. Every order in the
+field has exactly two units. This removes the exceptional automorphism
+weights at discriminants $-3,-4$.
+
+\begin{lemma}\label{lem:primitive}
+For these midpoints,
+\[
+ \frac{r_3^*(D)}{24}=h(-D),\qquad
+ h(-D)\equiv2\bmod4
+ \ \Longleftrightarrow\
+ m-1=p^{2a+1},\quad m+1=q^{2b+1},
+\]
+for distinct primes $p,q$ and integers $a,b\ge0$.
+\end{lemma}
+\begin{proof}
+Gauss's three-square formula gives $r_3(E)=24H(E)$ for every
+$E\equiv3\bmod8$ \cite[Theorem 1.4]{mortenson}. The primitive
+formula is itself classical \cite[Theorem 1.3]{mortenson}; here the
+square-divisor inversion also identifies the conductor correction.
+Each $g^2\mid D$
+has $g\mid f$ and $D/g^2\equiv3\bmod8$. Removing the common gcd of
+the coordinates and using \eqref{eq:hurwitz}, we obtain
+\[
+ r_3^*(D)/24=\sum_{g\mid f}\mu(g)H(D/g^2)=h(-df^2).
+\]
+Genus theory gives $2^{\omega(d)-1}\mid h(-d)$, where $\omega$ counts
+distinct prime factors. In \eqref{eq:order}, a prime of $f$ outside
+$d$ contributes the even factor $t^{e-1}(t-\chi_{-d}(t))$.
+Consequently $h(-D)\equiv2\bmod4$ forces $\omega(d)=2$ and
+every prime of $f$ to divide $d$. Coprimality of the neighbors
+puts one base on each side, with an odd exponent on each.
+
+Conversely these prime powers have $p\equiv5$, $q\equiv7\bmod8$.
+Since $q^{2b+1}\equiv2\bmod p$, the Legendre symbol
+$(q/p)=(2/p)=-1$. The squarefree two-prime class-number
+criterion gives $h(-pq)\equiv2\bmod4$
+\cite[Theorem 2.3(2), including its attribution to Hasse]{chen}.
+Here $H(pq)=h(-pq)$ and $3H(pq)\equiv2$ is equivalent to
+$h(-pq)\equiv2\bmod4$. Every conductor factor is now a power of a
+ramified odd prime, hence odd. Equation \eqref{eq:order} proves
+the assertion for $D$.
+\end{proof}
+
+\begin{theorem}\label{th:three}
+For every prime $\ell\equiv37\bmod140$,
+\[
+       r_3^*(36\ell^2-1)\equiv48\bmod96
+       \quad\Longleftrightarrow\quad
+       6\ell-1,\;6\ell+1\text{ are both prime}.
+\]
+\end{theorem}
+\begin{proof}
+The hypotheses give $\ell\equiv1\bmod4$ and $\ell\equiv2\bmod35$.
+Take $m=6\ell$ in Lemma~\ref{lem:primitive}. If $6\ell-1=p^k$
+with odd $k\ge3$, then $p+1$ divides $6\ell$ and its cofactor
+$(p^k+1)/(p+1)$ is at least $p^2-p+1>3$. The even divisors of
+$6\ell$ are $2,6,2\ell,6\ell$; $p\equiv5\bmod8$ leaves only
+$p+1=6$. But $6\ell-1\equiv1\bmod5$. Similarly, if $6\ell+1=q^k$
+with odd $k\ge3$, then $q-1$ divides $6\ell$ and its cofactor
+is at least $q^2+q+1>3$. As $q\equiv7\bmod8$, this forces
+$q-1=6$, whereas $6\ell+1\equiv6\bmod7$. Thus both exponents
+equal one. The converse follows directly from the lemma.
+\end{proof}
+
+\section{A mock-theta coefficient at square indices}
+Let $v(n)=[z^n]V_1(z)$ for the eighth-order mock theta function
+\[
+ V_1(z)=\sum_{j\ge0}\frac{z^{(j+1)^2}(-z;z^2)_j}{(z;z^2)_{j+1}},
+ \qquad (a;b)_j=\prod_{i=0}^{j-1}(1-ab^i).
+\]
+Chen and Garvan prove $v(n)\equiv\chi(n)H(4n-1)\bmod4$ for $n>0$,
+where $\chi(n)=-1$ on $0,1\bmod4$ and $+1$ otherwise
+\cite[Lemma 3.4]{chen}. They also characterize $3H(D)\equiv2\bmod4$
+for all $D\equiv3\bmod4$ in terms of two specified primes to exponents
+$1\bmod4$ times a square \cite[Theorem 2.5]{chen}. These are
+established inputs. Taking $n=(m/2)^2$ picks out the project
+discriminant $4n-1=m^2-1$.
+
+\begin{proposition}\label{prop:mock}
+There exist infinitely many $m\equiv6\bmod8$ with
+\[
+   v\bigl((m/2)^2\bigr)\equiv2\bmod4,\qquad
+   r_3^*(m^2-1)\equiv0\bmod96
+\]
+and with both $m-1$ and $m+1$ composite.
+\end{proposition}
+\begin{proof}
+The matrix $\left(\begin{smallmatrix}6&7\\5&6\end{smallmatrix}\right)$
+has determinant one and preserves $7v^2-5u^2=2$ on vectors $(u,v)$.
+Its image of $(1,1)$ is $(13,11)$. Iterate a positive power congruent
+to the identity modulo $70$, starting at $(13,11)$. This gives
+unbounded positive odd solutions with $\gcd(uv,35)=1$. Put
+$m=5u^2+1=7v^2-1$. Both neighbors are composite and
+$D=35(uv)^2$. Since $(7/5)=-1$, $h(-35)\equiv2\bmod4$.
+Every factor in the Hurwitz product \eqref{eq:hurwitz} is odd:
+at $t\mid uv$ all the terms after its initial 1 are even. Hence
+$H(D)\equiv2\bmod4$, and Chen--Garvan's congruence gives the asserted
+value of the coefficient. The conductor $uv>1$ has an unramified
+prime, so $4\mid h(-D)$ by \eqref{eq:order}. Apply
+Lemma~\ref{lem:primitive}.
+\end{proof}
+For example $m=846$ gives $m-1=5\cdot13^2$, $m+1=7\cdot11^2$
+and $(m/2)^2=178929$. At discriminant $-35$ the two reduced forms
+are $[1,1,9]$ and $[3,1,3]$. The character $\chi_{35}$ equals $1$
+at both $11$ and $13$. Thus the ordinary and primitive class
+counts are respectively $2(1+10)(1+12)=286$ and $2\cdot10\cdot12=240$.
+The proposition permits general even midpoints
+in the indicated class. Its construction imposes no primality
+condition on $m/6$.
+
+A counterexample also occurs on the restricted prime-center sequence
+itself. Take $\ell=6197\equiv37\bmod140$. Then
+\[
+ 6\ell-1=37181,\qquad 6\ell+1=37183=19^2\cdot103 .
+\]
+Here $\ell$ and $37181$ are prime (trial division through $78$ and
+$192$, respectively, suffices), as are $19$ and $103$. The squarefree
+core is $d=37181\cdot103$, with $(103/37181)=(2/37181)=-1$ by the
+displayed factorization. Thus $h(-d)\equiv2\bmod4$. For the sole
+conductor prime $19\nmid d$, $1+A_d(19)$ is odd while $A_d(19)$ is
+even. The square-index coefficient $v(345625281)$ consequently equals
+$2\bmod4$ although the primitive count is $0\bmod96$. This gives
+a single restricted-center example; Proposition~\ref{prop:mock}
+gives an infinite family at general centers $m\equiv6\bmod8$.
+
+The conductor correction can itself be expressed in these coefficients.
+For every $m$ of Lemma~\ref{lem:primitive},
+\[
+   \sum_{g^2\mid D}\mu(g)\,
+        v\!\left(\frac{D/g^2+1}{4}\right)
+         \equiv r_3^*(D)/24\pmod4 .
+\]
+Indeed every $D/g^2$ has the same fundamental core $d$, hence its
+Hurwitz class number is an even integer by \eqref{eq:hurwitz} and genus
+theory. The sign $\chi$ therefore disappears modulo four. The
+square-divisor inversion in Lemma~\ref{lem:primitive} gives the
+formula, explaining exactly what is lost when only $g=1$ is used.
+
+\section{What the square-index traces detect}
+Let $N=9\ell^2$ with $\ell>7$ prime and $\ell\equiv1\bmod4$.
+Take $H(0)=-1/12$, with $H(u)=0$ when $u<0$ or $u\equiv1,2\bmod4$.
+Bringmann--Kane study sums of these coefficients on
+fixed trace progressions \cite[Theorem 1.4]{bk}. Here an evaluable
+second moment is
+\[
+ B(N)=\sum_{\substack{|t|\le2\sqrt N\\t\equiv1\ (3)}}t^2H(4N-t^2)
+   =9\ell^2(9\ell^2+8\ell-1)-730-\ell^3
+   \equiv1\bmod4 .
+\]
+For the equality use Bringmann--Kane--Pujahari
+\cite[Theorem 1.1(2), nonzero residue class]{bkp}. The divisors of
+$N$ strictly below $\sqrt N$ are $1,3,9,\ell$. Omitting those with
+$3\mid d$ and $3\mid N/d$ leaves the cubic sum $1+9^3+\ell^3$.
+The divisor-sum difference $\sigma(N)-\sigma(N/3)$ is
+$9(1+\ell+\ell^2)$. In the sum of $\min(d,N/d)$ the central divisor
+$3\ell$ cancels against the theorem's square-index correction; the
+strictly smaller divisors have sum $13+\ell$. The remaining sum over
+strictly smaller divisors of $N/9=\ell^2$ contributes $3N$.
+Together these terms give the displayed polynomial. All class numbers
+in this trace are integral: $4N-t^2\equiv2\bmod3$ excludes both
+exceptional square classes $3u^2,4u^2$.
+
+There is a related trace with a different primitivity condition.
+For odd $s$ and $m=2s$, let $F_m(t)$ count positive odd ordered
+triples $x,y,z$ with $t^2+x^2+y^2+z^2=m^2$ and
+$\gcd(t,x,y,z)=1$. For odd $0<t<m$,
+\begin{equation}\label{eq:fourmarked}
+ F_m(t)=3\sum_{g\mid(t,s)}\mu(g)
+            H\bigl((m^2-t^2)/g^2\bigr).
+\end{equation}
+In fact $m^2-t^2\equiv3\bmod8$ forces three odd coordinates.
+Dividing Gauss's count by the eight sign choices and removing
+the common four-coordinate gcd gives \eqref{eq:fourmarked}.
+
+\begin{proposition}\label{prop:trace}
+For $\ell$ as above and $m=6\ell$ one has
+\[
+   \sum_{\substack{0<t<m\\t\ {\rm odd},\ 3\nmid t}}F_m(t)
+        =9\ell(\ell+1)\equiv2\bmod4 .
+\]
+For infinitely many primes $\ell\equiv37\bmod140$, this congruence
+holds while both $F_m(1)$ and $r_3^*(m^2-1)/24$ are $0\bmod4$.
+\end{proposition}
+\begin{proof}
+Write $\sigma(n)=\sum_{d\mid n}d$. Jacobi's formula
+\cite{jacobi} gives $r_4(4s^2)=24\sigma(s^2)$ and
+$r_4(s^2)=8\sigma(s^2)$. Subtracting the all-even quadruples
+leaves all-odd quadruples by reduction modulo four. Dividing by
+16 independent signs gives exactly $\sigma(s^2)$ positive ordered
+odd quadruples. Their common gcd divides $s$. At $s=3\ell$ their
+primitive count is therefore
+\[
+ \sum_{g\mid3\ell}\mu(g)\sigma((3\ell/g)^2)
+  =(\sigma(9)-1)(\sigma(\ell^2)-1)=12\ell(\ell+1).
+\]
+Modulo three, a primitive quadruple of this norm has exactly three
+coordinates prime to three. By permutation symmetry three quarters
+have first coordinate prime to three, giving the trace.
+
+Impose also $\ell\equiv2\bmod121$, compatible with the specified
+reduced class modulo $140$. Dirichlet's theorem supplies infinitely
+many primes. Then $11\parallel m-1$, and the squarefree kernel of
+$m-1\equiv5\bmod8$ cannot equal $11\equiv3\bmod8$. The other
+neighbor is a nonsquare coprime to the first. Hence $d$ has at
+least three prime factors, and $4\mid h(-d)$. Equations
+\eqref{eq:order} and \eqref{eq:hurwitz} give $4\mid h(-D),H(D)$.
+At $t=1$ condition $\gcd(t,x,y,z)=1$ is automatic, so that
+$F_m(1)=3H(D)$. This proves both vanishings. In particular the
+other coordinates alone account for the residue $2$ of the trace.
+\end{proof}
+Already $\ell=37$ gives $m=222$ and $D=13\cdot17\cdot223$.
+Its two marked residues vanish by genus theory while the two
+complete traces above are respectively $1$ and $2$ modulo four.
+For instance the displayed evaluations give
+$B(12321)=155390353$ and $9\ell(\ell+1)=12654$.
+At the same midpoint $(t,x,y,z)=(23,217,21,35)$ has norm $222^2$.
+Its four-coordinate gcd is one and its last three coordinates
+have gcd seven. This also exhibits the difference between the two
+primitive counts on a single representation.
+
+\begin{proposition}\label{prop:fixedtrace}
+For every fixed trace modulus $M\ge1$ there are infinitely many
+$m\equiv6\bmod8$ with $h(-(m^2-1))\equiv0\bmod4$ and another
+odd trace $1<t<m$, $t\equiv1\bmod M$, for which
+$m^2-t^2$ is squarefree and $H(m^2-t^2)\equiv2\bmod4$.
+\end{proposition}
+\begin{proof}
+Let $M_0=[8,M]$ denote the least common multiple. Choose a prime
+$r\equiv3\bmod8$ coprime to $M_0$. Choose a prime $p\equiv5\bmod8$
+with $p\equiv1\bmod r$ and $\gcd(p(p+2),M_0)=1$.
+At each odd prime dividing $M_0$ one can avoid $0,-2$; the Chinese
+remainder theorem and Dirichlet's theorem give such $p$. For infinitely
+many primes $q>p+2$ impose
+\[
+ q\equiv p+2\bmod{2M_0},\qquad q\equiv2\bmod p,\qquad
+ q\equiv2-p+2r\bmod{r^2}.
+\]
+The moduli are coprime and the residues are reduced, the last being
+$1\bmod r$. Set $m=(q+p)/2$, $t=(q-p)/2$. Then $t\equiv1\bmod M_0$,
+$m\equiv6\bmod8$, and $r\parallel m-1$. The preceding
+squarefree-kernel argument with $r$ in place of $11$ gives
+$4\mid h(-(m^2-1))$. But $m^2-t^2=pq$ with $(q/p)=(2/p)=-1$,
+so $H(pq)\equiv2\bmod4$ by \cite[Theorem 2.3]{chen}.
+\end{proof}
+The last proposition concerns termwise isolation at general midpoints.
+It leaves open possible cancellations in the complete trace and the
+distribution of individual primitive coefficients on the prime centers
+of Theorem~\ref{th:three}.
+
 \paragraph{Scope and provenance.}
 The two-congruence test combines genus theory, the R\'edei matrix
 and the ring class number formula. The Pell construction and the
@@ -245,7 +511,13 @@ nonvanishing argument must control. They give no unbounded sequence
 of genuine twin centers. The original Twin Prime research chats and
 Codex contributed the mathematical development, extraction, and
 internal checks. Specialist review and the priority of these
-specializations remain open.
+specializations remain open. The same project's original class-number
+chat supplied the primitive-midpoint criterion and the trace
+counterexamples. The mock-theta specialization follows here from
+Chen and Garvan's published coefficient theorem and the recovered Pell
+construction. Codex checked the arithmetic and prepared the extension.
+The recovered derivation is available in the
+\href{https://github.com/cosmosgeek0/Twin-Prime/blob/main/history/hosted-proofs-supplement.md}{project source supplement, part 1}.
 
 \begin{thebibliography}{9}
 \bibitem{stev} P. Stevenhagen, \emph{R\'edei reciprocity, governing
@@ -256,5 +528,25 @@ Theorem 7.24.
 \bibitem{brr} O. Beckwith, M. Raum and O. K. Richter,
 \emph{Nonholomorphic Ramanujan-type congruences for Hurwitz class numbers}.
 \href{https://doi.org/10.1073/pnas.2005984117}{Proc. Natl. Acad. Sci. USA 117 (2020)}.
+\bibitem{chen} R. Chen and F. G. Garvan, \emph{A proof of the mod 4
+unimodal sequence conjectures and related mock theta functions},
+Theorems 2.3, 2.5 and Lemma 3.4.
+\href{https://arxiv.org/abs/2010.14315}{arXiv:2010.14315}.
+\bibitem{mortenson} E. T. Mortenson, \emph{A Kronecker-type identity
+and the representations of a number as a sum of three squares},
+Bull. Lond. Math. Soc. 49 (2017), 770--783.
+\href{https://doi.org/10.1112/blms.12068}{doi:10.1112/blms.12068}.
+\bibitem{jacobi} G. E. Andrews, S. B. Ekhad and D. Zeilberger,
+\emph{A short proof of Jacobi's formula for the number of
+representations of an integer as a sum of four squares},
+Amer. Math. Monthly 100 (1993), 273--276.
+\href{https://arxiv.org/abs/math/9206203}{arXiv:math/9206203}.
+\bibitem{bk} K. Bringmann and B. Kane, \emph{Sums of class numbers
+and mixed mock modular forms}, Theorem 1.4.
+\href{https://doi.org/10.1017/S0305004118000348}{doi:10.1017/S0305004118000348}.
+\bibitem{bkp} K. Bringmann, B. Kane and S. Pujahari,
+\emph{Formulas for moments of class numbers in arithmetic
+progressions}, Theorem 1.1(2).
+\href{https://arxiv.org/abs/2109.07325}{arXiv:2109.07325}.
 \end{thebibliography}
 \end{document}
