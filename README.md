@@ -29,6 +29,6 @@ This bound controls false positives. Proving that sufficiently many candidates p
 
 - **Class-number criteria and Pell–Hurwitz false positives.** Includes the ramified-conductor case and a fixed-midpoint auxiliary-prime density. [PDF](class-number-criteria.pdf) · [LaTeX](class-number-criteria.tex)
 
-**Project coordinator and contact:** DEEPAK KUMAR · [admin@cosmosgeek.org](mailto:admin@cosmosgeek.org).
+[admin@cosmosgeek.org](mailto:admin@cosmosgeek.org) · [b321014@iiit-bh.ac.in](mailto:b321014@iiit-bh.ac.in)
 
 The research and drafting involved ChatGPT and Codex. The coordinator is identified for correspondence. These manuscripts are public research drafts.
