@@ -644,6 +644,147 @@ reconstruction, literature comparison and writing. Such checks are
 internal, not external peer review or formal verification.
 
 
+
+\section{A signed cofactor profile on short intervals}\label{sec:parity-transfer}
+The two signs need not be balanced under every divisor weight. We
+record a calculation from the cofactor-matching argument in
+\S308GW of the source research. It identifies both the imbalance
+and the part of a proposed cancellation argument that remains unproved.
+
+Let \(0<\kappa<1\) be fixed, \(Y=X^\kappa,\ L=\log X,\ \ell=\log Y\).
+Fix a smooth nonincreasing \(f:\mathbb R\to[0,1]\) equal to one for
+\(t\le1/2\) and zero for \(t\ge1\). For odd \(m>1\) put
+\[
+ w(m)=\prod_{p\mid m}\frac{p-1}{p-2},\quad
+ A(m)=\sum_{d\mid m}\mu(d)f(\log_Y d),\quad a_m=A(m)w(m)/m.
+\]
+Sums below are over odd \(m\). Throughout, \(f,\kappa,\xi\) are fixed.
+\begin{theorem}\label{th:parityshort}
+Let \(0<\xi<3\kappa/28\), \(I=(M,M+H]\), \(H=MX^{-\xi}\) and
+\(\sqrt Y/2\le M\le3X\). For every subinterval \(I'\subset I\),
+\begin{align}
+ \sum_{m\in I'}a_m&\ll_D(H/M)L^{-D}\qquad(D>0),\label{eq:plainweight}\\
+ \sum_{m\in I'}\lambda(m)a_m
+ &=\int_{I'} f'(\log_Y u)\frac{du}{u\ell}
+  +O\left(\frac HM\frac{(\log L)^6}{L^2}\right).\label{eq:twistedweight}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+We give details of the short-interval transference. If \(M'\gg X^b\)
+and \(\xi<3b/8\), the short-interval M\"obius estimate
+\cite[Theorem~1.1(i)]{MSTTshort} gives
+\[
+ \sum_{n\in J}\mu(n)\ll_D M'X^{-\xi}L^{-D}
+ \quad\text{for any interval }J\subset(M',M'+M'X^{-\xi}].
+\]
+The length of the containing interval exceeds \((M')^{5/8+\epsilon}\)
+by a fixed power. This also follows for interval clips using the
+maximal version, or by using the theorem on long clips and the trivial
+bound on clips shorter than \(M'X^{-\xi}L^{-D}\).
+
+The same conclusion holds for \(\mu*h\) if, uniformly in any
+auxiliary indices, \(\sum_n|h(n)|n^{-\sigma}=O(1)\) for a fixed
+\(\sigma<1-\xi/b\). Choose a small \(\eta>0\) with
+\(\xi<3(b-\eta)/8\). For convolution indices \(j\le X^\eta\)
+apply the preceding bound on the rescaled intervals. The larger indices
+cost at most
+\[
+ \sum_{X^\eta<j\le2M'}|h(j)|(M'X^{-\xi}/j+1)
+ \ll M'X^{-\xi}X^{-\eta(1-\sigma)}+(M')^\sigma .
+\]
+Both terms are power-saving on the required interval scale.
+
+Set \(w_j(d)=\prod_{p\mid d,\ p\nmid j,\ p>2}w(p)\) with
+\(w(p)=(p-1)/(p-2)\) for odd primes. For \(m>1\), replace \(A(m)\) by
+\(-\sum_{d\mid m}\mu(d)(1-f(\log_Y d))\), so \(d>\sqrt Y\).
+Writing \(m=jd\) and fixing odd \(j\) leaves a bounded-variation
+weight in \(d\) and the coefficient
+\(\mu(d)w_j(d)\mathbf1_{d\ {\rm odd}}\).
+Dividing its Dirichlet series by that of \(\mu\) gives a convolution
+whose absolute coefficient norm is uniformly finite at every fixed
+\(\sigma>0\). Indeed the odd local factors are
+\((1-w_j(p)p^{-s})/(1-p^{-s})\) with \(w_j(p)=1+O(1/p)\);
+the factor at two is \((1-2^{-s})^{-1}\).
+The \(d\)-scale is \(\gg X^{\kappa/2}\) whenever its clipped interval
+is nonempty. The preceding bound and partial summation therefore
+give \eqref{eq:plainweight} after summing
+\(\sum_{j\le3X}w(j)/j\ll L^{O(1)}\) and taking extra logarithmic precision.
+
+For \(\lambda(m)a_m\), writing \(m=dj\) in the original cutoff
+changes \(\mu(d)\lambda(d)\) to \(\mu^2(d)\).
+Take \(e=2\kappa/7\). For \(j>X^e\) fix \(d\) and apply the same
+interval bound at scale \(M/d\gg X^e\) to
+\(\lambda(j)w_d(j)\mathbf1_{j\ {\rm odd}}\).
+Here the auxiliary convolution has finite absolute norm at any
+\(\sigma>1/2\), since \(\lambda=\mu*\mathbf1_{\rm squares}\);
+relative to \(\lambda\) the odd correction at \(p\) is
+\(1+(1-w_d(p))p^{-s}\) and the factor at two is \(1+2^{-s}\).
+Our assumption is exactly \(\xi<3e/8\). The \(d\)-harmonic norms
+again cost powers of \(L\), and this entire range contributes
+\(O_D((H/M)L^{-D})\).
+
+For \(j\le X^e\), fix \(j\). The odd coefficients
+\(\mu^2(d)w_j(d)\) have mean \(c_j\) with prefix error
+\(O_\delta(Z^{1/2+\delta})\) up to \(Z\), uniformly in \(j\), where
+\[
+ c_1=\tfrac12\prod_{p>2}(1-1/p)(1+w(p)/p),\qquad
+ c_j=c_1\prod_{p\mid j}\frac{p+1}{p+w(p)}.
+\]
+This follows by dividing their series by \(\zeta(s)\):
+away from two the residual local coefficients in degrees one and two
+are \(w_j(p)-1\) and \(-w_j(p)\); their norm is finite at
+\(1/2+\delta\). The \(d\)-scale \(M/j\gg X^{\kappa/2-e}\) satisfies
+\(\xi<(\kappa/2-e)/2=3\kappa/28\). The prefix errors on the clipped
+interval, followed by partial summation and the \(j\)-harmonic sum, are
+power-saving relative to \(H/M\). The remaining density under \(du/u\) equals
+\[
+ \sum_{\substack{j\le X^e\\ j\ {\rm odd}}}
+    \frac{\lambda(j)w(j)c_j}{j}\,f(\log_Y(u/j)).
+\]
+
+For these signed harmonic coefficients write \(D(s)\) for the series
+with the additional multiplier \(j^{-s}\). Set \(w'_p=w(p)(p+1)/(p+w(p))\).
+Relative to \(c_1\), the local factors of \(D\) are
+\((1+(1-w'_p)p^{-1-s})/(1+p^{-1-s})\) at odd primes. Thus
+\(D(s)=G(s)/\zeta(1+s)\) with an absolutely convergent correction
+in a neighborhood of zero. The identity
+\((p+w(p))(p+1-w'_p)=p(p+1)\) gives \(G(0)=1\), including the
+cancellation of the factor at two against \(1/2\).
+Hence \(D(0)=0\), \(D'(0)=1\).
+By convolution and the classical Mertens-function error
+\(O(x\exp(-c\sqrt{\log x}))\), truncate the signed moments of
+degrees zero and one at \(Z_0=\exp(C(\log L)^2)\) to any prescribed
+inverse-log accuracy by increasing \(C\). The same truncation applies
+to the bounded-variation profile by partial summation; to see the
+uniform tail estimate split the correction index at \(\sqrt{Z_0}\),
+using its power-saving absolute tail above that cutoff. The absolute
+harmonic mass up to \(Z_0\) is \(O(\log(2Z_0))\), since \(c_j\ll1\)
+and \(\sum_{j\le z}w(j)/j\ll\log(2z)\) by its Euler factors.
+Taylor expansion of the profile at \(\log_Y u\) now gives
+\(f'(\log_Y u)/\ell+O((\log L)^6/L^2)\). This proves
+\eqref{eq:twistedweight}.
+\end{proof}
+
+\paragraph{Cross-parity matching.}
+Partition \([\sqrt Y,Y]\) into successive cells of ratio \(1+X^{-\xi}\),
+clipping the last. Within each cell cancel positive and negative
+\(a_m\)-mass first at fixed Liouville sign, then between the residual classes.
+These cancellations can be implemented by fractional matchings of masses.
+Let \(S_I=\sum_{m\in I}a_m\) and \(T_I=\sum_{m\in I}\lambda(m)a_m\).
+The signed net in each parity class is \((S_I\pm T_I)/2\).
+After the first cancellation, the mass matched from positive \(a_m\)
+of sign \(\lambda=-1\) to negative \(a_{m'}\) of sign \(\lambda=+1\)
+is \((-\!T_I-|S_I|)_+/2\), where \(x_+=\max(x,0)\). The reversed
+flow has mass \((T_I-|S_I|)_+/2\). Summing the error terms in
+Theorem~\ref{th:parityshort} over the cells costs
+\(O((\log L)^6/L)\). Since \(f\) decreases from one to zero,
+the forward mass is \(1/2+o(1)\), the reversed mass is \(o(1)\),
+and the total unmatched mass is \(o(1)\).
+The theorem controls the signed weights independently of any
+prime-pair density inserted at the two ends of a match. Bounding
+their correlation with that density remains a separate question.
+
 \begin{thebibliography}{9}\small
 \bibitem{tt} T. Tao and J. Ter\"av\"ainen,
 \emph{Quantitative correlations and some problems on prime factors of consecutive integers},
@@ -669,5 +810,9 @@ arXiv:2310.19357, Appendix C.
 \bibitem{kouk} D. Koukoulopoulos,
 \emph{The Distribution of Prime Numbers}, American Mathematical Society, 2019.
 \href{https://dms.umontreal.ca/~koukoulo/documents/publications/primes.pdf}{Author-hosted text}.
+\bibitem{MSTTshort}
+K. Matom\"aki, X. Shao, T. Tao and J. Ter\"av\"ainen,
+\emph{Higher uniformity of arithmetic functions in short intervals I.
+All intervals}, \href{https://doi.org/10.1017/fmp.2023.28}{Forum Math. Pi (2023)}.
 \end{thebibliography}
 \end{document}
